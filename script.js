@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // 1. TÍNH NĂNG ĐẾM NGƯỢC (COUNTDOWN)
-  const weddingDate = new Date('2026-10-12T09:00:00').getTime();
+  // Mốc thời gian: 09:00 ngày 13/12/2026 Dương lịch (Tương ứng 04/11/2026 Âm lịch)
+  const weddingDate = new Date('2026-12-13T09:00:00').getTime();
 
   function updateCountdown() {
     const now = new Date().getTime();
@@ -17,6 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('hours').innerText = String(hours).padStart(2, '0');
       document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
       document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+    } else {
+      document.getElementById('days').innerText = '00';
+      document.getElementById('hours').innerText = '00';
+      document.getElementById('minutes').innerText = '00';
+      document.getElementById('seconds').innerText = '00';
     }
   }
   setInterval(updateCountdown, 1000);
