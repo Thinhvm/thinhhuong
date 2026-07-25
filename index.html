@@ -1,197 +1,208 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta property="og:title" content="Thiệp Cưới Minh Thịnh & Huỳnh Hương" />
-<meta property="og:description" content="Chúng mình sắp về chung một nhà! Rất hân hạnh được đón tiếp quý khách." />
-<meta property="og:image" content="https://thinhvm.github.io/web/img/CR.jpg" />
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minh Thịnh & Huỳnh Hương - Save the Date</title>
-  
-  <!-- Font chữ Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Link File CSS & JS chuẩn đường dẫn tương đối -->
-  <link rel="stylesheet" href="./style.css">
-  <script src="./script.js" defer></script>
+<head>
+
+    //Hình ảnh và tiêu đề khi chia sẻ trên mạng xã hội
+    <meta property="og:title" content="Thiệp Cưới Minh Thịnh & Huỳnh Hương" />
+    <meta property="og:description" content="Chúng mình sắp về chung một nhà! Rất hân hạnh được đón tiếp quý khách." />
+    <meta property="og:image" content="https://thinhvm.github.io/web/img/1.jpg" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minh Thịnh & Huỳnh Hương - Save the Date</title>
+
+    <!-- Font chữ Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Link File CSS & JS chuẩn đường dẫn tương đối -->
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
 </head>
+
 <body>
 
-  <!-- 1. FLOATING MUSIC PLAYER -->
-  <div class="music-container">
-    <button id="musicToggle" class="music-btn" aria-label="Bật/Tắt nhạc">
-      <svg id="musicIcon" class="music-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12 0c0 1.105-1.343 2-3 2s-3-.895-3-2 3 .895 3 2zM9 10l12-3"></path>
-      </svg>
-    </button>
-    <audio id="bgMusic" loop>
-      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    </audio>
-  </div>
-
-  <!-- 2. HERO BANNER -->
-<header class="hero-section">
-  <div class="hero-content">
-    <p class="hero-subtitle">SAVE THE DATE</p>
-    <h1 class="hero-title">Minh Thịnh & Huỳnh Hương</h1>
-    <p class="hero-desc">Chúng mình sắp về chung một nhà!</p>
-    <div class="hero-date-box">
-      <!-- Hiển thị ngày Âm Lịch kèm chú thích Dương Lịch -->
-      <span class="hero-date">04 . 11 . 2026 (Âm Lịch)</span>
-    </div>
-  </div>
-</header>
-
-<!-- 3. COUNTDOWN TIMER -->
-<section class="countdown-section">
-  <div class="container text-center">
-    <h2 class="section-title">Đếm ngược đến ngày chung đôi</h2>
-    <p class="section-subtext" style="font-size: 0.95rem; opacity: 0.85; margin-bottom: 20px;">
-      Tiệc mừng: 04/11/2026 Âm Lịch (Nhằm ngày 13/12/2026 Dương Lịch)
-    </p>
-    <div class="countdown-grid">
-      <div class="countdown-card">
-        <span id="days" class="countdown-num">00</span>
-        <span class="countdown-label">Ngày</span>
-      </div>
-      <div class="countdown-card">
-        <span id="hours" class="countdown-num">00</span>
-        <span class="countdown-label">Giờ</span>
-      </div>
-      <div class="countdown-card">
-        <span id="minutes" class="countdown-num">00</span>
-        <span class="countdown-label">Phút</span>
-      </div>
-      <div class="countdown-card">
-        <span id="seconds" class="countdown-num">00</span>
-        <span class="countdown-label">Giây</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-  <!-- 4. CHÚ RỂ & CÔ DÂU -->
-  <section class="profile-section container">
-    <div class="text-center section-header">
-      <span class="section-script">Cô Dâu & Chú Rể</span>
-      <h2 class="section-title">Nhân Vật Chính</h2>
+    <!-- 1. FLOATING MUSIC PLAYER -->
+    <div class="music-container">
+        <button id="musicToggle" class="music-btn" aria-label="Bật/Tắt nhạc">
+            <svg id="musicIcon" class="music-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12 0c0 1.105-1.343 2-3 2s-3-.895-3-2 3 .895 3 2zM9 10l12-3">
+                </path>
+            </svg>
+        </button>
+        <audio id="bgMusic" loop>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
     </div>
 
-    <div class="profile-grid">
-      <div class="profile-card">
-        <img src="img/CR.jpg" alt="Chú rể Minh Thịnh" class="profile-img">
-        <h3 class="profile-name">Minh Thịnh</h3>
-        <p class="profile-role">Chú Rể</p>
-        <p class="profile-desc">Tràn đầy năng lượng, đam mê công nghệ và dành trọn tình yêu thương cho cô dâu.</p>
-      </div>
+    <!-- 2. HERO BANNER -->
+    <header class="hero-section">
+        <div class="hero-content">
+            <p class="hero-subtitle">SAVE THE DATE</p>
+            <h1 class="hero-title">Minh Thịnh & Huỳnh Hương</h1>
+            <p class="hero-desc">Chúng mình sắp về chung một nhà!</p>
+            <div class="hero-date-box">
+                <!-- Hiển thị ngày Âm Lịch kèm chú thích Dương Lịch -->
+                <span class="hero-date">04 . 11 . 2026 (Âm Lịch)</span>
+            </div>
+        </div>
+    </header>
 
-      <div class="profile-card">
-        <img src="img/CD.jpg" alt="Cô dâu Huỳnh Hương" class="profile-img">
-        <h3 class="profile-name">Huỳnh Hương</h3>
-        <p class="profile-role">Cô Dâu</p>
-        <p class="profile-desc">Yêu sự bình yên, tinh tế và chính là mảnh ghép hoàn hảo nhất cuộc đời chú rể.</p>
-      </div>
-    </div>
-  </section>
+    <!-- 3. COUNTDOWN TIMER -->
+    <section class="countdown-section">
+        <div class="container text-center">
+            <h2 class="section-title">Đếm ngược đến ngày chung đôi</h2>
+            <p class="section-subtext" style="font-size: 0.95rem; opacity: 0.85; margin-bottom: 20px;">
+                Tiệc mừng: 04/11/2026 Âm Lịch (Nhằm ngày 13/12/2026 Dương Lịch)
+            </p>
+            <div class="countdown-grid">
+                <div class="countdown-card">
+                    <span id="days" class="countdown-num">00</span>
+                    <span class="countdown-label">Ngày</span>
+                </div>
+                <div class="countdown-card">
+                    <span id="hours" class="countdown-num">00</span>
+                    <span class="countdown-label">Giờ</span>
+                </div>
+                <div class="countdown-card">
+                    <span id="minutes" class="countdown-num">00</span>
+                    <span class="countdown-label">Phút</span>
+                </div>
+                <div class="countdown-card">
+                    <span id="seconds" class="countdown-num">00</span>
+                    <span class="countdown-label">Giây</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- 5. LỊCH TRÌNH -->
-<section class="events-section">
-  <div class="container">
-    <div class="text-center section-header">
-      <h2 class="section-title">Sự Kiện Trọng Đại</h2>
-      <p class="section-subtext">Rất hân hạnh được đón tiếp quý khách</p>
-    </div>
-
-    <div class="events-grid">
-      <!-- TIỆC MỪNG ĐÁM CƯỚI -->
-      <div class="event-card">
-        <div class="event-icon">🥂</div>
-        <h3 class="event-title">Lễ vu quy</h3>
-        <p class="event-time">
-          <strong>09:00 - 13/12/2026 (Dương Lịch)</strong><br>
-          <small>(Nhằm Ngày 04/11/2026 Âm Lịch)</small>
-        </p>
-        <p class="event-location">Trung tâm Hội nghị Phương Loan, xã Cát Tiến, tỉnh Gia Lai</p>
-      </div>
-
-      <!-- LỄ THÀNH HÔN -->
-      <div class="event-card">
-        <div class="event-icon">💒</div>
-        <h3 class="event-title">Lễ Thành Hôn</h3>
-        <p class="event-time">
-          <strong>14:00 - 07/01/2027 (Dương Lịch)</strong><br>
-          <small>(Nhằm Ngày 29/11/2026 Âm Lịch)</small>
-        </p>
-        <p class="event-location">Tư gia nhà nam: Số nhà 293-294 khóm 25, phường Giá Rai, tỉnh Cà Mau</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-  <!-- 6. ALBUM ẢNH -->
-  <section class="gallery-section container">
-    <div class="text-center section-header">
-      <h2 class="section-title">Khoảnh Khắc Kỷ Niệm</h2>
-    </div>
-    
-    <div class="gallery-grid">
-      <img src="img/1.jpg" class="gallery-img" alt="Wedding Photo 1">
-      <img src="img/2.jpg" class="gallery-img" alt="Wedding Photo 2">
-      <img src="img/3.jpg" class="gallery-img" alt="Wedding Photo 3">
-      <img src="img/4.jpg" class="gallery-img" alt="Wedding Photo 4">
-      <img src="img/5.jpg" class="gallery-img" alt="Wedding Photo 5">
-      <img src="img/6.jpg" class="gallery-img" alt="Wedding Photo 6">
-      <img src="img/7.jpg" class="gallery-img" alt="Wedding Photo 7">
-      <img src="img/8.jpg" class="gallery-img" alt="Wedding Photo 8">
-      <img src="img/4.jpg" class="gallery-img" alt="Wedding Photo 9">
-      <img src="img/10.jpg" class="gallery-img" alt="Wedding Photo 10">
-    </div>
-  </section>
-
-  <!-- 7. RSVP FORM -->
-  <section class="rsvp-section">
-    <div class="container-small">
-      <div class="text-center section-header">
-        <h2 class="section-title">Xác Nhận Tham Dự</h2>
-        <p class="section-subtext">Sự hiện diện của bạn là niềm vinh hạnh lớn cho chúng mình!</p>
-      </div>
-
-      <form id="rsvpForm" class="rsvp-form">
-        <div class="form-group">
-          <label class="form-label">Họ và tên *</label>
-          <input type="text" required placeholder="Nhập tên của bạn" class="form-input">
+    <!-- 4. CHÚ RỂ & CÔ DÂU -->
+    <section class="profile-section container">
+        <div class="text-center section-header">
+            <span class="section-script">Cô Dâu & Chú Rể</span>
+            <h2 class="section-title">Nhân Vật Chính</h2>
         </div>
 
-        <div class="form-group">
-          <label class="form-label">Số điện thoại</label>
-          <input type="tel" placeholder="Nhập số điện thoại" class="form-input">
+        <div class="profile-grid">
+            <div class="profile-card">
+                <img src="img/CR.jpg" alt="Chú rể Minh Thịnh" class="profile-img">
+                <h3 class="profile-name">Minh Thịnh</h3>
+                <p class="profile-role">Chú Rể</p>
+                <p class="profile-desc">Tràn đầy năng lượng, đam mê công nghệ và dành trọn tình yêu thương cho cô dâu.
+                </p>
+            </div>
+
+            <div class="profile-card">
+                <img src="img/CD.jpg" alt="Cô dâu Huỳnh Hương" class="profile-img">
+                <h3 class="profile-name">Huỳnh Hương</h3>
+                <p class="profile-role">Cô Dâu</p>
+                <p class="profile-desc">Yêu sự bình yên, tinh tế và chính là mảnh ghép hoàn hảo nhất cuộc đời chú rể.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. LỊCH TRÌNH -->
+    <section class="events-section">
+        <div class="container">
+            <div class="text-center section-header">
+                <h2 class="section-title">Sự Kiện Trọng Đại</h2>
+                <p class="section-subtext">Rất hân hạnh được đón tiếp quý khách</p>
+            </div>
+
+            <div class="events-grid">
+                <!-- TIỆC MỪNG ĐÁM CƯỚI -->
+                <div class="event-card">
+                    <div class="event-icon">🥂</div>
+                    <h3 class="event-title">Lễ vu quy</h3>
+                    <p class="event-time">
+                        <strong>09:00 - 13/12/2026 (Dương Lịch)</strong><br>
+                        <small>(Nhằm Ngày 04/11/2026 Âm Lịch)</small>
+                    </p>
+                    <p class="event-location">Trung tâm Hội nghị Phương Loan, xã Cát Tiến, tỉnh Gia Lai</p>
+                </div>
+
+                <!-- LỄ THÀNH HÔN -->
+                <div class="event-card">
+                    <div class="event-icon">💒</div>
+                    <h3 class="event-title">Lễ Thành Hôn</h3>
+                    <p class="event-time">
+                        <strong>14:00 - 07/01/2027 (Dương Lịch)</strong><br>
+                        <small>(Nhằm Ngày 29/11/2026 Âm Lịch)</small>
+                    </p>
+                    <p class="event-location">Tư gia nhà nam: Số nhà 293-294 khóm 25, phường Giá Rai, tỉnh Cà Mau</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. ALBUM ẢNH -->
+    <section class="gallery-section container">
+        <div class="text-center section-header">
+            <h2 class="section-title">Khoảnh Khắc Kỷ Niệm</h2>
         </div>
 
-        <div class="form-group">
-          <label class="form-label">Bạn sẽ tham dự chứ?</label>
-          <select class="form-select">
-            <option value="yes">Chắc chắn sẽ đến tham dự</option>
-            <option value="sorry">Rất tiếc không thể đến dự</option>
-          </select>
+        <div class="gallery-grid">
+            <img src="img/1.jpg" class="gallery-img" alt="Wedding Photo 1">
+            <img src="img/2.jpg" class="gallery-img" alt="Wedding Photo 2">
+            <img src="img/3.jpg" class="gallery-img" alt="Wedding Photo 3">
+            <img src="img/4.jpg" class="gallery-img" alt="Wedding Photo 4">
+            <img src="img/5.jpg" class="gallery-img" alt="Wedding Photo 5">
+            <img src="img/6.jpg" class="gallery-img" alt="Wedding Photo 6">
+            <img src="img/7.jpg" class="gallery-img" alt="Wedding Photo 7">
+            <img src="img/8.jpg" class="gallery-img" alt="Wedding Photo 8">
+            <img src="img/4.jpg" class="gallery-img" alt="Wedding Photo 9">
+            <img src="img/10.jpg" class="gallery-img" alt="Wedding Photo 10">
         </div>
+    </section>
 
-        <div class="form-group">
-          <label class="form-label">Lời chúc gửi tới dâu rể</label>
-          <textarea rows="3" placeholder="Gửi lời chúc mừng..." class="form-textarea"></textarea>
+    <!-- 7. RSVP FORM -->
+    <section class="rsvp-section">
+        <div class="container-small">
+            <div class="text-center section-header">
+                <h2 class="section-title">Xác Nhận Tham Dự</h2>
+                <p class="section-subtext">Sự hiện diện của bạn là niềm vinh hạnh lớn cho chúng mình!</p>
+            </div>
+
+            <form id="rsvpForm" class="rsvp-form">
+                <div class="form-group">
+                    <label class="form-label">Họ và tên *</label>
+                    <input type="text" required placeholder="Nhập tên của bạn" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Số điện thoại</label>
+                    <input type="tel" placeholder="Nhập số điện thoại" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Bạn sẽ tham dự chứ?</label>
+                    <select class="form-select">
+                        <option value="yes">Chắc chắn sẽ đến tham dự</option>
+                        <option value="sorry">Rất tiếc không thể đến dự</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Lời chúc gửi tới dâu rể</label>
+                    <textarea rows="3" placeholder="Gửi lời chúc mừng..." class="form-textarea"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Gửi Xác Nhận</button>
+            </form>
         </div>
+    </section>
 
-        <button type="submit" class="submit-btn">Gửi Xác Nhận</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p class="footer-title">Thịnh & Hương</p>
-    <p>Cảm ơn bạn vì đã là một phần trong ngày trọng đại của chúng mình!</p>
-  </footer>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p class="footer-title">Thịnh & Hương</p>
+        <p>Cảm ơn bạn vì đã là một phần trong ngày trọng đại của chúng mình!</p>
+    </footer>
 
 </body>
+
 </html>
