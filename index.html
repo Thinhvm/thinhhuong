@@ -1,181 +1,184 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Cá Nhân Minh Thịnh</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minh Thịnh & Huỳnh Hương - Save the Date</title>
+  
+  <!-- Font chữ Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
-
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
+  <!-- Link File CSS Sạch -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-    <div class="logo">Võ Minh Thịnh</div>
+  <!-- 1. FLOATING MUSIC PLAYER -->
+  <div class="music-container">
+    <button id="musicToggle" class="music-btn" aria-label="Bật/Tắt nhạc">
+      <svg id="musicIcon" class="music-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12 0c0 1.105-1.343 2-3 2s-3-.895-3-2 3 .895 3 2zM9 10l12-3"></path>
+      </svg>
+    </button>
+    <audio id="bgMusic" loop>
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+  </div>
 
-    <nav>
-        <a href="#home">Trang chủ</a>
-        <a href="#about">Giới thiệu</a>
-        <a href="#skills">Kỹ năng</a>
-        <a href="#projects">Dự án</a>
-        <a href="#contact">Liên hệ</a>
-    </nav>
-</header>
+  <!-- 2. HERO BANNER -->
+  <header class="hero-section">
+    <div class="hero-content">
+      <p class="hero-subtitle">SAVE THE DATE</p>
+      <h1 class="hero-title">Minh Thịnh & Huỳnh Hương</h1>
+      <p class="hero-desc">Chúng mình sắp về chung một nhà!</p>
+      <div class="hero-date-box">
+        <span class="hero-date">04 . 11 . 2026</span>
+      </div>
+    </div>
+  </header>
 
-<section class="hero" id="home">
+  <!-- 3. COUNTDOWN TIMER -->
+  <section class="countdown-section">
+    <div class="container text-center">
+      <h2 class="section-title">Đếm ngược đến ngày chung đôi</h2>
+      <div class="countdown-grid">
+        <div class="countdown-card">
+          <span id="days" class="countdown-num">00</span>
+          <span class="countdown-label">Ngày</span>
+        </div>
+        <div class="countdown-card">
+          <span id="hours" class="countdown-num">00</span>
+          <span class="countdown-label">Giờ</span>
+        </div>
+        <div class="countdown-card">
+          <span id="minutes" class="countdown-num">00</span>
+          <span class="countdown-label">Phút</span>
+        </div>
+        <div class="countdown-card">
+          <span id="seconds" class="countdown-num">00</span>
+          <span class="countdown-label">Giây</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <div class="hero-text">
-
-        <h3>Xin chào 👋</h3>
-
-        <h1>Tôi là <span>Võ Minh Thịnh</span></h1>
-
-        <h2>Lập trình viên Web</h2>
-
-        <p>
-            Chuyên phát triển Website, Hệ thống quản lý,
-            Thiết kế giao diện và Chuyển đổi số.
-        </p>
-
-        <a href="#contact" class="btn">
-            Liên hệ ngay cho tôi<img src="" alt="" srcset="">
-        </a>
-
+  <!-- 4. CHÚ DỂ & CÔ DÂU -->
+  <section class="profile-section container">
+    <div class="text-center section-header">
+      <span class="section-script">Cô Dâu & Chú Rể</span>
+      <h2 class="section-title">Nhân Vật Chính</h2>
     </div>
 
-    <img src="./img/1.jpg" alt="Ảnh đại diện">
+    <div class="profile-grid">
+      <div class="profile-card">
+        <img src="img/CR.jpg" alt="Chú rể Minh Thịnh" class="profile-img">
+        <h3 class="profile-name">Minh Thịnh</h3>
+        <p class="profile-role">Chú Rể</p>
+        <p class="profile-desc">Tràn đầy năng lượng, đam mê công nghệ và dành trọn tình yêu thương cho cô dâu.</p>
+      </div>
 
-</section>
-
-<section id="about">
-
-    <h2>Giới thiệu</h2>
-
-    <p>
-
-        Tôi là lập trình viên yêu thích xây dựng các hệ thống quản lý,
-        website doanh nghiệp và các giải pháp chuyển đổi số.
-
-        Luôn hướng tới giao diện đẹp,
-        tốc độ nhanh và trải nghiệm người dùng tốt.
-
-    </p>
-
-</section>
-
-<section id="skills">
-
-    <h2>Kỹ năng</h2>
-
-    <div class="skill-list">
-
-        <div class="card">
-            <i class="fa-brands fa-html5"></i>
-            <h3>HTML5</h3>
-        </div>
-
-        <div class="card">
-            <i class="fa-brands fa-css3-alt"></i>
-            <h3>CSS3</h3>
-        </div>
-
-        <div class="card">
-            <i class="fa-brands fa-js"></i>
-            <h3>JavaScript</h3>
-        </div>
-
-        <div class="card">
-            <i class="fa-solid fa-database"></i>
-            <h3>SQL Server</h3>
-        </div>
-
-        <div class="card">
-            <i class="fa-solid fa-code"></i>
-            <h3>ASP.NET</h3>
-        </div>
-
-        <div class="card">
-            <i class="fa-solid fa-mobile-screen"></i>
-            <h3>Responsive</h3>
-        </div>
-
+      <div class="profile-card">
+       <img src="img/CD.jpg" alt="Chú rể Minh Thịnh" class="profile-img">
+        <h3 class="profile-name">Huỳnh Hương</h3>
+        <p class="profile-role">Cô Dâu</p>
+        <p class="profile-desc">Yêu sự bình yên, tinh tế và chính là mảnh ghép hoàn hảo nhất cuộc đời chú rể.</p>
+      </div>
     </div>
+  </section>
 
-</section>
+  <!-- 5. LỊCH TRÌNH -->
+  <section class="events-section">
+    <div class="container">
+      <div class="text-center section-header">
+        <h2 class="section-title">Sự Kiện Trọng Đại</h2>
+        <p class="section-subtext">Rất hân hạnh được đón tiếp quý khách</p>
+      </div>
 
-<section id="projects">
-
-    <h2>Dự án</h2>
-
-    <div class="projects">
-
-        <div class="project">
-
-            <h3>Website Doanh nghiệp</h3>
-
-            <p>
-                Thiết kế giao diện hiện đại,
-                tối ưu SEO và tốc độ tải trang.
-            </p>
-
+      <div class="events-grid">
+        <div class="event-card">
+          <div class="event-icon">💒</div>
+          <h3 class="event-title">Lễ Thành Hôn</h3>
+          <p class="event-time">14:00 - 29/11/2026</p>
+          <p class="event-location">Tư gia nhà nam: Số nhà 293-294 khóm 25, phường Giá Rai, tỉnh Cà Mau</p>
         </div>
 
-        <div class="project">
-
-            <h3>Hệ thống Quản lý</h3>
-
-            <p>
-                Quản lý hồ sơ, nhân sự,
-                tài liệu và quy trình nghiệp vụ.
-            </p>
-
+        <div class="event-card">
+          <div class="event-icon">🥂</div>
+          <h3 class="event-title">Tiệc Mừng Đám Cưới</h3>
+          <p class="event-time">09:00 - 04/11/2026</p>
+          <p class="event-location">Trung tâm Hội nghị ... Cát Thành,tỉnh Gia Lai</p>
         </div>
-
-        <div class="project">
-
-            <h3>Chuyển đổi số</h3>
-
-            <p>
-                Xây dựng nền tảng số cho doanh nghiệp
-                và cơ quan nhà nước.
-            </p>
-
-        </div>
-
+      </div>
     </div>
+  </section>
 
-</section>
-
-<section id="contact">
-
-    <h2>Liên hệ</h2>
-
-    <p>Email: thinhvm.contact@gmail.com</p>
-
-    <p>Điện thoại: 0936010079</p>
-
-    <div class="social">
-
-        <a href="#"><i class="fab fa-facebook"></i></a>
-
-        <a href="#"><i class="fab fa-github"></i></a>
-
-        <a href="#"><i class="fab fa-linkedin"></i></a>
-
+  <!-- 6. ALBUM ẢNH -->
+  <section class="gallery-section container">
+    <div class="text-center section-header">
+      <h2 class="section-title">Khoảnh Khắc Kỷ Niệm</h2>
     </div>
+    
+    <div class="gallery-grid">
+      <img src="img/1.jpg"  class="gallery-img" alt="Wedding Photo 1">
+      <img src="img/2.jpg"  class="gallery-img" alt="Wedding Photo 2">
+      <img src="img/3.jpg"  class="gallery-img" alt="Wedding Photo 3">
+      <img src="img/4.jpg"  class="gallery-img" alt="Wedding Photo 4">
+      <img src="img/5.jpg"  class="gallery-img" alt="Wedding Photo 5">
+      <img src="img/6.jpg"  class="gallery-img" alt="Wedding Photo 6">
+      <img src="img/7.jpg"  class="gallery-img" alt="Wedding Photo 7">
+      <img src="img/8.jpg"  class="gallery-img" alt="Wedding Photo 8">
+      <img src="img/9.jpg"  class="gallery-img" alt="Wedding Photo 9">
+      <img src="img/10.jpg"  class="gallery-img" alt="Wedding Photo 10">
+      
+    </div>
+  </section>
 
-</section>
+  <!-- 7. RSVP FORM -->
+  <section class="rsvp-section">
+    <div class="container-small">
+      <div class="text-center section-header">
+        <h2 class="section-title">Xác Nhận Tham Dự</h2>
+        <p class="section-subtext">Sự hiện diện của bạn là niềm vinh hạnh lớn cho chúng mình!</p>
+      </div>
 
-<footer>
+      <form id="rsvpForm" class="rsvp-form">
+        <div class="form-group">
+          <label class="form-label">Họ và tên *</label>
+          <input type="text" required placeholder="Nhập tên của bạn" class="form-input">
+        </div>
 
-    © 2026 Minh Thịnh. All Rights Reserved.
+        <div class="form-group">
+          <label class="form-label">Số điện thoại</label>
+          <input type="tel" placeholder="Nhập số điện thoại" class="form-input">
+        </div>
 
-</footer>
+        <div class="form-group">
+          <label class="form-label">Bạn sẽ tham dự chứ?</label>
+          <select class="form-select">
+            <option value="yes">Chắc chắn sẽ đến tham dự</option>
+            <option value="sorry">Rất tiếc không thể đến dự</option>
+          </select>
+        </div>
 
-<script src="script.js"></script>
+        <div class="form-group">
+          <label class="form-label">Lời chúc gửi tới dâu rể</label>
+          <textarea rows="3" placeholder="Gửi lời chúc mừng..." class="form-textarea"></textarea>
+        </div>
 
+        <button type="submit" class="submit-btn">Gửi Xác Nhận</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p class="footer-title">Thịnh & Hương</p>
+    <p>Cảm ơn bạn vì đã là một phần trong ngày trọng đại của chúng mình!</p>
+  </footer>
+
+  <!-- Link File JavaScript Sạch -->
+  <script src="script.js"></script>
 </body>
 </html>

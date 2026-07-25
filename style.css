@@ -1,190 +1,377 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
+/* ==========================================
+   1. RESET & BIẾN CƠ BẢN
+   ========================================== */
+:root {
+  --primary-rose: #e11d48;
+  --primary-hover: #be123c;
+  --bg-rose-light: #fff1f2;
+  --bg-stone: #fafaf9;
+  --text-dark: #292524;
+  --text-muted: #78716c;
+  --border-light: #e7e5e4;
+  --font-serif: 'Alex Brush', cursive;
+  --font-sans: 'Montserrat', sans-serif;
 }
 
-html{
-    scroll-behavior:smooth;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body{
-    background:#f7f7f7;
-    color:#333;
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-stone);
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
-header{
-    position:fixed;
-    width:100%;
-    background:#0b5ed7;
-    color:white;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:18px 8%;
-    z-index:1000;
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-.logo{
-    font-size:28px;
-    font-weight:bold;
+.container-small {
+  max-width: 550px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:25px;
+.text-center { text-align: center; }
+
+/* ==========================================
+   2. HERO BANNER
+   ========================================== */
+.hero-section {
+  height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.45)), 
+              url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #ffffff;
 }
 
-nav a:hover{
-    color:#ffd54f;
+.hero-subtitle {
+  letter-spacing: 3px;
+  font-size: 0.85rem;
+  color: #fecdd3;
+  margin-bottom: 10px;
+  font-weight: 500;
 }
 
-.hero{
-    min-height:100vh;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:120px 8%;
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  color: #fff1f2;
+  line-height: 1.1;
+  margin-bottom: 15px;
 }
 
-.hero-text{
-    width:50%;
+.hero-desc {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #e7e5e4;
 }
 
-.hero-text h1{
-    font-size:60px;
-    margin:15px 0;
+.hero-date-box {
+  margin-top: 25px;
 }
 
-.hero-text span{
-    color:#0b5ed7;
+.hero-date {
+  border-top: 1px solid rgba(254, 205, 211, 0.6);
+  border-bottom: 1px solid rgba(254, 205, 211, 0.6);
+  padding: 8px 24px;
+  letter-spacing: 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
 }
 
-.hero-text h2{
-    color:#666;
-    margin-bottom:20px;
+/* ==========================================
+   3. COUNTDOWN TIMER
+   ========================================== */
+.countdown-section {
+  padding: 50px 0;
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-light);
 }
 
-.hero-text p{
-    line-height:30px;
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  max-width: 500px;
+  margin: 30px auto 0;
 }
 
-.btn{
-    display:inline-block;
-    margin-top:30px;
-    padding:14px 30px;
-    background:#0b5ed7;
-    color:white;
-    text-decoration:none;
-    border-radius:8px;
+.countdown-card {
+  background-color: var(--bg-rose-light);
+  border: 1px solid #ffe4e6;
+  border-radius: 12px;
+  padding: 15px 10px;
 }
 
-.btn:hover{
-    background:#084298;
+.countdown-num {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-rose);
 }
 
-.hero-image img{
-    width:450px;
-    height:150px;
-    object-fit:cover;
-    border-radius:50%;
+.countdown-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
 
-section{
-    padding:90px 8%;
+/* ==========================================
+   4. CHÚ DỂ & CÔ DÂU
+   ========================================== */
+.profile-section {
+  padding: 80px 20px;
 }
 
-section h2{
-    text-align:center;
-    margin-bottom:40px;
-    font-size:40px;
+.section-header { margin-bottom: 40px; }
+
+.section-script {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: var(--primary-rose);
 }
 
-.skill-list{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:25px;
+.section-title {
+  font-size: 1.6rem;
+  color: var(--text-dark);
 }
 
-.card{
-    background:white;
-    padding:35px;
-    text-align:center;
-    border-radius:15px;
-    transition:.3s;
+.section-subtext {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 5px;
 }
 
-.card:hover{
-    transform:translateY(-10px);
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
 }
 
-.card i{
-    font-size:55px;
-    color:#0b5ed7;
-    margin-bottom:15px;
+.profile-card { text-align: center; }
+
+.profile-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  border: 4px solid #ffffff;
+  outline: 4px solid #ffe4e6;
+  margin-bottom: 20px;
 }
 
-.projects{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:25px;
+.profile-name { font-size: 1.3rem; margin-bottom: 5px; }
+
+.profile-role {
+  color: var(--primary-rose);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
-.project{
-    background:white;
-    padding:30px;
-    border-radius:15px;
-    transition:.3s;
+.profile-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  max-width: 280px;
+  margin: 0 auto;
 }
 
-.project:hover{
-    transform:translateY(-10px);
+/* ==========================================
+   5. LỊCH TRÌNH & ALBUM ẢNH
+   ========================================== */
+.events-section {
+  background-color: rgba(255, 241, 242, 0.5);
+  padding: 80px 0;
+  border-top: 1px solid #ffe4e6;
+  border-bottom: 1px solid #ffe4e6;
 }
 
-.social{
-    margin-top:30px;
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
 }
 
-.social a{
-    color:#0b5ed7;
-    font-size:35px;
-    margin-right:20px;
+.event-card {
+  background: #ffffff;
+  padding: 35px 25px;
+  border-radius: 16px;
+  border: 1px solid var(--border-light);
+  text-align: center;
 }
 
-footer{
-    background:#0b5ed7;
-    color:white;
-    text-align:center;
-    padding:25px;
+.event-icon { font-size: 2.5rem; margin-bottom: 15px; }
+.event-title { font-size: 1.25rem; margin-bottom: 8px; }
+.event-time { color: var(--primary-rose); font-weight: 600; margin-bottom: 10px; }
+.event-location { font-size: 0.85rem; color: var(--text-muted); }
+
+.gallery-section { padding: 80px 20px; }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
 }
 
-@media(max-width:768px){
-
-.hero{
-    flex-direction:column;
-    text-align:center;
+.gallery-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.hero-text{
-    width:100%;
+.gallery-img:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
 }
 
-.hero-image{
-    margin-top:40px;
+/* ==========================================
+   6. FORM RSVP & FOOTER
+   ========================================== */
+.rsvp-section {
+  background: #ffffff;
+  padding: 80px 0;
+  border-top: 1px solid var(--border-light);
 }
 
-.hero-image img{
-    width:250px;
+.rsvp-form {
+  background: var(--bg-stone);
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid var(--border-light);
 }
 
-header{
-    flex-direction:column;
+.form-group { margin-bottom: 18px; }
+
+.form-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 6px;
 }
 
-nav{
-    margin-top:15px;
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #d6d3d1;
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
 }
 
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--primary-rose);
+  box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.15);
+}
+
+.submit-btn {
+  width: 100%;
+  background-color: var(--primary-rose);
+  color: #ffffff;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.submit-btn:hover { background-color: var(--primary-hover); }
+
+.footer {
+  background: #1c1917;
+  color: #a8a29e;
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 0.85rem;
+}
+
+.footer-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: #fecdd3;
+  margin-bottom: 5px;
+}
+
+/* ==========================================
+   7. MUSIC PLAYER & ANIMATIONS
+   ========================================== */
+.music-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.music-btn {
+  background: var(--primary-rose);
+  color: white;
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.music-btn:hover { transform: scale(1.08); }
+.music-icon { width: 22px; height: 22px; }
+
+.spin {
+  animation: spinSlow 8s linear infinite;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.heart-particle {
+  position: fixed;
+  top: -20px;
+  color: var(--primary-rose);
+  pointer-events: none;
+  z-index: 9999;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.lightbox-img {
+  max-width: 90%;
+  max-height: 85vh;
+  border-radius: 8px;
 }
