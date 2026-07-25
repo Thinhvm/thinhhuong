@@ -86,9 +86,10 @@ nav a:hover{
 }
 
 .hero-image img{
-    width:380px;
+    width:250px;
+    height:250px;
+    object-fit:cover;
     border-radius:50%;
-    box-shadow:0 10px 30px rgba(0,0,0,.2);
 }
 
 section{
