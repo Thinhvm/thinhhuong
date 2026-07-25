@@ -96,3 +96,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+
+// Cuộn mượt xuống phần Hộp Mừng Cưới
+function scrollToQr() {
+    // Tìm phần tử chứa mã QR (Sử dụng class .gift-section)
+    const qrSection = document.querySelector('.gift-section');
+    
+    if (qrSection) {
+        qrSection.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+}
