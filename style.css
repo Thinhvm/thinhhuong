@@ -377,80 +377,109 @@ body {
 }
 
 /* ==========================================
-   HỘP MỪNG CƯỚI - CĂN NGHANG & ĐỐI XỨNG
+   HỘP MỪNG CƯỚI - HOÀN THIỆN CHUẨN ĐẸP
    ========================================== */
 .gift-section {
   padding: 60px 20px;
-  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .gift-grid {
-  display: flex;
-  flex-direction: row;        /* Ép nằm ngang */
-  justify-content: center;   /* Căn giữa 2 thẻ */
-  align-items: stretch;       /* Chiều cao 2 thẻ bằng nhau */
-  gap: 30px;                  /* Khoảng cách giữa 2 QR */
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: stretch;
+  gap: 25px;
   margin-top: 30px;
   width: 100%;
 }
 
 .gift-card {
   background: #ffffff;
-  padding: 25px 20px;
-  border-radius: 16px;
-  border: 1px solid var(--border-light, #e7e5e4);
+  padding: 24px 20px;
+  border-radius: 20px;
+  border: 1px solid #e7e5e4;
   text-align: center;
-  flex: 1;                    /* Cho 2 thẻ có độ rộng bằng nhau */
-  max-width: 340px;           /* Giới hạn kích thước tối đa */
+  flex: 1 1 0;
+  max-width: 380px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .gift-title {
-  color: var(--primary-rose, #e11d48);
-  font-size: 1.2rem;
+  color: #e11d48;
+  font-size: 1.25rem;
   margin-bottom: 15px;
   font-weight: 600;
 }
 
-.qr-img {
+/* Khung chứa QR: cắt bỏ phần rìa đen thừa của ảnh Vietcombank */
+.qr-wrapper {
   width: 100%;
-  max-width: 240px;           /* Kích thước ảnh QR cân đối */
-  height: auto;
-  border-radius: 12px;
-  border: 1px solid #f1f5f9;
+  max-width: 280px;
+  border-radius: 16px;
+  overflow: hidden;
   margin-bottom: 15px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.qr-img {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 320px; /* Khống chế chiều cao để dành chỗ cho đoạn chữ bên dưới */
+  object-fit: contain;
+  display: block;
+}
+
+/* Khung chứa thông tin Chuyển Khoản */
 .bank-info {
   text-align: left;
   width: 100%;
-  padding-left: 10px;
+  max-width: 280px;
+  background: #fff1f2; /* Nền hồng nhạt siêu xinh */
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px dashed #fecdd3;
+  margin-top: auto; /* Đẩy khối thông tin luôn nằm ở đáy thẻ */
 }
 
 .bank-info p {
-  font-size: 0.9rem;
-  color: var(--text-dark, #292524);
+  font-size: 0.88rem;
+  color: #292524;
   margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.bank-info p:last-child {
+  margin-bottom: 0;
 }
 
 .bank-info code {
-  background-color: var(--bg-rose-light, #fff1f2);
-  color: var(--primary-rose, #e11d48);
+  background-color: #ffffff;
+  color: #e11d48;
   padding: 2px 6px;
   border-radius: 4px;
   font-weight: 700;
+  font-size: 0.95rem;
+  border: 1px solid #ffe4e6;
 }
 
-/* Tự động chuyển thành hàng dọc nếu xem trên điện thoại màn hình nhỏ */
-@media (max-width: 640px) {
+/* Responsive cho Mobile */
+@media (max-width: 650px) {
   .gift-grid {
-    flex-direction: column;
+    flex-direction: column !important;
     align-items: center;
   }
   .gift-card {
     width: 100%;
+    max-width: 340px;
   }
 }
