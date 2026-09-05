@@ -47,7 +47,7 @@ body {
 .hero-section {
   height: 100vh;
   background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.45)), 
-              url('img/11.jpg') center/cover no-repeat;
+              url('img/13.jpg') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
