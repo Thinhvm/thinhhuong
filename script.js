@@ -109,3 +109,30 @@ function scrollToQr() {
         });
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const opening = document.getElementById("wedding-opening");
+
+    if (!opening) return;
+
+    // Chờ người dùng nhìn thấy màn hình mở đầu
+    setTimeout(() => {
+
+        // Mở hai cánh thiệp
+        opening.classList.add("open");
+
+        // Sau khi mở xong thì ẩn màn hình
+        setTimeout(() => {
+            opening.classList.add("hide");
+
+            // Xóa khỏi DOM
+            setTimeout(() => {
+                opening.remove();
+            }, 800);
+
+        }, 1500);
+
+    }, 1800);
+
+});
