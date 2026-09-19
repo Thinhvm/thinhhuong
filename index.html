@@ -689,6 +689,21 @@
                 <span>Xem chỉ đường</span>
             </a>
         </section>
+        <!-- NÚT GHIM HỘP QUÀ MỪNG CƯỚI Ở GÓC PHẢI CUỐI MÀN HÌNH -->
+<button id="floatingGiftBtn" onclick="toggleGiftModal()" title="Mừng cưới"
+    class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#5c4d42] hover:bg-[#4e372b] text-amber-200 rounded-full shadow-2xl border-2 border-amber-300/60 transition-all duration-300 transform hover:scale-110 active:scale-95 group">
+    
+    <!-- Icon Hộp Quà / Bao Thư -->
+    <i class="fa-solid fa-gift text-2xl group-hover:rotate-12 transition-transform duration-300"></i>
+    
+    <!-- Vòng xung nhịp gây chú ý (Pulse Animation) -->
+    <span class="absolute -inset-1 rounded-full bg-amber-400/30 animate-ping pointer-events-none"></span>
+    
+    <!-- Tooltip nhãn nhỏ hiển thị khi di chuột -->
+    <span class="absolute right-16 bg-[#5c4d42] text-amber-100 text-[11px] font-medium px-2.5 py-1 rounded-md shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none border border-amber-300/30">
+        Mừng Cưới
+    </span>
+</button>
 
 
         <!-- SỔ LƯU BÚT -->
@@ -740,7 +755,7 @@
         <!-- MỪNG CƯỚI -->
         <section
             class="section gift bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 text-center space-y-6">
-            <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">HỘP QUÀ MỪNG CƯỚI</div>
+            <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">MỪNG CƯỚI ONLINE</div>
 
             <div class="py-2">
                 <div id="giftBoxTrigger" onclick="toggleGiftModal()"
