@@ -400,3 +400,43 @@ if (openBtn) {
         }, 1300);
     });
 }
+// Đoạn xử lý bấm nút Mở Thiệp trong script.js
+if (openBtn) {
+    openBtn.addEventListener('click', () => {
+        const envelopeWrapper = document.getElementById('envelopeWrapper');
+
+        // Bật nhạc nền thiệp cưới khi người dùng tương tác mở thiệp
+        if (bgMusic) {
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                if (musicIcon) musicIcon.className = "fa-solid fa-compact-disc fa-spin text-brand-700";
+            }).catch(e => {
+                console.log("Trình duyệt chặn phát nhạc tự động:", e);
+            });
+        }
+
+        // Khởi chạy hiệu ứng mở thiệp / lốc xoáy
+        if (envelopeWrapper) {
+            envelopeWrapper.classList.add('open');
+            setTimeout(() => {
+                envelopeWrapper.classList.add('tornado-active');
+            }, 200);
+        }
+
+        // Mờ màn hình bìa để hiển thị nội dung thiệp
+        setTimeout(() => {
+            if (coverScreen) {
+                coverScreen.classList.add('fade-out');
+            }
+            if (invitation) {
+                invitation.classList.remove('opacity-0');
+            }
+        }, 800);
+
+        setTimeout(() => {
+            if (coverScreen) {
+                coverScreen.style.display = 'none';
+            }
+        }, 1300);
+    });
+}
