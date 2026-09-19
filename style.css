@@ -1,103 +1,184 @@
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #f7f2ea;
+}
+::-webkit-scrollbar-thumb {
+    background: #ceaf8d;
+    border-radius: 3px;
+}
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f7f2ea;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #ceaf8d;
-            border-radius: 3px;
-        }
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #f5efeb;
+    color: #5c4d42;
+    overflow-x: hidden;
+}
 
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f5efeb;
-            color: #5c4d42;
-            overflow-x: hidden;
-        }
+.font-cormorant {
+    font-family: 'Cormorant Garamond', serif;
+}
 
-        .font-cormorant {
-            font-family: 'Cormorant Garamond', serif;
-        }
+.font-script {
+    font-family: 'Alex Brush', cursive;
+}
 
-        .font-script {
-            font-family: 'Alex Brush', cursive;
-        }
+/* Vintage Paper Texture Overlay */
+.paper-bg {
+    background-color: #fbf8f3;
+    background-image: radial-gradient(#ceaf8d 0.75px, transparent 0.75px), radial-gradient(#ceaf8d 0.75px, #fbf8f3 0.75px);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
+}
 
-        /* Vintage Paper Texture Overlay */
-        .paper-bg {
-            background-color: #fbf8f3;
-            background-image: radial-gradient(#ceaf8d 0.75px, transparent 0.75px), radial-gradient(#ceaf8d 0.75px, #fbf8f3 0.75px);
-            background-size: 30px 30px;
-            background-position: 0 0, 15px 15px;
-        }
+/* Custom Wax Seal */
+.wax-seal {
+    background: radial-gradient(circle at 30% 30%, #e6c894, #b88f68, #825a36);
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25), inset -1px -1px 3px rgba(0,0,0,0.4);
+}
 
-        /* Falling Leaves Animation */
-        .falling-leaves span {
-            position: fixed;
-            top: -10%;
-            user-select: none;
-            color: #c2a688;
-            font-size: 1.5rem;
-            z-index: 10;
-            pointer-events: none;
-            animation: fall linear infinite;
-        }
+/* Envelope Lid Animations & Shadows */
+.card-shadow {
+    box-shadow: 0 20px 40px -15px rgba(92, 77, 66, 0.15);
+}
 
-        @keyframes fall {
-            0% {
-                opacity: 0;
-                top: -10%;
-                transform: translateX(0) rotate(0deg);
-            }
-            10% {
-                opacity: 0.8;
-            }
-            90% {
-                opacity: 0.8;
-            }
-            100% {
-                opacity: 0;
-                top: 110%;
-                transform: translateX(100px) rotate(360deg);
-            }
-        }
+.floating {
+    animation: floating 3s ease-in-out infinite;
+}
 
-        /* Custom Wax Seal */
-        .wax-seal {
-            background: radial-gradient(circle at 30% 30%, #e6c894, #b88f68, #825a36);
-            box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25), inset -1px -1px 3px rgba(0,0,0,0.4);
-        }
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
 
-        /* Envelope Lid Animations & Shadows */
-        .card-shadow {
-            box-shadow: 0 20px 40px -15px rgba(92, 77, 66, 0.15);
-        }
+/* Custom Modal Backdrop */
+.modal-active {
+    display: flex !important;
+    animation: fadeIn 0.3s ease-out forwards;
+}
 
-        .floating {
-            animation: floating 3s ease-in-out infinite;
-        }
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-            100% { transform: translateY(0px); }
-        }
+/* =====================================================
+   STYLING CHO ALBUM CAROUSEL 3D (GIỐNG ẢNH MẪU)
+===================================================== */
+.carousel-track {
+    perspective: 1000px;
+}
 
-        /* Custom Modal Backdrop */
-        .modal-active {
-            display: flex !important;
-            animation: fadeIn 0.3s ease-out forwards;
-        }
+.carousel-card {
+    position: absolute;
+    width: 220px;
+    height: 330px;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: pointer;
+    user-select: none;
+    border-radius: 18px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(0) scale(0.6);
+    z-index: 0;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+@media (min-width: 640px) {
+    .carousel-card {
+        width: 250px;
+        height: 370px;
+    }
+}
 
-        /* Lightbox Container Overlay */
+.card-inner {
+    width: 100%;
+    height: 100%;
+    background: #f1ece4;
+    border-radius: 18px;
+    padding: 10px 10px 14px 10px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(206, 175, 141, 0.4);
+    overflow: hidden;
+}
+
+.card-inner img {
+    width: 100%;
+    height: 82%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.card-caption {
+    height: 18%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 4px;
+}
+
+/* Các lớp trạng thái hiển thị 3D */
+.carousel-card.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0) scale(1);
+    z-index: 20;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.carousel-card.prev {
+    opacity: 0.75;
+    visibility: visible;
+    transform: translateX(-70%) scale(0.82) rotateY(12deg);
+    z-index: 10;
+}
+
+.carousel-card.next {
+    opacity: 0.75;
+    visibility: visible;
+    transform: translateX(70%) scale(0.82) rotateY(-12deg);
+    z-index: 10;
+}
+
+.carousel-card.far-prev {
+    opacity: 0.3;
+    visibility: visible;
+    transform: translateX(-120%) scale(0.68) rotateY(20deg);
+    z-index: 5;
+}
+
+.carousel-card.far-next {
+    opacity: 0.3;
+    visibility: visible;
+    transform: translateX(120%) scale(0.68) rotateY(-20deg);
+    z-index: 5;
+}
+
+/* Dots Indicator */
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ceaf8d;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.carousel-dot.active {
+    width: 24px;
+    border-radius: 10px;
+    background-color: #5c4d42;
+    opacity: 1;
+}
+
+/* Lightbox Container Overlay */
 .lightbox-overlay {
     position: fixed;
     top: 0;
@@ -115,13 +196,11 @@
     transition: opacity 0.35s ease, visibility 0.35s ease;
 }
 
-/* Khi active thì hiện modal */
 .lightbox-overlay.active {
     opacity: 1;
     visibility: visible;
 }
 
-/* Khung chứa ảnh */
 .lightbox-content {
     position: relative;
     max-width: 90%;
@@ -131,27 +210,22 @@
     align-items: center;
 }
 
-/* Ảnh phóng to chính */
 .lightbox-content img {
     max-width: 100%;
     max-height: 85vh;
     border-radius: 12px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     object-fit: contain;
-    
-    /* Ban đầu ở trạng thái nhỏ và ẩn */
     transform: scale(0.4);
     opacity: 0;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.35s ease;
 }
 
-/* Khi có class zoom-in: phóng to từ nhỏ ra to */
 .lightbox-overlay.active .lightbox-content img.zoom-in {
     transform: scale(1);
     opacity: 1;
 }
 
-/* Nút điều hướng & Nút đóng */
 .lightbox-btn {
     position: absolute;
     background: rgba(255, 255, 255, 0.2);
@@ -197,6 +271,7 @@
     .prev-btn { left: 10px; }
     .next-btn { right: 10px; }
 }
+
 /* Khung chứa hiệu ứng lá/trái tim rơi */
 #fallingLeavesContainer {
     position: fixed;
@@ -204,24 +279,21 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    pointer-events: none; /* Không làm vướng khi vuốt màn hình */
+    pointer-events: none;
     z-index: 9999;
     overflow: hidden;
 }
 
-/* Định dạng từng trái tim */
 #fallingLeavesContainer span {
     position: absolute;
     top: -30px;
     display: inline-block;
-    /* Gắn animation rơi với các tham số thời gian từ JS */
     animation-name: fallAnimation;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     will-change: transform;
 }
 
-/* KEYFRAMES TẠO HIỆU ỨNG RƠI & LẮC LƯ */
 @keyframes fallAnimation {
     0% {
         transform: translateY(0px) rotate(0deg);
@@ -235,4 +307,3 @@
         opacity: 0.2;
     }
 }
- 
