@@ -41,7 +41,6 @@ body {
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25), inset -1px -1px 3px rgba(0, 0, 0, 0.4);
 }
 
-/* Envelope Lid Animations & Shadows */
 .card-shadow {
   box-shadow: 0 20px 40px -15px rgba(92, 77, 66, 0.15);
 }
@@ -51,17 +50,9 @@ body {
 }
 
 @keyframes floating {
-  0% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-8px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
 }
 
 /* Custom Modal Backdrop */
@@ -71,13 +62,8 @@ body {
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* Styling Khung 2 Ảnh Song Song Cô Dâu & Chú Rể */
@@ -91,9 +77,7 @@ body {
   box-shadow: 0 12px 25px -5px rgba(92, 77, 66, 0.3);
 }
 
-/* =====================================================
-   STYLING CHO ALBUM CAROUSEL 3D (GIỐNG ẢNH MẪU)
-===================================================== */
+/* ALBUM CAROUSEL 3D */
 .carousel-track {
   perspective: 1000px;
 }
@@ -149,7 +133,6 @@ body {
   padding-top: 4px;
 }
 
-/* Các lớp trạng thái hiển thị 3D */
 .carousel-card.active {
   opacity: 1;
   visibility: visible;
@@ -204,7 +187,7 @@ body {
   opacity: 1;
 }
 
-/* Lightbox Container Overlay */
+/* Lightbox Overlay */
 .lightbox-overlay {
   position: fixed;
   top: 0;
@@ -274,37 +257,17 @@ body {
   transform: scale(1.1);
 }
 
-.close-btn {
-  top: 25px;
-  right: 25px;
-  font-size: 2.2rem;
-}
-
-.prev-btn {
-  left: 20px;
-}
-
-.next-btn {
-  right: 20px;
-}
+.close-btn { top: 25px; right: 25px; font-size: 2.2rem; }
+.prev-btn { left: 20px; }
+.next-btn { right: 20px; }
 
 @media (max-width: 640px) {
-  .lightbox-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1.3rem;
-  }
-
-  .prev-btn {
-    left: 10px;
-  }
-
-  .next-btn {
-    right: 10px;
-  }
+  .lightbox-btn { width: 40px; height: 40px; font-size: 1.3rem; }
+  .prev-btn { left: 10px; }
+  .next-btn { right: 10px; }
 }
 
-/* Khung chứa hiệu ứng lá/trái tim rơi */
+/* Lá/Trái tim rơi */
 #fallingLeavesContainer {
   position: fixed;
   top: 0;
@@ -327,81 +290,43 @@ body {
 }
 
 @keyframes fallAnimation {
-  0% {
-    transform: translateY(0px) rotate(0deg);
-    opacity: 0.9;
-  }
-
-  50% {
-    transform: translateY(50vh) rotate(180deg) translateX(15px);
-  }
-
-  100% {
-    transform: translateY(105vh) rotate(360deg) translateX(-15px);
-    opacity: 0.2;
-  }
+  0% { transform: translateY(0px) rotate(0deg); opacity: 0.9; }
+  50% { transform: translateY(50vh) rotate(180deg) translateX(15px); }
+  100% { transform: translateY(105vh) rotate(360deg) translateX(-15px); opacity: 0.2; }
 }
 
-/* =====================================================
-   HIỆU ỨNG LỐC XOÁY (TWISTER EFFECT)
-===================================================== */
-
-/* Animation Lốc Xoáy: Xoay tròn 3D + Thu nhỏ/Phóng to + Mờ dần */
+/* HIỆU ỨNG LỐC XOÁY MỞ THIỆP */
 @keyframes tornadoOut {
-  0% {
-    transform: scale(1) rotate(0deg);
-    opacity: 1;
-    filter: blur(0px);
-  }
-
-  50% {
-    transform: scale(1.1) rotate(180deg);
-    opacity: 0.8;
-    filter: blur(2px);
-  }
-
-  100% {
-    transform: scale(0) rotate(720deg);
-    opacity: 0;
-    filter: blur(10px);
-  }
+  0% { transform: scale(1) rotate(0deg); opacity: 1; filter: blur(0px); }
+  50% { transform: scale(1.1) rotate(180deg); opacity: 0.8; filter: blur(2px); }
+  100% { transform: scale(0) rotate(720deg); opacity: 0; filter: blur(10px); }
 }
 
-/* Kích hoạt lốc xoáy khi nhấn nút mở thiệp */
 .envelope-wrapper.tornado-active .cover-card {
   animation: tornadoOut 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-/* Nắp phong bì mở ngược lên */
 .envelope-wrapper.open .envelope-flap {
   transform: rotateX(180deg);
   z-index: 5;
 }
 
-/* Màn hình nền mờ dần nhẹ nhàng */
 #coverScreen.fade-out {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.8s ease-in-out;
 }
-/* Hiệu ứng nảy nhẹ cho nút Floating Gift */
+
 #floatingGiftBtn {
   animation: giftBounce 2.5s infinite;
 }
 
 @keyframes giftBounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-8px);
-  }
-  60% {
-    transform: translateY(-4px);
-  }
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
 }
 
-/* Tắt animation bounce khi hover để không hoảng / xoay mượt hơn */
 #floatingGiftBtn:hover {
   animation: none;
 }

@@ -1,23 +1,27 @@
 // ==========================================
-// 1. DATA ALBUM ẢNH (Khai báo duy nhất 1 lần)
+// 1. DATA ALBUM ẢNH & THÔNG SỐ EMAILJS
 // ==========================================
 const albumImages = [
-    'img/ANH BAN (4)_1.jpg', // Index 0 - Slide 1
-    'img/Cong2.jpg',         // Index 1 - Slide 2
-    'img/ANH BAN (1)_1.jpg', // Index 2 - Slide 3
-    'img/DOJ_6227_1.jpg',    // Index 3 - Slide 4
-    'img/DOJ_6851_1.jpg',    // Index 4 - Slide 5
-    'img/DOJ_7032_1.jpg',    // Index 5 - Slide 6
-    'img/DOJ_6149_1.jpg',    // Index 6 - Slide 7
-    'img/DOJ_6509_1.jpg',    // Index 7 - Slide 8
-    'img/DOJ_7063_1.jpg'     // Index 8 - Slide 9
+    'img/ANH BAN (4)_1.jpg',
+    'img/Cong2.jpg',
+    'img/ANH BAN (1)_1.jpg',
+    'img/DOJ_6227_1.jpg',
+    'img/DOJ_6851_1.jpg',
+    'img/DOJ_7032_1.jpg',
+    'img/DOJ_6149_1.jpg',
+    'img/DOJ_6509_1.jpg',
+    'img/DOJ_7063_1.jpg'
 ];
-let currentImgIndex = 0; // Quản lý slide album & lightbox
+
+const EMAILJS_SERVICE_ID = "service_sot14yp";
+const EMAILJS_TEMPLATE_ID = "template_mfogq2l";
+
+let currentImgIndex = 0;
 let autoplayTimer = null;
-const AUTOPLAY_DELAY = 3000; // Thời gian chuyển slide (3 giây)
+const AUTOPLAY_DELAY = 3000;
 
 // ==========================================
-// 2. CÁC HÀM XỬ LÝ CHẠY TỰ ĐỘNG (AUTOPLAY)
+// 2. CHẠY TỰ ĐỘNG ALBUM (AUTOPLAY)
 // ==========================================
 function startAutoplay() {
     stopAutoplay();
@@ -148,7 +152,7 @@ function initFallingLeaves() {
 }
 
 // ==========================================
-// 5. MỞ BÌA THIỆP & BẬT/TẮT NHẠC
+// 5. BẬT / TẮT NHẠC NỀN
 // ==========================================
 const openBtn = document.getElementById('openInvitation');
 const coverScreen = document.getElementById('coverScreen');
@@ -168,7 +172,7 @@ function toggleMusic() {
     } else {
         bgMusic.play().then(() => {
             if (musicIcon) musicIcon.className = "fa-solid fa-compact-disc fa-spin text-brand-700";
-        }).catch(e => console.log("Music play pending user interaction."));
+        }).catch(e => console.log("Trình duyệt tạm hoãn phát nhạc tự động."));
     }
     isPlaying = !isPlaying;
 }
@@ -177,21 +181,8 @@ if (musicBtn) {
     musicBtn.addEventListener('click', toggleMusic);
 }
 
-if (openBtn) {
-    openBtn.addEventListener('click', () => {
-        if (coverScreen) {
-            coverScreen.style.opacity = '0';
-            setTimeout(() => {
-                coverScreen.style.display = 'none';
-                if (invitation) invitation.classList.remove('opacity-0');
-            }, 1000);
-        }
-        toggleMusic();
-    });
-}
-
 // ==========================================
-// 6. LỊCH GOOGLE
+// 6. THÊM VÀO LỊCH GOOGLE
 // ==========================================
 function addToCalendar() {
     const title = encodeURIComponent("Lễ Cưới Minh Thịnh & Huỳnh Hương");
@@ -275,7 +266,7 @@ document.addEventListener('keydown', function (e) {
 });
 
 // ==========================================
-// 8. RSVP & GIFT MODAL
+// 8. RSVP & MODAL HỘP QUÀ + GỬI MAIL RSVP
 // ==========================================
 function openRSVPModal() {
     const rsvpModal = document.getElementById('rsvpModal');
@@ -289,8 +280,39 @@ function closeRSVPModal() {
 
 function submitRSVP(e) {
     e.preventDefault();
-    alert("Cảm ơn bạn đã phản hồi! Rất hân hạnh được đón tiếp bạn.");
-    closeRSVPModal();
+    const form = e.target;
+    const name = form.querySelector('input[type="text"]').value.trim();
+    const guestOf = form.querySelector('select').value;
+    const attend = form.querySelector('input[name="attend"]:checked').value === 'yes' 
+        ? "Chắc chắn sẽ đến tham dự" 
+        : "Rất tiếc không thể đến dự";
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerText;
+    submitBtn.innerText = "ĐANG XÁC NHẬN...";
+    submitBtn.disabled = true;
+
+    // Chuẩn hóa biến truyền tới EmailJS Template: {{from_name}}, {{type}}, {{message}}
+    const templateParams = {
+        from_name: name,
+        type: "Xác nhận tham dự (RSVP)",
+        message: `Khách của: ${guestOf}\nTrạng thái: ${attend}`
+    };
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+        .then(() => {
+            alert("Cảm ơn bạn đã phản hồi! Rất hân hạnh được đón tiếp bạn.");
+            closeRSVPModal();
+            form.reset();
+        })
+        .catch((error) => {
+            console.error("Lỗi gửi RSVP chi tiết:", error);
+            alert("Có lỗi xảy ra khi gửi RSVP. Vui lòng kiểm tra lại kết nối hoặc thử lại sau!");
+        })
+        .finally(() => {
+            submitBtn.innerText = originalText;
+            submitBtn.disabled = false;
+        });
 }
 
 function toggleGiftModal() {
@@ -305,10 +327,34 @@ function toggleGiftModal() {
 }
 
 // ==========================================
-// 9. GUESTBOOK / LỜI CHÚC
+// 9. LỜI CHÚC: LƯU LOCALSTORAGE & GỬI MAIL
 // ==========================================
 const wishForm = document.getElementById('wishForm');
 const messagesList = document.getElementById('messagesList');
+
+// Hàm đọc lời chúc đã lưu và render ra HTML
+function renderWishes() {
+    if (!messagesList) return;
+    
+    const savedWishes = JSON.parse(localStorage.getItem('wedding_wishes')) || [
+        { name: "Mỹ Linh", wish: "Chúc hai bạn trăm năm hạnh phúc, vạn sự như ý, một đám cưới thật vui vẻ và trọn vẹn!", time: "14/11/2026" },
+        { name: "Trọng Nhân", wish: "Chúc mừng Thịnh và Hương về chung một nhà! Luôn ngọt ngào như ngày đầu nhé.", time: "14/11/2026" }
+    ];
+
+    messagesList.innerHTML = '';
+    savedWishes.forEach(item => {
+        const newMsg = document.createElement('div');
+        newMsg.className = "p-3.5 bg-white/90 rounded-xl border border-brand-200 text-xs space-y-1 animate-fadeIn";
+        newMsg.innerHTML = `
+            <div class="flex justify-between items-center font-bold text-brand-900">
+                <span>${escapeHtml(item.name)}</span>
+                <span class="text-[10px] text-brand-400 font-normal">${item.time}</span>
+            </div>
+            <p class="text-brand-700">${escapeHtml(item.wish)}</p>
+        `;
+        messagesList.appendChild(newMsg);
+    });
+}
 
 if (wishForm) {
     wishForm.addEventListener('submit', (e) => {
@@ -319,22 +365,44 @@ if (wishForm) {
         const name = nameInput ? nameInput.value.trim() : '';
         const wish = wishInput ? wishInput.value.trim() : '';
 
-        if (name && wish && messagesList) {
-            const now = new Date();
-            const timeStr = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
+        if (name && wish) {
+            const submitBtn = wishForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = "ĐANG GỬI...";
+            submitBtn.disabled = true;
 
-            const newMsg = document.createElement('div');
-            newMsg.className = "p-3.5 bg-white/90 rounded-xl border border-brand-200 text-xs space-y-1 animate-fadeIn";
-            newMsg.innerHTML = `
-                <div class="flex justify-between items-center font-bold text-brand-900">
-                    <span>${escapeHtml(name)}</span>
-                    <span class="text-[10px] text-brand-400 font-normal">${timeStr}</span>
-                </div>
-                <p class="text-brand-700">${escapeHtml(wish)}</p>
-            `;
+            const templateParams = {
+                from_name: name,
+                type: "Lời chúc mới",
+                message: wish
+            };
 
-            messagesList.prepend(newMsg);
-            wishForm.reset();
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+                .then(() => {
+                    const now = new Date();
+                    const timeStr = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
+                    const newWishObj = { name, wish, time: timeStr };
+
+                    // Lưu vào LocalStorage
+                    let savedWishes = JSON.parse(localStorage.getItem('wedding_wishes')) || [
+                        { name: "Mỹ Linh", wish: "Chúc hai bạn trăm năm hạnh phúc, vạn sự như ý, một đám cưới thật vui vẻ và trọn vẹn!", time: "14/11/2026" },
+                        { name: "Trọng Nhân", wish: "Chúc mừng Thịnh và Hương về chung một nhà! Luôn ngọt ngào như ngày đầu nhé.", time: "14/11/2026" }
+                    ];
+                    savedWishes.unshift(newWishObj);
+                    localStorage.setItem('wedding_wishes', JSON.stringify(savedWishes));
+
+                    renderWishes();
+                    wishForm.reset();
+                    alert("Cảm ơn bạn đã gửi lời chúc ý nghĩa!");
+                })
+                .catch((error) => {
+                    console.error("Lỗi gửi lời chúc chi tiết:", error);
+                    alert("Có lỗi xảy ra khi gửi lời chúc. Vui lòng thử lại!");
+                })
+                .finally(() => {
+                    submitBtn.innerText = originalText;
+                    submitBtn.disabled = false;
+                });
         }
     });
 }
@@ -349,13 +417,41 @@ function escapeHtml(text) {
 }
 
 // ==========================================
-// 10. KHỞI CHẠY TRANG
+// 10. MỞ THIỆP & LỐC XOÁY
 // ==========================================
-window.onload = function() {
+if (openBtn) {
+    openBtn.addEventListener('click', () => {
+        const envelopeWrapper = document.getElementById('envelopeWrapper');
+
+        toggleMusic();
+
+        if (envelopeWrapper) {
+            envelopeWrapper.classList.add('open');
+            setTimeout(() => {
+                envelopeWrapper.classList.add('tornado-active');
+            }, 200);
+        }
+
+        setTimeout(() => {
+            if (coverScreen) coverScreen.classList.add('fade-out');
+            if (invitation) invitation.classList.remove('opacity-0');
+        }, 800);
+
+        setTimeout(() => {
+            if (coverScreen) coverScreen.style.display = 'none';
+        }, 1300);
+    });
+}
+
+// ==========================================
+// 11. KHỞI CHẠY TRANG
+// ==========================================
+window.onload = function () {
     initFallingLeaves();
     createDots();
     updateCarousel();
     startAutoplay();
+    renderWishes();
 
     const carouselContainer = document.querySelector('.album-carousel-container');
     if (carouselContainer) {
@@ -363,81 +459,3 @@ window.onload = function() {
         carouselContainer.addEventListener('mouseleave', startAutoplay);
     }
 };
-// ==========================================
-// MỞ THIỆP VỚI HIỆU ỨNG LỐC XOÁY
-// ==========================================
-if (openBtn) {
-    openBtn.addEventListener('click', () => {
-        const envelopeWrapper = document.getElementById('envelopeWrapper');
-
-        // Bật nhạc nền thiệp cưới
-        toggleMusic();
-
-        // 1. Mở nắp thiệp & Kích hoạt lốc xoáy xoay 720 độ
-        if (envelopeWrapper) {
-            envelopeWrapper.classList.add('open');
-            
-            // Chờ 0.2s sau khi nắp bắt đầu hé thì chạy hiệu ứng lốc xoáy
-            setTimeout(() => {
-                envelopeWrapper.classList.add('tornado-active');
-            }, 200);
-        }
-
-        // 2. Mờ nền để lộ ra nội dung chính thiệp cưới bên dưới
-        setTimeout(() => {
-            if (coverScreen) {
-                coverScreen.classList.add('fade-out');
-            }
-            if (invitation) {
-                invitation.classList.remove('opacity-0');
-            }
-        }, 800);
-
-        // 3. Dọn dẹp hoàn toàn màn hình bìa sau khi lốc xoáy kết thúc (1.3s)
-        setTimeout(() => {
-            if (coverScreen) {
-                coverScreen.style.display = 'none';
-            }
-        }, 1300);
-    });
-}
-// Đoạn xử lý bấm nút Mở Thiệp trong script.js
-if (openBtn) {
-    openBtn.addEventListener('click', () => {
-        const envelopeWrapper = document.getElementById('envelopeWrapper');
-
-        // Bật nhạc nền thiệp cưới khi người dùng tương tác mở thiệp
-        if (bgMusic) {
-            bgMusic.play().then(() => {
-                isPlaying = true;
-                if (musicIcon) musicIcon.className = "fa-solid fa-compact-disc fa-spin text-brand-700";
-            }).catch(e => {
-                console.log("Trình duyệt chặn phát nhạc tự động:", e);
-            });
-        }
-
-        // Khởi chạy hiệu ứng mở thiệp / lốc xoáy
-        if (envelopeWrapper) {
-            envelopeWrapper.classList.add('open');
-            setTimeout(() => {
-                envelopeWrapper.classList.add('tornado-active');
-            }, 200);
-        }
-
-        // Mờ màn hình bìa để hiển thị nội dung thiệp
-        setTimeout(() => {
-            if (coverScreen) {
-                coverScreen.classList.add('fade-out');
-            }
-            if (invitation) {
-                invitation.classList.remove('opacity-0');
-            }
-        }, 800);
-
-        setTimeout(() => {
-            if (coverScreen) {
-                coverScreen.style.display = 'none';
-            }
-        }, 1300);
-    });
-}

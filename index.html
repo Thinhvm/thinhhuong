@@ -10,17 +10,22 @@
     <meta property="og:url" content="https://thinhvm.github.io/thinhhuong/" />
     <meta property="og:type" content="website" />
 
-    <!-- Khai báo đường dẫn ảnh chuẩn -->
     <meta property="og:image" content="https://thinhvm.github.io/thinhhuong/img/10 (1).jpg" />
     <meta property="og:image:secure_url" content="https://thinhvm.github.io/thinhhuong/img/10 (1).jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
-    <!-- Thẻ bắt buộc để bật khung xem trước ảnh lớn trên Twitter/Zalo/Telegram -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://thinhvm.github.io/thinhhuong/img/10 (1).jpg" />
 
+    <!-- EmailJS SDK Gửi Mail -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+    (function () {
+        emailjs.init("Yzdj8DP1_Xik_mE-N04zc");
+    })();
+</script>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -56,9 +61,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -69,9 +72,7 @@
     <!-- Lá bay nền -->
     <div class="falling-leaves" id="fallingLeavesContainer"></div>
 
-    <!-- =====================================================
-         NHẠC
-    ===================================================== -->
+    <!-- NHẠC CƯỚI -->
     <audio id="bgMusic" loop autoplay playsinline preload="auto">
         <source src="https://cdn.chungdoi.com/music/la-anh.mp3" type="audio/mpeg">
     </audio>
@@ -80,117 +81,73 @@
         <i id="musicIcon" class="fa-solid fa-music"></i>
     </button>
 
-
-    <!-- =====================================================
-         MÀN HÌNH BÌA / MỞ THIỆP
-    ===================================================== -->
+    <!-- MÀN HÌNH BÌA / MỞ THIỆP -->
     <div id="coverScreen"
-        class="fixed inset-0 z-40 bg-[#f5efeb] flex items-center justify-center p-4 transition-all duration-1000">
-        <!-- Bìa thiệp -->
-        <div
-            class="cover-card relative w-full max-w-lg bg-[#fbf8f3] rounded-3xl p-8 md:p-12 text-center border border-brand-200 card-shadow overflow-hidden">
+        class="fixed inset-0 z-40 bg-[#f5efeb] flex items-center justify-center p-4 transition-all duration-700">
 
-            <!-- SVG Trang trí -->
-            <div class="absolute -top-6 -left-6 w-36 h-36 opacity-30 pointer-events-none">
-                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10,10 Q100,50 190,10" stroke="#7d583f" stroke-width="2" />
-                    <path d="M40,20 C10,50 50,90 100,40" fill="#ceaf8d" opacity="0.5" />
-                    <path d="M80,30 C50,80 110,120 130,60" fill="#b88f68" opacity="0.5" />
+        <div id="envelopeWrapper" class="envelope-wrapper relative w-full max-w-md">
+            <div class="envelope-flap absolute top-0 inset-x-0 h-20 z-30 pointer-events-none origin-top transition-transform duration-700 ease-in-out">
+                <svg class="w-full h-full drop-shadow-md" viewBox="0 0 400 80" preserveAspectRatio="none">
+                    <path d="M0,0 L200,75 L400,0 Z" fill="#f5efeb" stroke="#ceaf8d" stroke-width="1.5" />
                 </svg>
             </div>
 
-            <div class="absolute -bottom-6 -right-6 w-36 h-36 opacity-30 pointer-events-none transform rotate-180">
-                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10,10 Q100,50 190,10" stroke="#7d583f" stroke-width="2" />
-                    <path d="M40,20 C10,50 50,90 100,40" fill="#ceaf8d" opacity="0.5" />
-                    <path d="M80,30 C50,80 110,120 130,60" fill="#b88f68" opacity="0.5" />
-                </svg>
-            </div>
+            <div id="coverCard"
+                class="cover-card relative w-full bg-[#fbf8f3] rounded-3xl p-8 pt-12 md:p-10 md:pt-14 text-center border-2 border-[#ceaf8d]/60 shadow-[0_20px_50px_rgba(92,77,66,0.25)] overflow-hidden transition-all duration-1000 ease-in-out">
 
-            <!-- MÀN HÌNH BÌA THIỆP PHONG BÌ CƯỚI ĐỘNG -->
-            <div id="coverScreen"
-                class="fixed inset-0 z-40 bg-[#f5efeb] flex items-center justify-center p-4 transition-all duration-700">
+                <div class="absolute inset-3 border border-[#ceaf8d]/40 rounded-[1.25rem] pointer-events-none"></div>
 
-                <!-- Khung chứa phong bì -->
-                <div id="envelopeWrapper" class="envelope-wrapper relative w-full max-w-md">
-
-                    <!-- NẮP PHONG BÌ (Mở lật ngược lên trên khi click) -->
-                    <div
-                        class="envelope-flap absolute top-0 inset-x-0 h-20 z-30 pointer-events-none origin-top transition-transform duration-700 ease-in-out">
-                        <svg class="w-full h-full drop-shadow-md" viewBox="0 0 400 80" preserveAspectRatio="none">
-                            <path d="M0,0 L200,75 L400,0 Z" fill="#f5efeb" stroke="#ceaf8d" stroke-width="1.5" />
-                        </svg>
+                <div class="cover-content relative z-10 space-y-4 pt-2">
+                    <div class="heart inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-100 text-brand-700 text-base floating shadow-sm">
+                        ♥
                     </div>
 
-                    <!-- THẺ THIỆP BÊN TRONG (Sẽ trượt & phóng to ra ngoài) -->
-                    <div id="coverCard"
-                        class="cover-card relative w-full bg-[#fbf8f3] rounded-3xl p-8 pt-12 md:p-10 md:pt-14 text-center border-2 border-[#ceaf8d]/60 shadow-[0_20px_50px_rgba(92,77,66,0.25)] overflow-hidden transition-all duration-1000 ease-in-out">
+                    <p class="uppercase tracking-[0.25em] text-[11px] text-brand-600 font-semibold">THIỆP MỜI</p>
 
-                        <!-- Đường viền kép trang trí -->
-                        <div class="absolute inset-3 border border-[#ceaf8d]/40 rounded-[1.25rem] pointer-events-none">
+                    <div class="space-y-1">
+                        <h1 class="font-cormorant text-3xl sm:text-4xl text-brand-900 font-bold leading-tight">
+                            Minh Thịnh
+                        </h1>
+
+                        <div class="flex items-center justify-center space-x-3 my-1">
+                            <span class="h-px w-8 bg-brand-300"></span>
+                            <span class="font-script text-2xl text-rose-500">♥</span>
+                            <span class="h-px w-8 bg-brand-300"></span>
                         </div>
 
-                        <!-- Nội dung thiệp -->
-                        <div class="cover-content relative z-10 space-y-4 pt-2">
-                            <div
-                                class="heart inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-100 text-brand-700 text-base floating shadow-sm">
-                                ♥
-                            </div>
-
-                            <p class="uppercase tracking-[0.25em] text-[11px] text-brand-600 font-semibold">THIỆP MỜI
-                            </p>
-
-                            <!-- Tên Chú Rể & Cô Dâu -->
-                            <div class="space-y-1">
-                                <h1 class="font-cormorant text-3xl sm:text-4xl text-brand-900 font-bold leading-tight">
-                                    Minh Thịnh
-                                </h1>
-
-                                <div class="flex items-center justify-center space-x-3 my-1">
-                                    <span class="h-px w-8 bg-brand-300"></span>
-                                    <span class="font-script text-2xl text-rose-500">♥</span>
-                                    <span class="h-px w-8 bg-brand-300"></span>
-                                </div>
-
-                                <h1 class="font-cormorant text-3xl sm:text-4xl text-brand-900 font-bold leading-tight">
-                                    Huỳnh Hương
-                                </h1>
-                            </div>
-
-                            <div class="mini-line flex items-center justify-center space-x-3 text-brand-400 pt-1">
-                                <span class="h-px w-10 bg-brand-300"></span>
-                                <b class="text-xs">❦</b>
-                                <span class="h-px w-10 bg-brand-300"></span>
-                            </div>
-
-                            <div class="cover-lunar text-base font-bold tracking-wider text-brand-800 uppercase">
-                                12.12.2026
-                            </div>
-
-                            <div class="cover-lunar text-[11px] tracking-wider text-brand-600 uppercase">
-                                ( Tức Ngày 04 Tháng 11 năm Bính Ngọ)
-                            </div>
-
-                            <div class="invite-text font-script text-2xl text-brand-700 pt-1">
-                                Thân Mời Đến Dự Buổi Tiệc
-                            </div>
-
-                            <button id="openInvitation"
-                                class="open-btn px-8 py-3 bg-[#5c4d42] hover:bg-[#4e372b] text-white font-medium rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 tracking-wider text-xs uppercase mt-2">
-                                <i class="fa-envelope-open fa-regular mr-2"></i> Mở thiệp cưới
-                            </button>
-                        </div>
+                        <h1 class="font-cormorant text-3xl sm:text-4xl text-brand-900 font-bold leading-tight">
+                            Huỳnh Hương
+                        </h1>
                     </div>
 
+                    <div class="mini-line flex items-center justify-center space-x-3 text-brand-400 pt-1">
+                        <span class="h-px w-10 bg-brand-300"></span>
+                        <b class="text-xs">❦</b>
+                        <span class="h-px w-10 bg-brand-300"></span>
+                    </div>
+
+                    <div class="cover-lunar text-base font-bold tracking-wider text-brand-800 uppercase">
+                        12.12.2026
+                    </div>
+
+                    <div class="cover-lunar text-[11px] tracking-wider text-brand-600 uppercase">
+                        ( Tức Ngày 04 Tháng 11 năm Bính Ngọ)
+                    </div>
+
+                    <div class="invite-text font-script text-2xl text-brand-700 pt-1">
+                        Thân Mời Đến Dự Buổi Tiệc
+                    </div>
+
+                    <button id="openInvitation"
+                        class="open-btn px-8 py-3 bg-[#5c4d42] hover:bg-[#4e372b] text-white font-medium rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 tracking-wider text-xs uppercase mt-2">
+                        <i class="fa-envelope-open fa-regular mr-2"></i> Mở thiệp cưới
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-
-    <!-- =====================================================
-         NỘI DUNG THIỆP
-    ===================================================== -->
+    <!-- NỘI DUNG THIỆP -->
     <div id="invitation"
         class="invitation max-w-xl mx-auto px-4 py-8 space-y-12 opacity-0 transition-opacity duration-1000">
 
@@ -203,53 +160,39 @@
                     THE WEDDING OF
                 </div>
 
-                <!-- Tên Cô Dâu & Chú Rể Xéo Nhau, Xuống Dòng -->
                 <div class="relative max-w-xs sm:max-w-sm mx-auto py-4 my-2 text-center">
-
-                    <!-- Tên Chú Rể (Lệch sang TRÁI Phía Trên) -->
                     <div class="text-left pl-2 sm:pl-4">
-                        <h2
-                            class="font-cormorant text-3xl sm:text-4xl text-brand-900 font-bold tracking-tight inline-block">
+                        <h2 class="font-cormorant text-3xl sm:text-4xl text-brand-900 font-bold tracking-tight inline-block">
                             Minh Thịnh
                         </h2>
                     </div>
 
-                    <!-- Ký tự & Trái tim ở GIỮA -->
                     <div class="my-[-0.5rem] sm:my-[-0.75rem] relative z-10 flex items-center justify-center space-x-2">
                         <span class="h-px w-8 bg-brand-300"></span>
-                        <span
-                            class="font-script text-3xl sm:text-4xl text-rose-500 font-normal hover:scale-110 transition-transform inline-block">&amp;</span>
+                        <span class="font-script text-3xl sm:text-4xl text-rose-500 font-normal hover:scale-110 transition-transform inline-block">&amp;</span>
                         <span class="h-px w-8 bg-brand-300"></span>
                     </div>
 
-                    <!-- Tên Cô Dâu (Lệch sang PHẢI Phía Dưới) -->
                     <div class="text-right pr-2 sm:pr-4">
-                        <h2
-                            class="font-cormorant text-3xl sm:text-4xl text-brand-900 font-bold tracking-tight inline-block">
+                        <h2 class="font-cormorant text-3xl sm:text-4xl text-brand-900 font-bold tracking-tight inline-block">
                             Huỳnh Hương
                         </h2>
                     </div>
-
                 </div>
 
                 <p class="hero-subtitle italic text-xs text-brand-600">
                     "Chúng mình sắp về chung một nhà!"
                 </p>
 
-                <!-- Frame Ảnh Polaroid -->
-                <div
-                    class="relative max-w-xs mx-auto my-8 p-4 pb-6 bg-white shadow-2xl rounded-sm transform -rotate-3 border border-gray-100 transition-transform hover:rotate-0 duration-500">
-                    <div
-                        class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-28 h-6 bg-amber-100/80 border border-amber-200/60 backdrop-blur-sm rotate-1 z-20 shadow-sm">
-                    </div>
+                <div class="relative max-w-xs mx-auto my-8 p-4 pb-6 bg-white shadow-2xl rounded-sm transform -rotate-3 border border-gray-100 transition-transform hover:rotate-0 duration-500">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-28 h-6 bg-amber-100/80 border border-amber-200/60 backdrop-blur-sm rotate-1 z-20 shadow-sm"></div>
 
                     <div class="overflow-hidden rounded-sm aspect-[3/4] relative bg-brand-100">
                         <img src="img/Cong1.jpg" alt="Minh Thịnh & Huỳnh Hương"
                             class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700">
                     </div>
 
-                    <div
-                        class="wax-seal absolute -bottom-5 -right-4 w-16 h-16 rounded-full flex items-center justify-center text-white z-20 border-2 border-amber-200/50 shadow-lg">
+                    <div class="wax-seal absolute -bottom-5 -right-4 w-16 h-16 rounded-full flex items-center justify-center text-white z-20 border-2 border-amber-200/50 shadow-lg">
                         <i class="fa-solid fa-heart text-amber-100 text-xl"></i>
                     </div>
                 </div>
@@ -264,10 +207,8 @@
             </div>
         </section>
 
-
         <!-- CÂU CHUYỆN -->
-        <section
-            class="section story bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 text-center space-y-4">
+        <section class="section story bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 text-center space-y-4">
             <div class="ornament text-brand-500 text-xl">❦</div>
 
             <div class="section-title text-xs uppercase tracking-widest text-brand-600 font-bold">
@@ -283,14 +224,11 @@
             </p>
         </section>
 
-
         <!-- THÔNG TIN LỄ CƯỚI -->
-        <section
-            class="section couple bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 relative overflow-hidden">
+        <section class="section couple bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 relative overflow-hidden">
             <div class="text-center space-y-6 relative z-10">
                 <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">THÔNG TIN LỄ CƯỚI</div>
 
-                <!-- Hai bên gia đình -->
                 <div class="grid grid-cols-2 gap-4 text-xs text-brand-800 border-b border-brand-200 pb-6">
                     <div class="space-y-1">
                         <p class="text-brand-500 italic uppercase tracking-wider font-semibold">Nhà Trai</p>
@@ -310,79 +248,43 @@
                     TRÂN TRỌNG BÁO TIN LỄ THÀNH HÔN CỦA CON CHÚNG TÔI
                 </div>
 
-                <!-- Bố cục 2 cột hoàn toàn cân đối từ Tên tới Ảnh -->
                 <div class="max-w-xl mx-auto space-y-4">
-
-                    <!-- Cột Tên Chú Rể - Trái Tim - Tên Cô Dâu -->
                     <div class="grid grid-cols-2 gap-4 relative">
-
-                        <!-- Cột Chú Rể (Căn giữa hoàn toàn theo cột 1) -->
                         <div class="text-center space-y-0.5 pr-2">
-                            <span
-                                class="text-[11px] uppercase tracking-widest text-rose-500 font-semibold block text-center">CHÚ
-                                RỂ</span>
-                            <h2 class="font-script text-3xl sm:text-4xl text-gray-800 leading-tight text-center">Minh
-                                Thịnh</h2>
+                            <span class="text-[11px] uppercase tracking-widest text-rose-500 font-semibold block text-center">CHÚ RỂ</span>
+                            <h2 class="font-script text-3xl sm:text-4xl text-gray-800 leading-tight text-center">Minh Thịnh</h2>
                         </div>
 
-                        <!-- Trái Tim Nằm Chính Giữa Cân Bằng 2 Cột -->
-                        <div
-                            class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-center pointer-events-none z-10">
+                        <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-center pointer-events-none z-10">
                             <span class="text-rose-500 text-2xl sm:text-3xl animate-pulse">♥</span>
                         </div>
 
-                        <!-- Cột Cô Dâu (Căn giữa hoàn toàn theo cột 2) -->
                         <div class="text-center space-y-0.5 pl-2">
-                            <span
-                                class="text-[11px] uppercase tracking-widest text-rose-500 font-semibold block text-center">CÔ
-                                DÂU</span>
-                            <h2 class="font-script text-3xl sm:text-4xl text-gray-800 leading-tight text-center">Huỳnh
-                                Hương</h2>
+                            <span class="text-[11px] uppercase tracking-widest text-rose-500 font-semibold block text-center">CÔ DÂU</span>
+                            <h2 class="font-script text-3xl sm:text-4xl text-gray-800 leading-tight text-center">Huỳnh Hương</h2>
                         </div>
                     </div>
 
-                    <!-- Cột Ảnh Song Song Căn Thẳng Hàng Chiều Ngang Với Tên Phía Trên -->
                     <div class="grid grid-cols-2 gap-4 pt-1">
-                        <!-- Ảnh Chú Rể -->
-                        <div class="relative overflow-hidden rounded-2xl shadow-lg aspect-[3/4] cursor-pointer group"
-                            onclick="openLightbox(0)">
-                            <img src="img/DOJ_5786_1.jpg" alt="Chú rể Minh Thịnh"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80">
-                            </div>
-                            <div
-                                class="absolute bottom-3 inset-x-0 text-center text-white font-medium text-sm tracking-wide">
-                                Minh Thịnh
-                            </div>
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg aspect-[3/4] cursor-pointer group" onclick="openLightbox(0)">
+                            <img src="img/DOJ_5786_1.jpg" alt="Chú rể Minh Thịnh" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80"></div>
+                            <div class="absolute bottom-3 inset-x-0 text-center text-white font-medium text-sm tracking-wide">Minh Thịnh</div>
                         </div>
 
-                        <!-- Ảnh Cô Dâu -->
-                        <div class="relative overflow-hidden rounded-2xl shadow-lg aspect-[3/4] cursor-pointer group"
-                            onclick="openLightbox(1)">
-                            <img src="img/DOJ_5795_1.jpg" alt="Cô dâu Huỳnh Hương"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80">
-                            </div>
-                            <div
-                                class="absolute bottom-3 inset-x-0 text-center text-white font-medium text-sm tracking-wide">
-                                Huỳnh Hương
-                            </div>
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg aspect-[3/4] cursor-pointer group" onclick="openLightbox(1)">
+                            <img src="img/DOJ_5795_1.jpg" alt="Cô dâu Huỳnh Hương" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80"></div>
+                            <div class="absolute bottom-3 inset-x-0 text-center text-white font-medium text-sm tracking-wide">Huỳnh Hương</div>
                         </div>
                     </div>
-
                 </div>
-
-
 
                 <div class="pt-6 border-t border-brand-200 space-y-2 text-xs text-brand-800">
                     <p class="uppercase tracking-wider">LỄ THÀNH HÔN ĐƯỢC CỬ HÀNH TẠI TƯ GIA</p>
                     <p class="text-brand-600">VÀO LÚC</p>
-            
 
-                    <div
-                        class="flex items-center justify-center space-x-2 text-base sm:text-lg font-extrabold text-brand-600 pt-1">
+                    <div class="flex items-center justify-center space-x-2 text-base sm:text-lg font-extrabold text-brand-600 pt-1">
                         <span>THỨ BẢY</span>
                         <span>|</span>
                         <span>12</span>
@@ -396,164 +298,35 @@
             </div>
         </section>
 
+        <!-- ALBUM ẢNH CƯỚI -->
+        <section class="section album bg-[#fbf8f3] rounded-3xl py-8 px-4 card-shadow border border-brand-200 text-center space-y-6 overflow-hidden">
+            <div class="text-xs uppercase tracking-[0.2em] text-brand-600 font-bold font-serif">ALBUM ẢNH</div>
 
-        <!-- =====================================================
-             ALBUM ẢNH CƯỚI ĐỘNG (CAROUSEL 3D CARD)
-        ===================================================== -->
-        <section
-            class="section album bg-[#fbf8f3] rounded-3xl py-8 px-4 card-shadow border border-brand-200 text-center space-y-6 overflow-hidden">
-
-            <div class="text-xs uppercase tracking-[0.2em] text-brand-600 font-bold font-serif">
-                ALBUM ẢNH
-            </div>
-
-            <!-- Khung Slider 3D -->
-            <div
-                class="album-carousel-container relative w-full my-6 min-h-[380px] sm:min-h-[440px] flex items-center justify-center">
-
-                <!-- Nút chuyển slide Trái -->
-                <button
-                    class="carousel-btn prev-btn absolute left-1 sm:left-2 z-30 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/70 shadow hover:bg-white flex items-center justify-center text-brand-800 transition"
-                    onclick="prevSlide(event)">
+            <div class="album-carousel-container relative w-full my-6 min-h-[380px] sm:min-h-[440px] flex items-center justify-center">
+                <button class="carousel-btn prev-btn absolute left-1 sm:left-2 z-30 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/70 shadow hover:bg-white flex items-center justify-center text-brand-800 transition" onclick="prevSlide(event)">
                     <i class="fa-solid fa-chevron-left text-sm"></i>
                 </button>
 
-                <!-- Thẻ Carousel Track -->
                 <div class="carousel-track relative w-full h-[360px] sm:h-[420px] flex items-center justify-center">
-
-                    <!-- Slide 1 -->
-                    <div class="carousel-card" onclick="onCardClick(0)">
-                        <div class="card-inner">
-                            <img src="img/ANH BAN (4)_1.jpg" alt="Wedding Photo 1">
-                            <div class="card-caption">
-                                <p class="font-script text-xl text-brand-800">Save The Date</p>
-                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh
-                                    Hương
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 2 -->
-                    <div class="carousel-card" onclick="onCardClick(1)">
-                        <div class="card-inner">
-                            <img src="img/Cong2.jpg" alt="Wedding Photo 2">
-                            <div class="card-caption">
-                                <p class="font-script text-xl text-brand-800">Save The Date</p>
-                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh
-                                    Hương
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 3 -->
-                    <div class="carousel-card" onclick="onCardClick(2)">
-                        <div class="card-inner">
-                            <img src="img/ANH BAN (1)_1.jpg" alt="Wedding Photo 3">
-                            <div class="card-caption">
-                                <p class="font-script text-xl text-brand-800">Save The Date</p>
-                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh
-                                    Hương
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 4 -->
-                    <div class="carousel-card" onclick="onCardClick(3)">
-                        <div class="card-inner">
-                            <img src="img/DOJ_6227_1.jpg" alt="Wedding Photo 4">
-                            <div class="card-caption">
-                                <p class="font-script text-xl text-brand-800">Save The Date</p>
-                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh
-                                    Hương
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 5 -->
-                    <div class="carousel-card" onclick="onCardClick(4)">
-                        <div class="card-inner">
-                            <img src="img/DOJ_6851_1.jpg" alt="Wedding Photo 5">
-                            <div class="card-caption">
-                                <p class="font-script text-xl text-brand-800">Save The Date</p>
-                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh
-                                    Hương
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 6 -->
-                    <div class="carousel-card" onclick="onCardClick(5)">
-                        <div class="card-inner">
-                            <img src="img/DOJ_7032_1.jpg" alt="Wedding Photo 6">
-                            <div class="card-caption">
-                                <p class="font-script text-xl text-brand-800">Save The Date</p>
-                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh
-                                    Hương
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 7 -->
-                    <div class="carousel-card" onclick="onCardClick(6)">
-                        <div class="card-inner">
-                            <img src="img/DOJ_6149_1.jpg" alt="Wedding Photo 6">
-                            <div class="card-caption">
-                                <p class="font-script text-xl text-brand-800">Save The Date</p>
-                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh
-                                    Hương
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 8 -->
-                    <div class="carousel-card" onclick="onCardClick(7)">
-                        <div class="card-inner">
-                            <img src="img/DOJ_6509_1.jpg" alt="Wedding Photo 6">
-                            <div class="card-caption">
-                                <p class="font-script text-xl text-brand-800">Save The Date</p>
-                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh
-                                    Hương
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 9 -->
-                    <div class="carousel-card" onclick="onCardClick(8)">
-                        <div class="card-inner">
-                            <img src="img/DOJ_7063_1.jpg" alt="Wedding Photo 6">
-                            <div class="card-caption">
-                                <p class="font-script text-xl text-brand-800">Save The Date</p>
-                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh
-                                    Hương
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
+                    <div class="carousel-card" onclick="onCardClick(0)"><div class="card-inner"><img src="img/ANH BAN (4)_1.jpg" alt="Wedding Photo 1"><div class="card-caption"><p class="font-script text-xl text-brand-800">Save The Date</p><p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh Hương</p></div></div></div>
+                    <div class="carousel-card" onclick="onCardClick(1)"><div class="card-inner"><img src="img/Cong2.jpg" alt="Wedding Photo 2"><div class="card-caption"><p class="font-script text-xl text-brand-800">Save The Date</p><p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh Hương</p></div></div></div>
+                    <div class="carousel-card" onclick="onCardClick(2)"><div class="card-inner"><img src="img/ANH BAN (1)_1.jpg" alt="Wedding Photo 3"><div class="card-caption"><p class="font-script text-xl text-brand-800">Save The Date</p><p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh Hương</p></div></div></div>
+                    <div class="carousel-card" onclick="onCardClick(3)"><div class="card-inner"><img src="img/DOJ_6227_1.jpg" alt="Wedding Photo 4"><div class="card-caption"><p class="font-script text-xl text-brand-800">Save The Date</p><p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh Hương</p></div></div></div>
+                    <div class="carousel-card" onclick="onCardClick(4)"><div class="card-inner"><img src="img/DOJ_6851_1.jpg" alt="Wedding Photo 5"><div class="card-caption"><p class="font-script text-xl text-brand-800">Save The Date</p><p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh Hương</p></div></div></div>
+                    <div class="carousel-card" onclick="onCardClick(5)"><div class="card-inner"><img src="img/DOJ_7032_1.jpg" alt="Wedding Photo 6"><div class="card-caption"><p class="font-script text-xl text-brand-800">Save The Date</p><p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh Hương</p></div></div></div>
+                    <div class="carousel-card" onclick="onCardClick(6)"><div class="card-inner"><img src="img/DOJ_6149_1.jpg" alt="Wedding Photo 7"><div class="card-caption"><p class="font-script text-xl text-brand-800">Save The Date</p><p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh Hương</p></div></div></div>
+                    <div class="carousel-card" onclick="onCardClick(7)"><div class="card-inner"><img src="img/DOJ_6509_1.jpg" alt="Wedding Photo 8"><div class="card-caption"><p class="font-script text-xl text-brand-800">Save The Date</p><p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh Hương</p></div></div></div>
+                    <div class="carousel-card" onclick="onCardClick(8)"><div class="card-inner"><img src="img/DOJ_7063_1.jpg" alt="Wedding Photo 9"><div class="card-caption"><p class="font-script text-xl text-brand-800">Save The Date</p><p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh Hương</p></div></div></div>
                 </div>
 
-                <!-- Nút chuyển slide Phải -->
-                <button
-                    class="carousel-btn next-btn absolute right-1 sm:right-2 z-30 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/70 shadow hover:bg-white flex items-center justify-center text-brand-800 transition"
-                    onclick="nextSlide(event)">
+                <button class="carousel-btn next-btn absolute right-1 sm:right-2 z-30 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/70 shadow hover:bg-white flex items-center justify-center text-brand-800 transition" onclick="nextSlide(event)">
                     <i class="fa-solid fa-chevron-right text-sm"></i>
                 </button>
-
             </div>
 
-            <!-- Các chấm chỉ số slide (Pagination Dots) -->
-            <div class="carousel-dots flex justify-center items-center space-x-2 pt-2" id="carouselDots">
-                <!-- Dots được sinh tự động bởi JavaScript -->
-            </div>
-
+            <div class="carousel-dots flex justify-center items-center space-x-2 pt-2" id="carouselDots"></div>
             <p class="text-[11px] text-brand-600 italic">Chạm vào ảnh để phóng to xem rõ hơn</p>
         </section>
-
 
         <!-- LIGHTBOX MODAL -->
         <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
@@ -565,19 +338,15 @@
             <button class="lightbox-btn next-btn" onclick="changeImage(1, event)">&#10095;</button>
         </div>
 
-
         <!-- NGÀY CƯỚI & TIỆC CƯỚI -->
-        <section
-            class="section wedding-day bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 text-center space-y-6 relative overflow-hidden">
+        <section class="section wedding-day bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 text-center space-y-6 relative overflow-hidden">
             <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">THÔNG TIN TIỆC CƯỚI</div>
 
             <h2 class="font-cormorant text-2xl md:text-3xl font-bold text-brand-900">
                 TIỆC CƯỚI SẼ DIỄN RA VÀO LÚC
             </h2>
 
-           
-            <div
-                class="flex items-center justify-center space-x-2 text-base sm:text-lg font-extrabold text-brand-600 pt-1">
+            <div class="flex items-center justify-center space-x-2 text-base sm:text-lg font-extrabold text-brand-600 pt-1">
                 <span>THỨ BẢY</span>
                 <span>|</span>
                 <span>12</span>
@@ -611,75 +380,44 @@
 
                 <div class="grid grid-cols-7 gap-1 text-center text-xs">
                     <span></span>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">1</span><span
-                            class="text-[9px] opacity-60">23/10</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">2</span><span
-                            class="text-[9px] opacity-60">24</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">3</span><span
-                            class="text-[9px] opacity-60">25</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">4</span><span
-                            class="text-[9px] opacity-60">26</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">5</span><span
-                            class="text-[9px] opacity-60">27</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">6</span><span
-                            class="text-[9px] opacity-60">28</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">7</span><span
-                            class="text-[9px] opacity-60">29</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">8</span><span
-                            class="text-[9px] opacity-60">30</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">9</span><span
-                            class="text-[9px] opacity-60">1/11</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">10</span><span
-                            class="text-[9px] opacity-60">2</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">11</span><span
-                            class="text-[9px] opacity-60">3</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">1</span><span class="text-[9px] opacity-60">23/10</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">2</span><span class="text-[9px] opacity-60">24</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">3</span><span class="text-[9px] opacity-60">25</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">4</span><span class="text-[9px] opacity-60">26</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">5</span><span class="text-[9px] opacity-60">27</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">6</span><span class="text-[9px] opacity-60">28</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">7</span><span class="text-[9px] opacity-60">29</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">8</span><span class="text-[9px] opacity-60">30</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">9</span><span class="text-[9px] opacity-60">1/11</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">10</span><span class="text-[9px] opacity-60">2</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">11</span><span class="text-[9px] opacity-60">3</span></div>
 
                     <div class="flex flex-col items-center justify-center">
-                        <div
-                            class="w-8 h-8 rounded-full bg-white text-brand-900 flex flex-col items-center justify-center font-bold shadow-md">
+                        <div class="w-8 h-8 rounded-full bg-white text-brand-900 flex flex-col items-center justify-center font-bold shadow-md">
                             <span class="text-xs leading-none">12</span>
                             <span class="text-[8px] leading-none text-red-600 font-normal">4/11</span>
                         </div>
                     </div>
 
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">13</span><span
-                            class="text-[9px] opacity-60">5</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">14</span><span
-                            class="text-[9px] opacity-60">6</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">15</span><span
-                            class="text-[9px] opacity-60">7</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">16</span><span
-                            class="text-[9px] opacity-60">8</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">17</span><span
-                            class="text-[9px] opacity-60">9</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">18</span><span
-                            class="text-[9px] opacity-60">10</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">19</span><span
-                            class="text-[9px] opacity-60">11</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">20</span><span
-                            class="text-[9px] opacity-60">12</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">21</span><span
-                            class="text-[9px] opacity-60">13</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">22</span><span
-                            class="text-[9px] opacity-60">14</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">23</span><span
-                            class="text-[9px] opacity-60">15</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">24</span><span
-                            class="text-[9px] opacity-60">16</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">25</span><span
-                            class="text-[9px] opacity-60">17</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">26</span><span
-                            class="text-[9px] opacity-60">18</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">27</span><span
-                            class="text-[9px] opacity-60">19</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">28</span><span
-                            class="text-[9px] opacity-60">20</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">29</span><span
-                            class="text-[9px] opacity-60">21</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">30</span><span
-                            class="text-[9px] opacity-60">22</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">31</span><span
-                            class="text-[9px] opacity-60">23</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">13</span><span class="text-[9px] opacity-60">5</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">14</span><span class="text-[9px] opacity-60">6</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">15</span><span class="text-[9px] opacity-60">7</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">16</span><span class="text-[9px] opacity-60">8</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">17</span><span class="text-[9px] opacity-60">9</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">18</span><span class="text-[9px] opacity-60">10</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">19</span><span class="text-[9px] opacity-60">11</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">20</span><span class="text-[9px] opacity-60">12</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">21</span><span class="text-[9px] opacity-60">13</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">22</span><span class="text-[9px] opacity-60">14</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">23</span><span class="text-[9px] opacity-60">15</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">24</span><span class="text-[9px] opacity-60">16</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">25</span><span class="text-[9px] opacity-60">17</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">26</span><span class="text-[9px] opacity-60">18</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">27</span><span class="text-[9px] opacity-60">19</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">28</span><span class="text-[9px] opacity-60">20</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">29</span><span class="text-[9px] opacity-60">21</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">30</span><span class="text-[9px] opacity-60">22</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">31</span><span class="text-[9px] opacity-60">23</span></div>
                 </div>
             </div>
 
@@ -698,10 +436,8 @@
             </div>
         </section>
 
-
         <!-- ĐỊA ĐIỂM & BẢN ĐỒ -->
-        <section
-            class="section location bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 text-center space-y-4">
+        <section class="section location bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 text-center space-y-4">
             <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">TIỆC CƯỚI SẼ TỔ CHỨC TẠI</div>
 
             <h3 class="font-cormorant text-xl md:text-2xl font-bold text-brand-900">
@@ -726,27 +462,19 @@
                 <span>Xem chỉ đường</span>
             </a>
         </section>
-        <!-- NÚT GHIM HỘP QUÀ MỪNG CƯỚI Ở GÓC PHẢI CUỐI MÀN HÌNH -->
+
+        <!-- NÚT MỪNG CƯỚI FLOATING -->
         <button id="floatingGiftBtn" onclick="toggleGiftModal()" title="Mừng cưới"
             class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#5c4d42] hover:bg-[#4e372b] text-amber-200 rounded-full shadow-2xl border-2 border-amber-300/60 transition-all duration-300 transform hover:scale-110 active:scale-95 group">
-
-            <!-- Icon Hộp Quà / Bao Thư -->
             <i class="fa-solid fa-gift text-2xl group-hover:rotate-12 transition-transform duration-300"></i>
-
-            <!-- Vòng xung nhịp gây chú ý (Pulse Animation) -->
             <span class="absolute -inset-1 rounded-full bg-amber-400/30 animate-ping pointer-events-none"></span>
-
-            <!-- Tooltip nhãn nhỏ hiển thị khi di chuột -->
-            <span
-                class="absolute right-16 bg-[#5c4d42] text-amber-100 text-[11px] font-medium px-2.5 py-1 rounded-md shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none border border-amber-300/30">
+            <span class="absolute right-16 bg-[#5c4d42] text-amber-100 text-[11px] font-medium px-2.5 py-1 rounded-md shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none border border-amber-300/30">
                 Mừng Cưới
             </span>
         </button>
 
-
         <!-- SỔ LƯU BÚT -->
-        <section
-            class="section guestbook bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 space-y-6">
+        <section class="section guestbook bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 space-y-6">
             <div class="text-center">
                 <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">SỔ LƯU BÚT TÌNH YÊU</div>
             </div>
@@ -768,31 +496,11 @@
                 </div>
             </form>
 
-            <div class="space-y-3 pt-4 border-t border-brand-200 max-h-80 overflow-y-auto pr-1" id="messagesList">
-                <div class="p-3.5 bg-white/90 rounded-xl border border-brand-200 text-xs space-y-1">
-                    <div class="flex justify-between items-center font-bold text-brand-900">
-                        <span>Mỹ Linh</span>
-                        <span class="text-[10px] text-brand-400 font-normal">14/11/2026</span>
-                    </div>
-                    <p class="text-brand-700">Chúc hai bạn trăm năm hạnh phúc, vạn sự như ý, một đám cưới thật vui vẻ và
-                        trọn vẹn!</p>
-                </div>
-
-                <div class="p-3.5 bg-white/90 rounded-xl border border-brand-200 text-xs space-y-1">
-                    <div class="flex justify-between items-center font-bold text-brand-900">
-                        <span>Trọng Nhân</span>
-                        <span class="text-[10px] text-brand-400 font-normal">14/11/2026</span>
-                    </div>
-                    <p class="text-brand-700">Chúc mừng Thịnh và Hương về chung một nhà! Luôn ngọt ngào như ngày đầu
-                        nhé.</p>
-                </div>
-            </div>
+            <div class="space-y-3 pt-4 border-t border-brand-200 max-h-80 overflow-y-auto pr-1" id="messagesList"></div>
         </section>
 
-
-        <!-- MỪNG CƯỚI -->
-        <section
-            class="section gift bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 text-center space-y-6">
+        <!-- MỪNG CƯỚI ONLINE -->
+        <section class="section gift bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 text-center space-y-6">
             <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">MỪNG CƯỚI ONLINE</div>
 
             <div class="py-2">
@@ -809,8 +517,7 @@
                             <path d="M50 30 C65 10 80 25 58 30 Z" fill="#5c4d42" />
                         </svg>
                     </div>
-                    <p class="text-xs text-brand-600 mt-2 italic font-medium group-hover:text-brand-900">Chạm để mở mã
-                        QR Mừng Cưới</p>
+                    <p class="text-xs text-brand-600 mt-2 italic font-medium group-hover:text-brand-900">Chạm để mở mã QR Mừng Cưới</p>
                 </div>
             </div>
 
@@ -818,7 +525,6 @@
                 Sự hiện diện của quý khách là niềm vinh hạnh lớn nhất của gia đình chúng tôi!
             </p>
         </section>
-
 
         <!-- FOOTER -->
         <footer class="text-center py-8 space-y-2 border-t border-brand-200">
@@ -832,38 +538,30 @@
 
     </div>
 
-
     <!-- MODAL RSVP -->
     <div id="rsvpModal" class="fixed inset-0 bg-black/60 z-50 hidden items-center justify-center p-4">
-        <div
-            class="bg-[#fbf8f3] rounded-3xl max-w-sm w-full p-6 text-center space-y-4 border border-brand-200 relative animate-fadeIn">
-            <button onclick="closeRSVPModal()"
-                class="absolute top-4 right-4 text-brand-500 hover:text-brand-900 text-lg">
+        <div class="bg-[#fbf8f3] rounded-3xl max-w-sm w-full p-6 text-center space-y-4 border border-brand-200 relative animate-fadeIn">
+            <button onclick="closeRSVPModal()" class="absolute top-4 right-4 text-brand-500 hover:text-brand-900 text-lg">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <h3 class="font-cormorant text-2xl font-bold text-brand-900">Xác Nhận Tham Dự</h3>
-            <p class="text-xs text-brand-600">Vui lòng phản hồi trước ngày 25/10/2026 để chúng mình đón tiếp chu đáo
-                nhất nhé!</p>
+            <p class="text-xs text-brand-600">Vui lòng phản hồi trước ngày 25/10/2026 để chúng mình đón tiếp chu đáo nhất nhé!</p>
 
             <form onsubmit="submitRSVP(event)" class="space-y-3 text-left">
                 <div>
                     <label class="block text-[11px] text-brand-700 uppercase mb-1 font-semibold">Họ và tên</label>
-                    <input type="text" required
-                        class="w-full px-3 py-2 rounded-xl border border-brand-300 text-xs bg-white focus:outline-none">
+                    <input type="text" required class="w-full px-3 py-2 rounded-xl border border-brand-300 text-xs bg-white focus:outline-none">
                 </div>
                 <div>
-                    <label class="block text-[11px] text-brand-700 uppercase mb-1 font-semibold">Bạn là khách
-                        của</label>
-                    <select
-                        class="w-full px-3 py-2 rounded-xl border border-brand-300 text-xs bg-white focus:outline-none">
+                    <label class="block text-[11px] text-brand-700 uppercase mb-1 font-semibold">Bạn là khách của</label>
+                    <select class="w-full px-3 py-2 rounded-xl border border-brand-300 text-xs bg-white focus:outline-none">
                         <option>Chú rể (Minh Thịnh)</option>
                         <option>Cô dâu (Huỳnh Hương)</option>
                         <option>Cả hai dâu rể</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-[11px] text-brand-700 uppercase mb-1 font-semibold">Khả năng tham
-                        dự</label>
+                    <label class="block text-[11px] text-brand-700 uppercase mb-1 font-semibold">Khả năng tham dự</label>
                     <div class="space-y-2 text-xs pt-1">
                         <label class="flex items-center space-x-2 cursor-pointer">
                             <input type="radio" name="attend" value="yes" checked class="accent-brand-700">
@@ -875,35 +573,26 @@
                         </label>
                     </div>
                 </div>
-                <button type="submit"
-                    class="w-full py-3 bg-[#5c4d42] text-white text-xs uppercase tracking-wider font-semibold rounded-full mt-3 shadow">
+                <button type="submit" class="w-full py-3 bg-[#5c4d42] text-white text-xs uppercase tracking-wider font-semibold rounded-full mt-3 shadow">
                     XÁC NHẬN PHẢN HỒI
                 </button>
             </form>
         </div>
     </div>
 
-
     <!-- MODAL HỘP QUÀ MỪNG CƯỚI -->
-    <div id="giftModal"
-        class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4 transition-all duration-300">
-        <div
-            class="bg-[#fbf8f3] rounded-3xl p-6 max-w-2xl w-full text-center space-y-4 border border-brand-200 shadow-2xl relative animate-fadeIn max-h-[90vh] overflow-y-auto">
-
-            <button onclick="toggleGiftModal()"
-                class="absolute top-4 right-4 text-gray-400 hover:text-black text-2xl font-bold focus:outline-none">&times;</button>
+    <div id="giftModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4 transition-all duration-300">
+        <div class="bg-[#fbf8f3] rounded-3xl p-6 max-w-2xl w-full text-center space-y-4 border border-brand-200 shadow-2xl relative animate-fadeIn max-h-[90vh] overflow-y-auto">
+            <button onclick="toggleGiftModal()" class="absolute top-4 right-4 text-gray-400 hover:text-black text-2xl font-bold focus:outline-none">&times;</button>
 
             <h3 class="text-base font-bold text-brand-800 uppercase tracking-widest pt-2">Mừng Cưới Dâu Rể</h3>
-            <p class="text-xs text-brand-600 italic">Sự hiện diện của quý khách là niềm vinh hạnh lớn nhất của gia đình
-                chúng tôi!</p>
+            <p class="text-xs text-brand-600 italic">Sự hiện diện của quý khách là niềm vinh hạnh lớn nhất của gia đình chúng tôi!</p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                <div
-                    class="bg-white p-4 rounded-2xl border border-brand-200 shadow-sm flex flex-col justify-between items-center">
+                <div class="bg-white p-4 rounded-2xl border border-brand-200 shadow-sm flex flex-col justify-between items-center">
                     <p class="text-xs font-bold text-brand-900 mb-2 uppercase">MỪNG CƯỚI CHÚ RỂ</p>
                     <div class="w-full flex items-center justify-center min-h-[220px]">
-                        <img src="img/qr_chure.jpg" alt="Mã QR Chú Rể"
-                            class="w-full max-w-[200px] h-auto object-contain rounded-xl shadow-sm">
+                        <img src="img/qr_chure.jpg" alt="Mã QR Chú Rể" class="w-full max-w-[200px] h-auto object-contain rounded-xl shadow-sm">
                     </div>
                     <div class="mt-2 text-center">
                         <p class="text-xs text-brand-700 font-medium">Vietcombank: 1029009282</p>
@@ -911,12 +600,10 @@
                     </div>
                 </div>
 
-                <div
-                    class="bg-white p-4 rounded-2xl border border-brand-200 shadow-sm flex flex-col justify-between items-center">
+                <div class="bg-white p-4 rounded-2xl border border-brand-200 shadow-sm flex flex-col justify-between items-center">
                     <p class="text-xs font-bold text-brand-900 mb-2 uppercase">MỪNG CƯỚI CÔ DÂU</p>
                     <div class="w-full flex items-center justify-center min-h-[220px]">
-                        <img src="img/qr_codau.jpg" alt="Mã QR Cô Dâu"
-                            class="w-full max-w-[200px] h-auto object-contain rounded-xl shadow-sm">
+                        <img src="img/qr_codau.jpg" alt="Mã QR Cô Dâu" class="w-full max-w-[200px] h-auto object-contain rounded-xl shadow-sm">
                     </div>
                     <div class="mt-2 text-center">
                         <p class="text-xs text-brand-700 font-medium">Vietcombank: 9393129489</p>
@@ -925,8 +612,7 @@
                 </div>
             </div>
 
-            <button onclick="toggleGiftModal()"
-                class="w-full py-2.5 bg-brand-700 text-white text-xs font-bold rounded-xl shadow hover:bg-brand-800 transition-colors mt-2">
+            <button onclick="toggleGiftModal()" class="w-full py-2.5 bg-brand-700 text-white text-xs font-bold rounded-xl shadow hover:bg-brand-800 transition-colors mt-2">
                 Đóng cửa sổ
             </button>
         </div>
