@@ -197,17 +197,21 @@ function addToCalendar() {
 // ==========================================
 // 7. LIGHTBOX ALBUM (ZOOM-IN)
 // ==========================================
-function openLightbox(index) {
+function openLightbox(srcOrIndex) {
     stopAutoplay();
-    currentImgIndex = index;
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
 
     if (!lightbox || !lightboxImg) return;
 
-    lightboxImg.src = albumImages[currentImgIndex];
-    lightboxImg.classList.remove('zoom-in');
+    if (typeof srcOrIndex === 'number') {
+        currentImgIndex = srcOrIndex;
+        lightboxImg.src = albumImages[currentImgIndex];
+    } else {
+        lightboxImg.src = srcOrIndex;
+    }
 
+    lightboxImg.classList.remove('zoom-in');
     lightbox.classList.remove('hidden');
     lightbox.classList.add('flex', 'active');
 
