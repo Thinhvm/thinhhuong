@@ -19,17 +19,29 @@ function initFallingLeaves() {
     const container = document.getElementById('fallingLeavesContainer');
     if (!container) return;
 
-    // Danh sách các biểu tượng trái tim và hoa lá mộng mơ
+    // Xóa nội dung cũ nếu có
+    container.innerHTML = '';
+
     const heartIcons = ['❤️', '💖', '💕', '💗', '🌸', '❣'];
-    
-    // Tăng số lượng từ 15 lên 20 để tạo hiệu ứng mưa trái tim đẹp hơn
-    for (let i = 0; i < 40; i++) {
+    const totalHearts = 18; // Số lượng vừa đủ trên màn hình điện thoại
+
+    for (let i = 0; i < totalHearts; i++) {
         const leaf = document.createElement('span');
         leaf.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
-        leaf.style.left = Math.random() * 100 + 'vw';
-        leaf.style.animationDuration = (Math.random() * 5 + 6) + 's';
-        leaf.style.animationDelay = Math.random() * 5 + 's';
-        leaf.style.fontSize = (Math.random() * 12 + 14) + 'px'; // Kích thước trái tim vừa vặn
+        
+        // Vị trí ngang random (từ 5% đến 90%)
+        leaf.style.left = (Math.random() * 85 + 5) + '%';
+        
+        // Thời gian rơi từ 5s đến 9s
+        const duration = Math.random() * 4 + 5;
+        leaf.style.animationDuration = duration + 's';
+        
+        // Trễ ngẫu nhiên để không rơi cùng lúc
+        leaf.style.animationDelay = (Math.random() * 5) + 's';
+        
+        // Kích thước trái tim
+        leaf.style.fontSize = (Math.random() * 10 + 14) + 'px';
+        
         container.appendChild(leaf);
     }
 }

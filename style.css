@@ -197,4 +197,42 @@
     .prev-btn { left: 10px; }
     .next-btn { right: 10px; }
 }
+/* Khung chứa hiệu ứng lá/trái tim rơi */
+#fallingLeavesContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Không làm vướng khi vuốt màn hình */
+    z-index: 9999;
+    overflow: hidden;
+}
+
+/* Định dạng từng trái tim */
+#fallingLeavesContainer span {
+    position: absolute;
+    top: -30px;
+    display: inline-block;
+    /* Gắn animation rơi với các tham số thời gian từ JS */
+    animation-name: fallAnimation;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+}
+
+/* KEYFRAMES TẠO HIỆU ỨNG RƠI & LẮC LƯ */
+@keyframes fallAnimation {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.9;
+    }
+    50% {
+        transform: translateY(50vh) rotate(180deg) translateX(15px);
+    }
+    100% {
+        transform: translateY(105vh) rotate(360deg) translateX(-15px);
+        opacity: 0.2;
+    }
+}
  
