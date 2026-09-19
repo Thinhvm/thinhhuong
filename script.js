@@ -2,6 +2,8 @@
 // 1. DATA ALBUM ẢNH (Khai báo duy nhất 1 lần)
 // ==========================================
 const albumImages = [
+    'img/DOJ_5786_1.jpg', // Index 0: Ảnh Chú Rể
+    'img/DOJ_5795_1.jpg', // Index 1: Ảnh Cô Dâu
     'img/ANH BAN (1)_1.jpg',
     'img/ANH BAN (2)_1.jpg',
     'img/ANH BAN (3)_1.jpg',
@@ -9,7 +11,6 @@ const albumImages = [
     'img/ANH BAN (5)_1.jpg',
     'img/Cong2.jpg'
 ];
-
 let currentImgIndex = 0; // Quản lý slide album & lightbox
 let autoplayTimer = null;
 const AUTOPLAY_DELAY = 3000; // Thời gian chuyển slide (3 giây)
