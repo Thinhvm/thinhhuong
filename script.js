@@ -362,3 +362,41 @@ window.onload = function() {
         carouselContainer.addEventListener('mouseleave', startAutoplay);
     }
 };
+// ==========================================
+// MỞ THIỆP VỚI HIỆU ỨNG LỐC XOÁY
+// ==========================================
+if (openBtn) {
+    openBtn.addEventListener('click', () => {
+        const envelopeWrapper = document.getElementById('envelopeWrapper');
+
+        // Bật nhạc nền thiệp cưới
+        toggleMusic();
+
+        // 1. Mở nắp thiệp & Kích hoạt lốc xoáy xoay 720 độ
+        if (envelopeWrapper) {
+            envelopeWrapper.classList.add('open');
+            
+            // Chờ 0.2s sau khi nắp bắt đầu hé thì chạy hiệu ứng lốc xoáy
+            setTimeout(() => {
+                envelopeWrapper.classList.add('tornado-active');
+            }, 200);
+        }
+
+        // 2. Mờ nền để lộ ra nội dung chính thiệp cưới bên dưới
+        setTimeout(() => {
+            if (coverScreen) {
+                coverScreen.classList.add('fade-out');
+            }
+            if (invitation) {
+                invitation.classList.remove('opacity-0');
+            }
+        }, 800);
+
+        // 3. Dọn dẹp hoàn toàn màn hình bìa sau khi lốc xoáy kết thúc (1.3s)
+        setTimeout(() => {
+            if (coverScreen) {
+                coverScreen.style.display = 'none';
+            }
+        }, 1300);
+    });
+}

@@ -1,320 +1,386 @@
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-    width: 6px;
+  width: 6px;
 }
+
 ::-webkit-scrollbar-track {
-    background: #f7f2ea;
+  background: #f7f2ea;
 }
+
 ::-webkit-scrollbar-thumb {
-    background: #ceaf8d;
-    border-radius: 3px;
+  background: #ceaf8d;
+  border-radius: 3px;
 }
 
 body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: #f5efeb;
-    color: #5c4d42;
-    overflow-x: hidden;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #f5efeb;
+  color: #5c4d42;
+  overflow-x: hidden;
 }
 
 .font-cormorant {
-    font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .font-script {
-    font-family: 'Alex Brush', cursive;
+  font-family: 'Alex Brush', cursive;
 }
 
 /* Vintage Paper Texture Overlay */
 .paper-bg {
-    background-color: #fbf8f3;
-    background-image: radial-gradient(#ceaf8d 0.75px, transparent 0.75px), radial-gradient(#ceaf8d 0.75px, #fbf8f3 0.75px);
-    background-size: 30px 30px;
-    background-position: 0 0, 15px 15px;
+  background-color: #fbf8f3;
+  background-image: radial-gradient(#ceaf8d 0.75px, transparent 0.75px), radial-gradient(#ceaf8d 0.75px, #fbf8f3 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
 }
 
 /* Custom Wax Seal */
 .wax-seal {
-    background: radial-gradient(circle at 30% 30%, #e6c894, #b88f68, #825a36);
-    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25), inset -1px -1px 3px rgba(0,0,0,0.4);
+  background: radial-gradient(circle at 30% 30%, #e6c894, #b88f68, #825a36);
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25), inset -1px -1px 3px rgba(0, 0, 0, 0.4);
 }
 
 /* Envelope Lid Animations & Shadows */
 .card-shadow {
-    box-shadow: 0 20px 40px -15px rgba(92, 77, 66, 0.15);
+  box-shadow: 0 20px 40px -15px rgba(92, 77, 66, 0.15);
 }
 
 .floating {
-    animation: floating 3s ease-in-out infinite;
+  animation: floating 3s ease-in-out infinite;
 }
 
 @keyframes floating {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
-    100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 /* Custom Modal Backdrop */
 .modal-active {
-    display: flex !important;
-    animation: fadeIn 0.3s ease-out forwards;
+  display: flex !important;
+  animation: fadeIn 0.3s ease-out forwards;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 /* Styling Khung 2 Ảnh Song Song Cô Dâu & Chú Rể */
 .groom-bride-card {
-    background-color: #f5efeb;
-    box-shadow: 0 8px 20px -5px rgba(92, 77, 66, 0.2);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #f5efeb;
+  box-shadow: 0 8px 20px -5px rgba(92, 77, 66, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .groom-bride-card:hover {
-    box-shadow: 0 12px 25px -5px rgba(92, 77, 66, 0.3);
+  box-shadow: 0 12px 25px -5px rgba(92, 77, 66, 0.3);
 }
 
 /* =====================================================
    STYLING CHO ALBUM CAROUSEL 3D (GIỐNG ẢNH MẪU)
 ===================================================== */
 .carousel-track {
-    perspective: 1000px;
+  perspective: 1000px;
 }
 
 .carousel-card {
-    position: absolute;
-    width: 220px;
-    height: 330px;
-    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-    cursor: pointer;
-    user-select: none;
-    border-radius: 18px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateX(0) scale(0.6);
-    z-index: 0;
+  position: absolute;
+  width: 220px;
+  height: 330px;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+  user-select: none;
+  border-radius: 18px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(0) scale(0.6);
+  z-index: 0;
 }
 
 @media (min-width: 640px) {
-    .carousel-card {
-        width: 250px;
-        height: 370px;
-    }
+  .carousel-card {
+    width: 250px;
+    height: 370px;
+  }
 }
 
 .card-inner {
-    width: 100%;
-    height: 100%;
-    background: #f1ece4;
-    border-radius: 18px;
-    padding: 10px 10px 14px 10px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgba(206, 175, 141, 0.4);
-    overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background: #f1ece4;
+  border-radius: 18px;
+  padding: 10px 10px 14px 10px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(206, 175, 141, 0.4);
+  overflow: hidden;
 }
 
 .card-inner img {
-    width: 100%;
-    height: 82%;
-    object-fit: cover;
-    border-radius: 12px;
+  width: 100%;
+  height: 82%;
+  object-fit: cover;
+  border-radius: 12px;
 }
 
 .card-caption {
-    height: 18%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding-top: 4px;
+  height: 18%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 4px;
 }
 
 /* Các lớp trạng thái hiển thị 3D */
 .carousel-card.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(0) scale(1);
-    z-index: 20;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0) scale(1);
+  z-index: 20;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
 }
 
 .carousel-card.prev {
-    opacity: 0.75;
-    visibility: visible;
-    transform: translateX(-70%) scale(0.82) rotateY(12deg);
-    z-index: 10;
+  opacity: 0.75;
+  visibility: visible;
+  transform: translateX(-70%) scale(0.82) rotateY(12deg);
+  z-index: 10;
 }
 
 .carousel-card.next {
-    opacity: 0.75;
-    visibility: visible;
-    transform: translateX(70%) scale(0.82) rotateY(-12deg);
-    z-index: 10;
+  opacity: 0.75;
+  visibility: visible;
+  transform: translateX(70%) scale(0.82) rotateY(-12deg);
+  z-index: 10;
 }
 
 .carousel-card.far-prev {
-    opacity: 0.3;
-    visibility: visible;
-    transform: translateX(-120%) scale(0.68) rotateY(20deg);
-    z-index: 5;
+  opacity: 0.3;
+  visibility: visible;
+  transform: translateX(-120%) scale(0.68) rotateY(20deg);
+  z-index: 5;
 }
 
 .carousel-card.far-next {
-    opacity: 0.3;
-    visibility: visible;
-    transform: translateX(120%) scale(0.68) rotateY(-20deg);
-    z-index: 5;
+  opacity: 0.3;
+  visibility: visible;
+  transform: translateX(120%) scale(0.68) rotateY(-20deg);
+  z-index: 5;
 }
 
 /* Dots Indicator */
 .carousel-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: #ceaf8d;
-    opacity: 0.4;
-    transition: all 0.3s ease;
-    cursor: pointer;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ceaf8d;
+  opacity: 0.4;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .carousel-dot.active {
-    width: 24px;
-    border-radius: 10px;
-    background-color: #5c4d42;
-    opacity: 1;
+  width: 24px;
+  border-radius: 10px;
+  background-color: #5c4d42;
+  opacity: 1;
 }
 
 /* Lightbox Container Overlay */
 .lightbox-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(8px);
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.35s ease, visibility 0.35s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
 }
 
 .lightbox-overlay.active {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 }
 
 .lightbox-content {
-    position: relative;
-    max-width: 90%;
-    max-height: 85vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  max-width: 90%;
+  max-height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .lightbox-content img {
-    max-width: 100%;
-    max-height: 85vh;
-    border-radius: 12px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    object-fit: contain;
-    transform: scale(0.4);
-    opacity: 0;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.35s ease;
+  max-width: 100%;
+  max-height: 85vh;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  object-fit: contain;
+  transform: scale(0.4);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.35s ease;
 }
 
 .lightbox-overlay.active .lightbox-content img.zoom-in {
-    transform: scale(1);
-    opacity: 1;
+  transform: scale(1);
+  opacity: 1;
 }
 
 .lightbox-btn {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    border: none;
-    font-size: 1.8rem;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s ease, transform 0.2s ease;
-    z-index: 10000;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: none;
+  font-size: 1.8rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, transform 0.2s ease;
+  z-index: 10000;
 }
 
 .lightbox-btn:hover {
-    background: rgba(255, 255, 255, 0.4);
-    transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
 }
 
 .close-btn {
-    top: 25px;
-    right: 25px;
-    font-size: 2.2rem;
+  top: 25px;
+  right: 25px;
+  font-size: 2.2rem;
 }
 
 .prev-btn {
-    left: 20px;
+  left: 20px;
 }
 
 .next-btn {
-    right: 20px;
+  right: 20px;
 }
 
 @media (max-width: 640px) {
-    .lightbox-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1.3rem;
-    }
-    .prev-btn { left: 10px; }
-    .next-btn { right: 10px; }
+  .lightbox-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+  }
+
+  .prev-btn {
+    left: 10px;
+  }
+
+  .next-btn {
+    right: 10px;
+  }
 }
 
 /* Khung chứa hiệu ứng lá/trái tim rơi */
 #fallingLeavesContainer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 9999;
-    overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
 }
 
 #fallingLeavesContainer span {
-    position: absolute;
-    top: -30px;
-    display: inline-block;
-    animation-name: fallAnimation;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    will-change: transform;
+  position: absolute;
+  top: -30px;
+  display: inline-block;
+  animation-name: fallAnimation;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
 }
 
 @keyframes fallAnimation {
-    0% {
-        transform: translateY(0px) rotate(0deg);
-        opacity: 0.9;
-    }
-    50% {
-        transform: translateY(50vh) rotate(180deg) translateX(15px);
-    }
-    100% {
-        transform: translateY(105vh) rotate(360deg) translateX(-15px);
-        opacity: 0.2;
-    }
+  0% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: translateY(50vh) rotate(180deg) translateX(15px);
+  }
+
+  100% {
+    transform: translateY(105vh) rotate(360deg) translateX(-15px);
+    opacity: 0.2;
+  }
+}
+
+/* =====================================================
+   HIỆU ỨNG LỐC XOÁY (TWISTER EFFECT)
+===================================================== */
+
+/* Animation Lốc Xoáy: Xoay tròn 3D + Thu nhỏ/Phóng to + Mờ dần */
+@keyframes tornadoOut {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+    filter: blur(0px);
+  }
+
+  50% {
+    transform: scale(1.1) rotate(180deg);
+    opacity: 0.8;
+    filter: blur(2px);
+  }
+
+  100% {
+    transform: scale(0) rotate(720deg);
+    opacity: 0;
+    filter: blur(10px);
+  }
+}
+
+/* Kích hoạt lốc xoáy khi nhấn nút mở thiệp */
+.envelope-wrapper.tornado-active .cover-card {
+  animation: tornadoOut 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Nắp phong bì mở ngược lên */
+.envelope-wrapper.open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 5;
+}
+
+/* Màn hình nền mờ dần nhẹ nhàng */
+#coverScreen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease-in-out;
 }

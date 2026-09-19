@@ -106,68 +106,82 @@
                 </svg>
             </div>
 
-            <!-- Nội dung Bìa -->
-            <div class="cover-content relative z-10 space-y-6">
-                <div
-                    class="heart inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-100 text-brand-700 text-xl floating shadow-sm">
-                    ♥
-                </div>
+            <!-- MÀN HÌNH BÌA THIỆP PHONG BÌ CƯỚI ĐỘNG -->
+            <div id="coverScreen"
+                class="fixed inset-0 z-40 bg-[#f5efeb] flex items-center justify-center p-4 transition-all duration-700">
 
-                <p class="uppercase tracking-widest text-xs text-brand-600 font-semibold">THIỆP MỜI</p>
+                <!-- Khung chứa phong bì -->
+                <div id="envelopeWrapper" class="envelope-wrapper relative w-full max-w-md">
 
-                <!-- Bố cục 2 tên căn giữa hoàn toàn, trái tim/dấu & ở giữa -->
-                <div class="max-w-xs sm:max-w-sm mx-auto py-4 my-2 text-center space-y-1">
-
-                    <!-- Tên Chú Rể (Căn Giữa) -->
-                    <div class="text-center">
-                        <h2
-                            class="font-cormorant text-3xl sm:text-4xl text-brand-900 font-bold tracking-tight inline-block">
-                            Minh Thịnh
-                        </h2>
+                    <!-- NẮP PHONG BÌ (Mở lật ngược lên trên khi click) -->
+                    <div
+                        class="envelope-flap absolute top-0 inset-x-0 h-20 z-30 pointer-events-none origin-top transition-transform duration-700 ease-in-out">
+                        <svg class="w-full h-full drop-shadow-md" viewBox="0 0 400 80" preserveAspectRatio="none">
+                            <path d="M0,0 L200,75 L400,0 Z" fill="#f5efeb" stroke="#ceaf8d" stroke-width="1.5" />
+                        </svg>
                     </div>
 
-                    <!-- Trái Tim / Ký Tự & Ở Chính Giữa -->
-                    <div class="flex items-center justify-center space-x-3 my-1">
-                        <span class="h-px w-10 bg-brand-300"></span>
-                        <span
-                            class="font-script text-2xl sm:text-3xl text-rose-500 hover:scale-110 transition-transform inline-block">
-                            ♥
-                        </span>
-                        <span class="h-px w-10 bg-brand-300"></span>
+                    <!-- THẺ THIỆP BÊN TRONG (Sẽ trượt & phóng to ra ngoài) -->
+                    <div id="coverCard"
+                        class="cover-card relative w-full bg-[#fbf8f3] rounded-3xl p-8 pt-12 md:p-10 md:pt-14 text-center border-2 border-[#ceaf8d]/60 shadow-[0_20px_50px_rgba(92,77,66,0.25)] overflow-hidden transition-all duration-1000 ease-in-out">
+
+                        <!-- Đường viền kép trang trí -->
+                        <div class="absolute inset-3 border border-[#ceaf8d]/40 rounded-[1.25rem] pointer-events-none">
+                        </div>
+
+                        <!-- Nội dung thiệp -->
+                        <div class="cover-content relative z-10 space-y-4 pt-2">
+                            <div
+                                class="heart inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-100 text-brand-700 text-base floating shadow-sm">
+                                ♥
+                            </div>
+
+                            <p class="uppercase tracking-[0.25em] text-[11px] text-brand-600 font-semibold">THIỆP MỜI
+                            </p>
+
+                            <!-- Tên Chú Rể & Cô Dâu -->
+                            <div class="space-y-1">
+                                <h1 class="font-cormorant text-3xl sm:text-4xl text-brand-900 font-bold leading-tight">
+                                    Minh Thịnh
+                                </h1>
+
+                                <div class="flex items-center justify-center space-x-3 my-1">
+                                    <span class="h-px w-8 bg-brand-300"></span>
+                                    <span class="font-script text-2xl text-rose-500">♥</span>
+                                    <span class="h-px w-8 bg-brand-300"></span>
+                                </div>
+
+                                <h1 class="font-cormorant text-3xl sm:text-4xl text-brand-900 font-bold leading-tight">
+                                    Huỳnh Hương
+                                </h1>
+                            </div>
+
+                            <div class="mini-line flex items-center justify-center space-x-3 text-brand-400 pt-1">
+                                <span class="h-px w-10 bg-brand-300"></span>
+                                <b class="text-xs">❦</b>
+                                <span class="h-px w-10 bg-brand-300"></span>
+                            </div>
+
+                            <div class="cover-lunar text-base font-bold tracking-wider text-brand-800 uppercase">
+                                12.12.2026
+                            </div>
+
+                            <div class="cover-lunar text-[11px] tracking-wider text-brand-600 uppercase">
+                                ( Tức Ngày 04 Tháng 11 năm Bính Ngọ)
+                            </div>
+
+                            <div class="invite-text font-script text-2xl text-brand-700 pt-1">
+                                Thân Mời Đến Dự Buổi Tiệc
+                            </div>
+
+                            <button id="openInvitation"
+                                class="open-btn px-8 py-3 bg-[#5c4d42] hover:bg-[#4e372b] text-white font-medium rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 tracking-wider text-xs uppercase mt-2">
+                                <i class="fa-envelope-open fa-regular mr-2"></i> Mở thiệp cưới
+                            </button>
+                        </div>
                     </div>
 
-                    <!-- Tên Cô Dâu (Căn Giữa) -->
-                    <div class="text-center">
-                        <h2
-                            class="font-cormorant text-3xl sm:text-4xl text-brand-900 font-bold tracking-tight inline-block">
-                            Huỳnh Hương
-                        </h2>
-                    </div>
-
                 </div>
-
-                <div class="mini-line flex items-center justify-center space-x-3 text-brand-400">
-                    <span class="h-px w-12 bg-brand-300"></span>
-                    <b class="text-sm">❦</b>
-                    <span class="h-px w-12 bg-brand-300"></span>
-                </div>
-
-                <div class="cover-lunar text-lg font-bold tracking-wider text-brand-800 uppercase">
-                    12.12.2026
-                </div>
-
-                <div class="cover-lunar text-xs tracking-wider text-brand-600 uppercase">
-                    ( Tức Ngày 04 Tháng 11 năm Bính Ngọ)
-                </div>
-
-                <div class="invite-text font-script text-2xl text-brand-700 pt-2">
-                    Thân Mời Đến Dự Buổi Tiệc
-                </div>
-
-                <button id="openInvitation"
-                    class="open-btn px-8 py-3.5 bg-brand-800 hover:bg-brand-900 text-white font-medium rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 tracking-wider text-xs uppercase">
-                    <i class="fa-envelope-open fa-regular mr-2"></i> Mở thiệp cưới
-                </button>
             </div>
         </div>
     </div>
