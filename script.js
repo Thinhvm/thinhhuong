@@ -1,138 +1,250 @@
-document.addEventListener('DOMContentLoaded', () => {
+// ==========================================
+// 1. DATA ALBUM ẢNH (Khai báo duy nhất 1 lần)
+// ==========================================
+const albumImages = [
+    'img/ANH BAN (1)_1.jpg',
+    'img/ANH BAN (2)_1.jpg',
+    'img/ANH BAN (3)_1.jpg',
+    'img/ANH BAN (4)_1.jpg',
+    'img/ANH BAN (5)_1.jpg',
+    'img/Cong2.jpg'
+];
 
-  // 1. TÍNH NĂNG ĐẾM NGƯỢC (COUNTDOWN)
-  // Mốc thời gian: 09:00 ngày 13/12/2026 Dương lịch (Tương ứng 04/11/2026 Âm lịch)
-  const weddingDate = new Date('2026-12-13T09:00:00').getTime();
+let currentImgIndex = 0;
 
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = weddingDate - now;
+// ==========================================
+// 2. KHỞI TẠO HIỆU ỨNG LÁ RƠI
+// ==========================================
+function initFallingLeaves() {
+    const container = document.getElementById('fallingLeavesContainer');
+    if (!container) return;
 
-    if (distance > 0) {
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById('days').innerText = String(days).padStart(2, '0');
-      document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-      document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-      document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
-    } else {
-      document.getElementById('days').innerText = '00';
-      document.getElementById('hours').innerText = '00';
-      document.getElementById('minutes').innerText = '00';
-      document.getElementById('seconds').innerText = '00';
-    }
-  }
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
-
-  // 2. PHÁT/TẮT NHẠC NỀN
-  const musicBtn = document.getElementById('musicToggle');
-  const bgMusic = document.getElementById('bgMusic');
-  const musicIcon = document.getElementById('musicIcon');
-  let isPlaying = false;
-
-  if (musicBtn && bgMusic) {
-    musicBtn.addEventListener('click', () => {
-      if (isPlaying) {
-        bgMusic.pause();
-        musicIcon.classList.remove('spin');
-      } else {
-        bgMusic.play();
-        musicIcon.classList.add('spin');
-      }
-      isPlaying = !isPlaying;
-    });
-  }
-
-  // 3. HIỆU ỨNG TRÁI TIM RƠI
-  function createHeart() {
-    const heart = document.createElement('div');
-    heart.classList.add('heart-particle');
+    // Danh sách các biểu tượng trái tim và hoa lá mộng mơ
+    const heartIcons = ['❤️', '💖', '💕', '💗', '🌸', '❣'];
     
-    const icons = ['♥', '🌸', '💕', '✨'];
-    heart.innerText = icons[Math.floor(Math.random() * icons.length)];
-    heart.style.left = Math.random() * 100 + 'vw';
-    
-    const size = Math.random() * 12 + 10;
-    heart.style.fontSize = size + 'px';
-
-    const duration = Math.random() * 3 + 4;
-    heart.style.animationDuration = duration + 's';
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => { heart.remove(); }, duration * 1000);
-  }
-  setInterval(createHeart, 450);
-
-  // 4. PHÓNG TO ẢNH THƯ VIỆN (LIGHTBOX)
-  const galleryImages = document.querySelectorAll('.gallery-img');
-  
-  galleryImages.forEach(img => {
-    img.addEventListener('click', () => {
-      const lightbox = document.createElement('div');
-      lightbox.className = 'lightbox';
-      lightbox.innerHTML = `<img class="lightbox-img" src="${img.src}" alt="Expanded Photo">`;
-      
-      lightbox.addEventListener('click', () => {
-        lightbox.remove();
-      });
-
-      document.body.appendChild(lightbox);
-    });
-  });
-
-  // 5. XỬ LÝ FORM RSVP
-  const rsvpForm = document.getElementById('rsvpForm');
-  if (rsvpForm) {
-    rsvpForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Cảm ơn bạn đã gửi xác nhận tham dự cho Thịnh & Hương!');
-      rsvpForm.reset();
-    });
-  }
-
-});
-
-// Cuộn mượt xuống phần Hộp Mừng Cưới
-function scrollToQr() {
-    // Tìm phần tử chứa mã QR (Sử dụng class .gift-section)
-    const qrSection = document.querySelector('.gift-section');
-    
-    if (qrSection) {
-        qrSection.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
-        });
+    // Tăng số lượng từ 15 lên 20 để tạo hiệu ứng mưa trái tim đẹp hơn
+    for (let i = 0; i < 40; i++) {
+        const leaf = document.createElement('span');
+        leaf.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+        leaf.style.left = Math.random() * 100 + 'vw';
+        leaf.style.animationDuration = (Math.random() * 5 + 6) + 's';
+        leaf.style.animationDelay = Math.random() * 5 + 's';
+        leaf.style.fontSize = (Math.random() * 12 + 14) + 'px'; // Kích thước trái tim vừa vặn
+        container.appendChild(leaf);
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+// ==========================================
+// 3. MỞ BÌA THIỆP & BẬT/TẮT NHẠC
+// ==========================================
+const openBtn = document.getElementById('openInvitation');
+const coverScreen = document.getElementById('coverScreen');
+const invitation = document.getElementById('invitation');
+const bgMusic = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicBtn');
+const musicIcon = document.getElementById('musicIcon');
 
-    const opening = document.getElementById("wedding-opening");
+let isPlaying = false;
 
-    if (!opening) return;
+function toggleMusic() {
+    if (!bgMusic) return;
 
-    // Chờ người dùng nhìn thấy màn hình mở đầu
-    setTimeout(() => {
+    if (isPlaying) {
+        bgMusic.pause();
+        if (musicIcon) musicIcon.className = "fa-solid fa-music text-gray-400";
+    } else {
+        bgMusic.play().then(() => {
+            if (musicIcon) musicIcon.className = "fa-solid fa-compact-disc fa-spin text-brand-700";
+        }).catch(e => console.log("Music play pending user interaction."));
+    }
+    isPlaying = !isPlaying;
+}
 
-        // Mở hai cánh thiệp
-        opening.classList.add("open");
+if (musicBtn) {
+    musicBtn.addEventListener('click', toggleMusic);
+}
 
-        // Sau khi mở xong thì ẩn màn hình
-        setTimeout(() => {
-            opening.classList.add("hide");
-
-            // Xóa khỏi DOM
+if (openBtn) {
+    openBtn.addEventListener('click', () => {
+        if (coverScreen) {
+            coverScreen.style.opacity = '0';
             setTimeout(() => {
-                opening.remove();
-            }, 800);
+                coverScreen.style.display = 'none';
+                if (invitation) invitation.classList.remove('opacity-0');
+            }, 1000);
+        }
+        toggleMusic();
+    });
+}
 
-        }, 1500);
+// ==========================================
+// 4. THÊM SỰ KIỆN LỊCH GOOGLE
+// ==========================================
+function addToCalendar() {
+    const title = encodeURIComponent("Lễ Cưới Minh Thịnh & Huỳnh Hương");
+    const details = encodeURIComponent("Trân trọng kính mời bạn đến tham dự tiệc cưới của chúng mình!");
+    const location = encodeURIComponent("White Palace, 194 Hoàng Văn Thụ, Phường 9, Phú Nhuận, TP.HCM");
+    const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20261104T110000Z/20261104T140000Z&details=${details}&location=${location}`;
+    window.open(googleCalUrl, '_blank');
+}
 
-    }, 1800);
+// ==========================================
+// 5. LIGHTBOX ALBUM (HIỆU ỨNG ZOOM-IN)
+// ==========================================
+function openLightbox(index) {
+    currentImgIndex = index;
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
 
+    if (!lightbox || !lightboxImg) return;
+
+    // Gán đường dẫn ảnh
+    lightboxImg.src = albumImages[currentImgIndex];
+    
+    // Reset hiệu ứng zoom
+    lightboxImg.classList.remove('zoom-in');
+
+    // Hiển thị Overlay (tương thích Tailwind và CSS thuần)
+    lightbox.classList.remove('hidden');
+    lightbox.classList.add('flex', 'active');
+
+    // Kích hoạt animation phóng to
+    setTimeout(() => {
+        lightboxImg.classList.add('zoom-in');
+    }, 50);
+}
+
+function changeImage(step, event) {
+    if (event) event.stopPropagation();
+
+    const lightboxImg = document.getElementById('lightboxImg');
+    if (!lightboxImg) return;
+
+    // Thu nhỏ ảnh hiện tại
+    lightboxImg.classList.remove('zoom-in');
+
+    setTimeout(() => {
+        // Tính index mới
+        currentImgIndex = (currentImgIndex + step + albumImages.length) % albumImages.length;
+        lightboxImg.src = albumImages[currentImgIndex];
+
+        // Phóng to ảnh mới
+        lightboxImg.classList.add('zoom-in');
+    }, 200);
+}
+
+function closeLightbox(event) {
+    if (event && event.target.id !== 'lightbox') return;
+    closeLightboxForce();
+}
+
+function closeLightboxForce() {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+
+    if (lightboxImg) {
+        lightboxImg.classList.remove('zoom-in');
+    }
+
+    setTimeout(() => {
+        if (lightbox) {
+            lightbox.classList.add('hidden');
+            lightbox.classList.remove('flex', 'active');
+        }
+    }, 250);
+}
+
+// Phím tắt bàn phím (Trái, Phải, ESC)
+document.addEventListener('keydown', function (e) {
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox && (lightbox.classList.contains('active') || !lightbox.classList.contains('hidden'))) {
+        if (e.key === 'Escape') {
+            closeLightboxForce();
+        } else if (e.key === 'ArrowLeft') {
+            changeImage(-1);
+        } else if (e.key === 'ArrowRight') {
+            changeImage(1);
+        }
+    }
 });
+
+// ==========================================
+// 6. RSVP & GIFT MODAL FUNCTIONS
+// ==========================================
+function openRSVPModal() {
+    const rsvpModal = document.getElementById('rsvpModal');
+    if (rsvpModal) rsvpModal.classList.add('modal-active');
+}
+
+function closeRSVPModal() {
+    const rsvpModal = document.getElementById('rsvpModal');
+    if (rsvpModal) rsvpModal.classList.remove('modal-active');
+}
+
+function submitRSVP(e) {
+    e.preventDefault();
+    alert("Cảm ơn bạn đã phản hồi! Rất hân hạnh được đón tiếp bạn.");
+    closeRSVPModal();
+}
+
+function toggleGiftModal() {
+    const giftModal = document.getElementById('giftModal');
+    if (!giftModal) return;
+    
+    if (giftModal.classList.contains('modal-active')) {
+        giftModal.classList.remove('modal-active');
+    } else {
+        giftModal.classList.add('modal-active');
+    }
+}
+
+// ==========================================
+// 7. GUESTBOOK / NỔI LỜI CHÚC
+// ==========================================
+const wishForm = document.getElementById('wishForm');
+const messagesList = document.getElementById('messagesList');
+
+if (wishForm) {
+    wishForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nameInput = document.getElementById('guestName');
+        const wishInput = document.getElementById('guestWish');
+
+        const name = nameInput ? nameInput.value.trim() : '';
+        const wish = wishInput ? wishInput.value.trim() : '';
+
+        if (name && wish && messagesList) {
+            const now = new Date();
+            const timeStr = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
+
+            const newMsg = document.createElement('div');
+            newMsg.className = "p-3.5 bg-white/90 rounded-xl border border-brand-200 text-xs space-y-1 animate-fadeIn";
+            newMsg.innerHTML = `
+                <div class="flex justify-between items-center font-bold text-brand-900">
+                    <span>${escapeHtml(name)}</span>
+                    <span class="text-[10px] text-brand-400 font-normal">${timeStr}</span>
+                </div>
+                <p class="text-brand-700">${escapeHtml(wish)}</p>
+            `;
+
+            messagesList.prepend(newMsg);
+            wishForm.reset();
+        }
+    });
+}
+
+function escapeHtml(text) {
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+// ==========================================
+// 8. TỰ ĐỘNG CHẠY KHI TẢI TRANG
+// ==========================================
+window.onload = function() {
+    initFallingLeaves();
+};

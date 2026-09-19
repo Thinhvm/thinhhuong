@@ -2,269 +2,688 @@
 <html lang="vi">
 
 <head>
-
-    <meta property="og:title" content="Thiệp Cưới Minh Thịnh & Huỳnh Hương" />
-    <meta property="og:description" content="Chúng mình sắp về chung một nhà! Rất hân hạnh được đón tiếp quý khách." />
-    <meta property="og:image" content="https://thinhvm.github.io/thinhhuong/img/12.jpg" />
-    
-    <meta property="og:url" content="https://thinhvm.github.io/thinhhuong/" />
-    <meta property="og:type" content="website" />
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding - Thịnh & Hương</title>
+    <title>Minh Thịnh & Huỳnh Hương - Thiệp Cưới Online</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="./style.css">
-    <script src="./script.js" defer></script>
-</head>
-
-<body>
-
-<!-- =========================
-     MÀN HÌNH MỞ THIỆP
-========================= -->
-<div id="wedding-opening">
-
-    <!-- Logo Song Hỷ -->
-    <div class="double-happiness">
-        囍
-    </div>
-    
-
-    <!-- Hai cánh thiệp -->
-    <div class="opening-door opening-left"></div>
-    <div class="opening-door opening-right"></div>
-
-    <!-- Đường giữa -->
-    <div class="opening-line"></div>
-
-</div>
-    
-
-    <!-- 1. FLOATING QR BUTTON (Scrolls to QR section) -->
-    <div class="qr-float-container">
-        <button class="qr-float-btn" onclick="scrollToQr()" aria-label="Đến mã QR mừng cưới">
-            <span class="qr-float-icon">🎁</span>
-            <span class="qr-float-text">Mừng Cưới</span>
-        </button>
-    </div>
-
-    <!-- 2. HERO BANNER -->
-    <header class="hero-section">
-        <div class="hero-content">
-            <p class="hero-subtitle">SAVE THE DATE</p>
-            <h1 class="hero-title">Minh Thịnh & Huỳnh Hương</h1>
-            <p class="hero-desc">Chúng mình sắp về chung một nhà!</p>
-            <div class="hero-date-box">
-                <!-- Hiển thị ngày Âm Lịch kèm chú thích Dương Lịch -->
-                <span class="hero-date">04 . 11 . 2026 (Âm Lịch)</span>
-            </div>
-        </div>
-    </header>
-
-    <!-- 3. COUNTDOWN TIMER -->
-    <section class="countdown-section">
-        <div class="container text-center">
-            <h2 class="section-title">Đếm ngược đến ngày chung đôi</h2>
-            <p class="section-subtext" style="font-size: 0.95rem; opacity: 0.85; margin-bottom: 20px;">
-                Tiệc mừng: 04/11/2026 Âm Lịch (Nhằm ngày 13/12/2026 Dương Lịch)
-            </p>
-            <div class="countdown-grid">
-                <div class="countdown-card">
-                    <span id="days" class="countdown-num">00</span>
-                    <span class="countdown-label">Ngày</span>
-                </div>
-                <div class="countdown-card">
-                    <span id="hours" class="countdown-num">00</span>
-                    <span class="countdown-label">Giờ</span>
-                </div>
-                <div class="countdown-card">
-                    <span id="minutes" class="countdown-num">00</span>
-                    <span class="countdown-label">Phút</span>
-                </div>
-                <div class="countdown-card">
-                    <span id="seconds" class="countdown-num">00</span>
-                    <span class="countdown-label">Giây</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. CHÚ RỂ & CÔ DÂU -->
-    <section class="profile-section container">
-        <div class="text-center section-header">
-            <span class="section-script">Cô Dâu & Chú Rể</span>
-            <h2 class="section-title">Nhân Vật Chính</h2>
-        </div>
-
-        <div class="profile-grid">
-            <div class="profile-card">
-                <img src="img/CR.jpg" alt="Chú rể Minh Thịnh" class="profile-img">
-                <h3 class="profile-name">Minh Thịnh</h3>
-                <p class="profile-role">Chú Rể</p>
-                <p class="profile-desc">Tràn đầy năng lượng, đam mê công nghệ và dành trọn tình yêu thương cho cô dâu.
-                </p>
-            </div>
-
-            <div class="profile-card">
-                <img src="img/CD.jpg" alt="Cô dâu Huỳnh Hương" class="profile-img">
-                <h3 class="profile-name">Huỳnh Hương</h3>
-                <p class="profile-role">Cô Dâu</p>
-                <p class="profile-desc">Yêu sự bình yên, tinh tế và chính là mảnh ghép hoàn hảo nhất cuộc đời chú rể.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. LỊCH TRÌNH -->
-    <section class="events-section">
-        <div class="container">
-            <div class="text-center section-header">
-                <h2 class="section-title">Sự Kiện Trọng Đại</h2>
-                <p class="section-subtext">Rất hân hạnh được đón tiếp quý khách</p>
-            </div>
-
-            <div class="events-grid">
-                <!-- TIỆC MỪNG ĐÁM CƯỚI -->
-                <div class="event-card">
-                    <div class="event-icon">🥂</div>
-                    <h3 class="event-title">Lễ vu quy</h3>
-                    <p class="event-time">
-                        <strong>09:00 - 13/12/2026 (Dương Lịch)</strong><br>
-                        <small>(Nhằm Ngày 04/11/2026 Âm Lịch)</small>
-                    </p>
-                    <p class="event-location">Trung tâm Hội nghị Phương Loan, xã Cát Tiến, tỉnh Gia Lai</p>
-                </div>
-
-                <!-- LỄ THÀNH HÔN -->
-                <div class="event-card">
-                    <div class="event-icon">💒</div>
-                    <h3 class="event-title">Lễ Thành Hôn</h3>
-                    <p class="event-time">
-                        <strong>14:00 - 07/01/2027 (Dương Lịch)</strong><br>
-                        <small>(Nhằm Ngày 29/11/2026 Âm Lịch)</small>
-                    </p>
-                    <p class="event-location">Tư gia nhà nam: Số nhà 293-294 khóm 25, phường Giá Rai, tỉnh Cà Mau</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. ALBUM ẢNH -->
-    <section class="gallery-section container">
-        <div class="text-center section-header">
-            <h2 class="section-title">Khoảnh Khắc Kỷ Niệm</h2>
-        </div>
-
-        <div class="gallery-grid">
-            <img src="img/1.jpg" class="gallery-img" alt="Wedding Photo 1">
-            <img src="img/2.jpg" class="gallery-img" alt="Wedding Photo 2">
-            <img src="img/3.jpg" class="gallery-img" alt="Wedding Photo 3">
-            <img src="img/4.jpg" class="gallery-img" alt="Wedding Photo 4">
-            <img src="img/5.jpg" class="gallery-img" alt="Wedding Photo 5">
-            <img src="img/6.jpg" class="gallery-img" alt="Wedding Photo 6">
-            <img src="img/7.jpg" class="gallery-img" alt="Wedding Photo 7">
-            <img src="img/8.jpg" class="gallery-img" alt="Wedding Photo 8">
-            <img src="img/4.jpg" class="gallery-img" alt="Wedding Photo 9">
-            <img src="img/10.jpg" class="gallery-img" alt="Wedding Photo 10">
-        </div>
-    </section>
-
-    <!-- 7. RSVP FORM -->
-    <section class="rsvp-section">
-        <div class="container-small">
-            <div class="text-center section-header">
-                <h2 class="section-title">Xác Nhận Tham Dự</h2>
-                <p class="section-subtext">Sự hiện diện của bạn là niềm vinh hạnh lớn cho chúng mình!</p>
-            </div>
-
-            <form id="rsvpForm" class="rsvp-form">
-                <div class="form-group">
-                    <label class="form-label">Họ và tên *</label>
-                    <input type="text" required placeholder="Nhập tên của bạn" class="form-input">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Số điện thoại</label>
-                    <input type="tel" placeholder="Nhập số điện thoại" class="form-input">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Bạn sẽ tham dự chứ?</label>
-                    <select class="form-select">
-                        <option value="yes">Chắc chắn sẽ đến tham dự</option>
-                        <option value="sorry">Rất tiếc không thể đến dự</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Lời chúc gửi tới dâu rể</label>
-                    <textarea rows="3" placeholder="Gửi lời chúc mừng..." class="form-textarea"></textarea>
-                </div>
-
-                <button type="submit" class="submit-btn">Gửi Xác Nhận</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- 8. QR MỪNG CƯỚI (Đã gán ID gift-section để cuộn trang) -->
-    <section id="gift-section" class="gift-section container">
-        <div class="text-center section-header">
-            <h2 class="section-title">Mừng cưới cho cặp đôi</h2>
-            <p class="section-subtext">Sự có mặt của bạn là niềm hạnh phúc lớn nhất. Tấm lòng của bạn luôn được chúng mình trân trọng!</p>
-        </div>
-
-        <div class="gift-grid">
-            <!-- QR CHÚ RỂ -->
-            <div class="gift-card">
-                <h3 class="gift-title">Mừng Cưới Chú Rể</h3>
-                <div class="qr-wrapper">
-                    <img src="img/QR1.jpg" alt="Mã QR Chú Rể" class="qr-img">
-                </div>
-                <div class="bank-info">
-                    <p><strong>Ngân hàng:</strong> Vietcombank</p>
-                    <p><strong>Chủ TK:</strong> VÕ MINH THỊNH</p>
-                    <p><strong>Số TK:</strong> <code>1029009282</code></p>
-                </div>
-            </div>
-
-            <!-- QR CÔ DÂU -->
-            <div class="gift-card">
-                <h3 class="gift-title">Mừng Cưới Cô Dâu</h3>
-                <div class="qr-wrapper">
-                    <img src="img/QR1.jpg" alt="Mã QR Cô Dâu" class="qr-img">
-                </div>
-                <div class="bank-info">
-                    <p><strong>Ngân hàng:</strong> Vietcombank</p>
-                    <p><strong>Chủ TK:</strong> HUỲNH HƯƠNG</p>
-                    <p><strong>Số TK:</strong> <code>1029009282</code></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <p class="footer-title">Thịnh & Hương</p>
-        <p>Cảm ơn bạn vì đã là một phần trong ngày trọng đại của chúng mình!</p>
-    </footer>
-
-    <!-- SCRIPT CUỘN MƯỢT XUỐNG MỤC 8 -->
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        function scrollToQr() {
-            var qrElement = document.getElementById('gift-section');
-            if (qrElement) {
-                qrElement.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fdfbf7',
+                            100: '#f5efeb',
+                            200: '#eee3d3',
+                            300: '#e1ceb5',
+                            400: '#ceaf8d',
+                            500: '#b88f68',
+                            600: '#9b714f',
+                            700: '#7d583f',
+                            800: '#5c4d42',
+                            900: '#4e372b',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'Cormorant Garamond', 'Georgia', 'serif'],
+                        script: ['Alex Brush', 'Dancing Script', 'cursive'],
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    }
+                }
             }
         }
     </script>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+</head>
+
+<body class="relative min-h-screen">
+
+    <!-- Lá bay nền -->
+    <div class="falling-leaves" id="fallingLeavesContainer"></div>
+
+    <!-- =====================================================
+         NHẠC
+    ===================================================== -->
+    <audio id="bgMusic" loop>
+        <source src="https://cdn.chungdoi.com/music/la-anh.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="musicBtn" title="Bật/Tắt Nhạc"
+        class="fixed top-5 right-5 z-50 w-12 h-12 rounded-full bg-white/90 shadow-lg text-brand-800 flex items-center justify-center border border-brand-300 hover:bg-brand-100 transition-all duration-300 text-lg">
+        <i id="musicIcon" class="fa-solid fa-music"></i>
+    </button>
+
+
+    <!-- =====================================================
+         MÀN HÌNH BÌA / MỞ THIỆP
+    ===================================================== -->
+    <div id="coverScreen"
+        class="fixed inset-0 z-40 bg-[#f5efeb] flex items-center justify-center p-4 transition-all duration-1000">
+        <!-- Bìa thiệp -->
+        <div
+            class="cover-card relative w-full max-w-lg bg-[#fbf8f3] rounded-3xl p-8 md:p-12 text-center border border-brand-200 card-shadow overflow-hidden">
+
+            <!-- SVG Hoa lá trang trí góc trên trái -->
+            <div class="absolute -top-6 -left-6 w-36 h-36 opacity-30 pointer-events-none">
+                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10,10 Q100,50 190,10" stroke="#7d583f" stroke-width="2" />
+                    <path d="M40,20 C10,50 50,90 100,40" fill="#ceaf8d" opacity="0.5" />
+                    <path d="M80,30 C50,80 110,120 130,60" fill="#b88f68" opacity="0.5" />
+                </svg>
+            </div>
+
+            <!-- SVG Hoa lá trang trí góc dưới phải -->
+            <div class="absolute -bottom-6 -right-6 w-36 h-36 opacity-30 pointer-events-none transform rotate-180">
+                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10,10 Q100,50 190,10" stroke="#7d583f" stroke-width="2" />
+                    <path d="M40,20 C10,50 50,90 100,40" fill="#ceaf8d" opacity="0.5" />
+                    <path d="M80,30 C50,80 110,120 130,60" fill="#b88f68" opacity="0.5" />
+                </svg>
+            </div>
+
+            <!-- Nội dung Bìa -->
+            <div class="cover-content relative z-10 space-y-6">
+                <!-- Nút trái tim -->
+                <div
+                    class="heart inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-100 text-brand-700 text-xl floating shadow-sm">
+                    ♥
+                </div>
+
+                <p class="uppercase tracking-widest text-xs text-brand-600 font-semibold">THIỆP MỜI BÁO HỶ</p>
+
+                <h1 class="font-cormorant text-4xl md:text-5xl text-brand-900 font-bold leading-tight">
+                    Minh Thịnh
+                    <span class="block font-script text-3xl md:text-4xl text-brand-600 font-normal my-1">&</span>
+                    Huỳnh Hương
+                </h1>
+
+                <div class="mini-line flex items-center justify-center space-x-3 text-brand-400">
+                    <span class="h-px w-12 bg-brand-300"></span>
+                    <b class="text-sm">❦</b>
+                    <span class="h-px w-12 bg-brand-300"></span>
+                </div>
+
+                <div class="cover-date font-cormorant text-2xl tracking-widest font-semibold text-brand-800">
+                    04 . 11 . 2026
+                </div>
+
+                <div class="cover-lunar text-xs tracking-wider text-brand-600 uppercase">
+                    ( Tức Ngày 12 Tháng 02 Dương lịch)
+                </div>
+
+                <div class="invite-text font-script text-2xl text-brand-700 pt-2">
+                    Thân Mời Đến Dự Buổi Tiệc
+                </div>
+
+                <button id="openInvitation"
+                    class="open-btn px-8 py-3.5 bg-brand-800 hover:bg-brand-900 text-white font-medium rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 tracking-wider text-xs uppercase">
+                    <i class="fa-envelope-open fa-regular mr-2"></i> Mở thiệp cưới
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+         NỘI DUNG THIỆP
+    ===================================================== -->
+    <div id="invitation"
+        class="invitation max-w-xl mx-auto px-4 py-8 space-y-12 opacity-0 transition-opacity duration-1000">
+
+        <!-- HERO / POLAROID SECTION (Matching Reference Aesthetic) -->
+        <section
+            class="hero bg-[#fbf8f3] rounded-3xl p-6 md:p-10 card-shadow border border-brand-200 text-center relative overflow-hidden paper-bg">
+
+            <!-- Watermark Lá bên trái -->
+            <div class="absolute left-0 top-0 w-44 h-80 opacity-20 pointer-events-none z-0">
+                <svg viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20,10 Q140,200 20,390" stroke="#7d583f" stroke-width="2" />
+                    <path d="M20,50 Q100,70 120,40 C100,100 40,90 20,50" fill="#9b714f" />
+                    <path d="M20,130 Q110,150 140,120 C110,180 30,170 20,130" fill="#ceaf8d" />
+                    <path d="M20,220 Q120,240 150,210 C120,270 30,260 20,220" fill="#9b714f" />
+                    <path d="M20,310 Q100,330 130,300 C100,350 40,340 20,310" fill="#ceaf8d" />
+                </svg>
+            </div>
+
+            <!-- Watermark Lâu đài / Kiến trúc nghệ thuật ở dưới -->
+            <div
+                class="absolute bottom-0 inset-x-0 h-32 opacity-10 pointer-events-none flex justify-center items-end z-0">
+                <svg viewBox="0 0 500 120" class="w-full h-full text-brand-800" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M50 120 V80 L75 60 L100 80 V120 H50 Z M150 120 V50 L180 30 L210 50 V120 H150 Z M220 120 V70 L250 40 L280 70 V120 H220 Z M320 120 V50 L350 30 L380 50 V120 H320 Z M400 120 V80 L425 60 L450 80 V120 H400 Z" />
+                </svg>
+            </div>
+
+            <div class="hero-content relative z-10 space-y-4">
+                <div class="small-title tracking-[0.25em] uppercase text-xs font-semibold text-brand-600 font-serif">
+                    THE WEDDING OF
+                </div>
+
+                <h2 class="font-cormorant text-4xl md:text-5xl text-brand-900 font-bold leading-tight">
+                    Minh Thịnh <span class="font-script text-3xl text-brand-600 font-normal">&amp;</span> Huỳnh Hương
+                </h2>
+
+                <p class="hero-subtitle italic text-xs text-brand-600">
+                    "Chúng mình sắp về chung một nhà!"
+                </p>
+
+                <!-- Frame Ảnh Polaroid Styling -->
+                <div
+                    class="relative max-w-xs mx-auto my-8 p-4 pb-6 bg-white shadow-2xl rounded-sm transform -rotate-3 border border-gray-100 transition-transform hover:rotate-0 duration-500">
+
+                    <!-- Băng dính Washi Tape phía trên -->
+                    <div
+                        class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-28 h-6 bg-amber-100/80 border border-amber-200/60 backdrop-blur-sm rotate-1 z-20 shadow-sm">
+                    </div>
+
+                    <!-- Khung chứa Ảnh Cưới -->
+                    <div class="overflow-hidden rounded-sm aspect-[3/4] relative bg-brand-100">
+                        <img src="img/Cong1.jpg" alt="Minh Thịnh & Huỳnh Hương"
+                            class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700">
+                    </div>
+
+                    <!-- Dấu Triện Sáp Vàng (Wax Seal) góc dưới phải -->
+                    <div
+                        class="wax-seal absolute -bottom-5 -right-4 w-16 h-16 rounded-full flex items-center justify-center text-white z-20 border-2 border-amber-200/50 shadow-lg">
+                        <i class="fa-solid fa-heart text-amber-100 text-xl"></i>
+                    </div>
+
+                    <!-- SVG Nhánh hoa khô trang trí thò ra từ góc trái -->
+                    <div class="absolute -bottom-8 -left-8 w-24 h-32 pointer-events-none z-20 transform -rotate-12">
+                        <svg viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50,140 Q30,70 85,10" stroke="#825a36" stroke-width="2.5" stroke-linecap="round" />
+                            <path d="M85,10 Q95,5 90,20 Q80,15 85,10" fill="#b88f68" />
+                            <path d="M70,35 Q85,30 80,45 Q65,40 70,35" fill="#ceaf8d" />
+                            <path d="M55,65 Q70,60 65,75 Q50,70 55,65" fill="#b88f68" />
+                            <path d="M42,95 Q57,90 52,105 Q37,100 42,95" fill="#ceaf8d" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="hero-date font-cormorant text-3xl font-bold tracking-widest text-brand-900 pt-2">
+                    04 <span>.</span> 11 <span>.</span> 2026
+                </div>
+
+                <p class="lunar text-xs text-brand-600 uppercase font-medium tracking-wider">
+                    ( Tức Ngày 12 Tháng 02 Dương lịch )
+                </p>
+            </div>
+        </section>
+
+
+        <!-- CÂU CHUYỆN -->
+        <section
+            class="section story bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 text-center space-y-4">
+            <div class="ornament text-brand-500 text-xl">❦</div>
+
+            <div class="section-title text-xs uppercase tracking-widest text-brand-600 font-bold">
+                OUR STORY
+            </div>
+
+            <h2 class="font-cormorant text-2xl md:text-3xl text-brand-900 font-bold leading-snug">
+                Một hành trình mới<br>đang bắt đầu
+            </h2>
+
+            <p class="description text-sm leading-relaxed text-brand-700 max-w-md mx-auto italic">
+                "Từ những ngày đầu gặp gỡ, chúng mình đã cùng nhau trải qua thật nhiều khoảnh khắc đáng nhớ. Và giờ đây,
+                chúng mình muốn viết tiếp câu chuyện ấy bằng một chương mới tràn ngập tình yêu."
+            </p>
+        </section>
+
+
+        <!-- THÔNG TIN LỄ CƯỚI -->
+        <section
+            class="section couple bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 relative overflow-hidden">
+            <!-- SVG Nhánh lá bên trái -->
+            <div class="absolute -left-6 top-1/4 w-20 h-40 opacity-40 pointer-events-none">
+                <svg viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M80,10 Q20,100 80,190" stroke="#7d583f" stroke-width="2" />
+                    <path d="M80,10 Q40,30 20,20 Q60,40 80,10" fill="#ceaf8d" />
+                    <path d="M60,60 Q20,70 10,50 Q40,90 60,60" fill="#ceaf8d" />
+                    <path d="M50,120 Q10,130 5,110 Q30,150 50,120" fill="#ceaf8d" />
+                </svg>
+            </div>
+
+            <div class="text-center space-y-6 relative z-10">
+                <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">THÔNG TIN LỄ CƯỚI</div>
+
+                <!-- Hai bên gia đình -->
+                <div class="grid grid-cols-2 gap-4 text-xs text-brand-800 border-b border-brand-200 pb-6">
+                    <div class="space-y-1">
+                        <p class="text-brand-500 italic">Gia Đình Nhà Trai</p>
+                        <p class="font-semibold">Ông: Võ Văn Đông</p>
+                        <p class="font-semibold">Bà: Nguyễn Thị Trang</p>
+                        <p class="text-[10px] text-brand-600 pt-1">Khóm 25, Phường Giá Rai, Tỉnh Cà Mau</p>
+                    </div>
+                    <div class="space-y-1">
+                        <p class="text-brand-500 italic">Gia Đình Nhà Gái</p>
+                        <p class="font-semibold">Ông: Nguyễn Đàm</p>
+                        <p class="font-semibold">Bà: Phqn Thị Diệp</p>
+                        <p class="text-[10px] text-brand-600 pt-1">Thôn Cát Thành, Xã Cát Tiến, Tỉnh Gia Lai</p>
+                    </div>
+                </div>
+
+                <div class="text-xs text-brand-600 uppercase tracking-wider">
+                    TRÂN TRỌNG BÁO TIN LỄ THÀNH HÔN CỦA CON CHÚNG TÔI
+                </div>
+
+                <!-- Chú rể & Cô dâu -->
+                <div class="space-y-4">
+                    <div>
+                        <h2 class="font-cormorant text-3xl font-bold text-brand-900">Minh Thịnh</h2>
+                        <span class="text-[11px] uppercase tracking-widest text-brand-500">ÚT NAM</span>
+                    </div>
+
+                    <div class="font-script text-3xl text-brand-600">&amp;</div>
+
+                    <div>
+                        <h2 class="font-cormorant text-3xl font-bold text-brand-900">Huỳnh Hương</h2>
+                        <span class="text-[11px] uppercase tracking-widest text-brand-500">TRƯỞNG NỮ</span>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-brand-200 space-y-2 text-xs text-brand-800">
+                    <p class="uppercase tracking-wider">LỄ THÀNH HÔN ĐƯỢC CỬ HÀNH TẠI TƯ GIA</p>
+                    <p class="text-brand-600">VÀO LÚC</p>
+                    <p class="font-cormorant text-3xl font-bold text-brand-900">09:00</p>
+                    <div class="flex items-center justify-center space-x-3 font-semibold text-brand-800 pt-1">
+                        <span>THỨ SÁU</span>
+                        <span>|</span>
+                        <span class="text-xl font-bold text-brand-900">04</span>
+                        <span>|</span>
+                        <span>THÁNG 11</span>
+                    </div>
+                    <p class="text-sm font-semibold">2026</p>
+                    <p class="text-[11px] text-brand-600 italic">(Tức ngày 12 tháng 02 Dương lịch)</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ALBUM ẢNH -->
+        <!-- ALBUM ẢNH -->
+        <!-- ALBUM ẢNH CƯỚI -->
+        <section
+            class="section album bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 text-center space-y-6">
+            <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">ALBUM ẢNH CƯỚI</div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <div class="aspect-square rounded-xl overflow-hidden shadow-sm cursor-pointer group"
+                    onclick="openLightbox(0)">
+                    <img src="img/ANH BAN (1)_1.jpg" alt="Wedding photo 1"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="aspect-square rounded-xl overflow-hidden shadow-sm cursor-pointer group"
+                    onclick="openLightbox(1)">
+                    <img src="img/ANH BAN (2)_1.jpg" alt="Wedding photo 2"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="aspect-square rounded-xl overflow-hidden shadow-sm cursor-pointer group"
+                    onclick="openLightbox(2)">
+                    <img src="img/ANH BAN (3)_1.jpg" alt="Wedding photo 3"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="aspect-square rounded-xl overflow-hidden shadow-sm cursor-pointer group"
+                    onclick="openLightbox(3)">
+                    <img src="img/ANH BAN (4)_1.jpg" alt="Wedding photo 4"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="aspect-square rounded-xl overflow-hidden shadow-sm cursor-pointer group"
+                    onclick="openLightbox(4)">
+                    <img src="img/ANH BAN (5)_1.jpg" alt="Wedding photo 5"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="aspect-square rounded-xl overflow-hidden shadow-sm relative cursor-pointer group"
+                    onclick="openLightbox(5)">
+                    <img src="img/Cong2.jpg" alt="Wedding photo 6"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div
+                        class="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-bold text-lg rounded-xl">
+                        +2
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LIGHTBOX MODAL BẢO ĐẢM NẰM TRƯỚC THẺ </body> -->
+        <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+            <!-- Nút Đóng -->
+            <button class="lightbox-btn close-btn" onclick="closeLightboxForce()">&times;</button>
+
+            <!-- Nút Ảnh Trước -->
+            <button class="lightbox-btn prev-btn" onclick="changeImage(-1, event)">&#10094;</button>
+
+            <!-- Khung Ảnh Phóng To -->
+            <div class="lightbox-content">
+                <img id="lightboxImg" src="" alt="Zoomed Wedding Photo">
+            </div>
+
+            <!-- Nút Ảnh Tiếp Theo -->
+            <button class="lightbox-btn next-btn" onclick="changeImage(1, event)">&#10095;</button>
+        </div>
+
+        <!-- NGÀY CƯỚI & TIỆC CƯỚI -->
+        <section
+            class="section wedding-day bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 text-center space-y-6 relative overflow-hidden">
+            <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">THÔNG TIN TIỆC CƯỚI</div>
+
+            <h2 class="font-cormorant text-2xl md:text-3xl font-bold text-brand-900">
+                TIỆC CƯỚI SẼ DIỄN RA VÀO LÚC
+            </h2>
+
+            <div class="font-cormorant text-4xl font-bold text-brand-900">11:00</div>
+
+            <div class="flex items-center justify-center space-x-3 text-sm font-semibold text-brand-800">
+                <span>THỨ SÁU</span>
+                <span>|</span>
+                <span class="text-2xl font-bold text-brand-900">04</span>
+                <span>|</span>
+                <span>THÁNG 11</span>
+            </div>
+
+            <div class="text-base font-bold text-brand-900">2026</div>
+
+            <p class="text-xs text-brand-600 italic">( TỨC NGÀY 12 THÁNG 02 DƯƠNG LỊCH )</p>
+
+            <div class="flex justify-center space-x-8 text-xs text-brand-700 py-2">
+                <div>
+                    <span class="block text-brand-500 uppercase">ĐÓN KHÁCH</span>
+                    <strong class="text-sm font-bold text-brand-900">11:00</strong>
+                </div>
+                <div class="border-r border-brand-300"></div>
+                <div>
+                    <span class="block text-brand-500 uppercase">KHAI TIỆC</span>
+                    <strong class="text-sm font-bold text-brand-900">11:30</strong>
+                </div>
+            </div>
+
+            <!-- Widget Lịch Tháng 11 / 2026 -->
+            <div class="bg-[#5c4d42] text-amber-50 rounded-2xl p-5 max-w-xs mx-auto shadow-inner space-y-3">
+                <div class="font-script text-2xl text-amber-100">Tháng 11 / 2026</div>
+
+                <div class="grid grid-cols-7 gap-1 text-center text-xs font-semibold border-b border-amber-200/20 pb-2">
+                    <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span>
+                </div>
+
+                <div class="grid grid-cols-7 gap-1 text-center text-xs">
+                    <!-- Blank cells cho Tháng 11 2026 ( Bắt đầu CN ) -->
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span>1</span>
+                    <span>2</span><span>3</span>
+                    <!-- Ngày 4 Highlight -->
+                    <span class="relative flex items-center justify-center">
+                        <span
+                            class="w-6 h-6 rounded-full bg-white text-brand-900 flex items-center justify-center font-bold shadow-md">4</span>
+                    </span>
+                    <span>5</span><span>6</span><span>7</span><span>8</span>
+                    <span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+                    <span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span>
+                    <span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span>
+                    <span>30</span>
+                </div>
+            </div>
+
+            <div class="space-y-3 pt-2">
+                <button id="calendarBtn" onclick="addToCalendar()"
+                    class="text-xs uppercase tracking-wider text-brand-700 hover:text-brand-900 underline font-semibold">
+                    + THÊM VÀO LỊCH GOOGLE
+                </button>
+
+                <div>
+                    <button id="rsvpBtn" onclick="openRSVPModal()"
+                        class="w-full max-w-xs py-3.5 px-6 bg-[#5c4d42] hover:bg-[#4e372b] text-white text-xs uppercase tracking-widest font-semibold rounded-full shadow-md transition-all">
+                        XÁC NHẬN THAM DỰ (RSVP)
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ĐỊA ĐIỂM & BẢN ĐỒ -->
+        <section
+            class="section location bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 text-center space-y-4">
+            <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">TIỆC CƯỚI SẼ TỔ CHỨC TẠI</div>
+
+            <h3 class="font-cormorant text-xl md:text-2xl font-bold text-brand-900">
+                Trung tâm Hội nghị Phương Loan
+            </h3>
+            <p class="text-xs text-brand-700 leading-relaxed">
+                Thôn Thắng Kiên, xã Đề Gi, tỉnh Gia Lai
+            </p>
+
+            <!-- Map Mockup / Embed -->
+            <div class="rounded-2xl overflow-hidden border border-brand-200 shadow-sm relative my-4 bg-gray-100">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.117765103009!2d106.67137357586884!3d10.802290658712776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528d7a1e05a8b%3A0x6d90a566f120155b!2zV2hpdGUgUGFsYWNlIEhvzIBuZyBWxINuIFRoxKFull!5e0!3m2!1svi!2svn!4v1710000000000!5m2!1svi!2svn"
+                    width="100%" height="250" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+            <a href="https://maps.app.goo.gl/uX3f48Z41M9Kx5819" target="_blank"
+                class="inline-flex items-center justify-center space-x-2 text-xs font-semibold text-brand-800 hover:text-brand-600 border border-brand-300 rounded-full px-6 py-2.5 bg-white/80">
+                <i class="fa-solid fa-location-arrow"></i>
+                <span>Xem chỉ đường</span>
+            </a>
+        </section>
+
+
+        <!-- SỔ LƯU BÚT / GUESTBOOK -->
+        <section
+            class="section guestbook bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 space-y-6">
+            <div class="text-center">
+                <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">SỔ LƯU BÚT TÌNH YÊU</div>
+            </div>
+
+            <!-- Form Gửi Lời Chúc -->
+            <form id="wishForm" class="space-y-3">
+                <div>
+                    <input id="guestName" type="text" placeholder="Nhập tên của bạn*" required
+                        class="w-full px-4 py-2.5 rounded-xl border border-brand-300 bg-white focus:outline-none focus:ring-1 focus:ring-brand-500 text-xs text-brand-900 placeholder-brand-400">
+                </div>
+                <div>
+                    <textarea id="guestWish" rows="3" placeholder="Nhập lời chúc dành cho dâu rể*" required
+                        class="w-full px-4 py-2.5 rounded-xl border border-brand-300 bg-white focus:outline-none focus:ring-1 focus:ring-brand-500 text-xs text-brand-900 placeholder-brand-400 resize-none"></textarea>
+                </div>
+                <div class="text-right">
+                    <button type="submit"
+                        class="px-6 py-2.5 bg-[#5c4d42] hover:bg-[#4e372b] text-white text-xs uppercase tracking-wider rounded-full shadow font-medium transition-all">
+                        GỬI LỜI CHÚC
+                    </button>
+                </div>
+            </form>
+
+            <!-- Bảng Lời Chúc Chi Tiết -->
+            <div class="space-y-3 pt-4 border-t border-brand-200 max-h-80 overflow-y-auto pr-1" id="messagesList">
+                <div class="p-3.5 bg-white/90 rounded-xl border border-brand-200 text-xs space-y-1">
+                    <div class="flex justify-between items-center font-bold text-brand-900">
+                        <span>Mỹ Linh</span>
+                        <span class="text-[10px] text-brand-400 font-normal">14/11/2026</span>
+                    </div>
+                    <p class="text-brand-700">Chúc hai bạn trăm năm hạnh phúc, vạn sự như ý, một đám cưới thật vui vẻ và
+                        trọn vẹn!</p>
+                </div>
+
+                <div class="p-3.5 bg-white/90 rounded-xl border border-brand-200 text-xs space-y-1">
+                    <div class="flex justify-between items-center font-bold text-brand-900">
+                        <span>Trọng Nhân</span>
+                        <span class="text-[10px] text-brand-400 font-normal">14/11/2026</span>
+                    </div>
+                    <p class="text-brand-700">Chúc mừng Thịnh và Hương về chung một nhà! Luôn ngọt ngào như ngày đầu
+                        nhé.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- MỪNG CƯỚI / GIFT BOX -->
+        <section
+            class="section gift bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 text-center space-y-6">
+            <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">HỘP QUÀ MỪNG CƯỚI</div>
+
+            <!-- SVG Hộp quà mừng tương tác -->
+            <div class="py-2">
+                <div id="giftBoxTrigger" onclick="toggleGiftModal()"
+                    class="cursor-pointer group inline-block transform hover:scale-105 transition-transform duration-300">
+                    <div class="w-24 h-24 mx-auto relative flex items-center justify-center">
+                        <svg viewBox="0 0 100 100" class="w-20 h-20 text-brand-600 drop-shadow-md" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect x="15" y="40" width="70" height="50" rx="6" fill="#ceaf8d" />
+                            <rect x="10" y="30" width="80" height="15" rx="4" fill="#b88f68" />
+                            <!-- Ribbon -->
+                            <rect x="42" y="30" width="16" height="60" fill="#5c4d42" />
+                            <rect x="10" y="34" width="80" height="7" fill="#825a36" opacity="0.3" />
+                            <!-- Nơ -->
+                            <path d="M50 30 C35 10 20 25 42 30 Z" fill="#5c4d42" />
+                            <path d="M50 30 C65 10 80 25 58 30 Z" fill="#5c4d42" />
+                        </svg>
+                    </div>
+                    <p class="text-xs text-brand-600 mt-2 italic font-medium group-hover:text-brand-900">Chạm để mở mã
+                        QR Mừng Cưới</p>
+                </div>
+            </div>
+
+            <p class="text-xs text-brand-700 italic">
+                Sự hiện diện của quý khách là niềm vinh hạnh lớn nhất của gia đình chúng tôi!
+            </p>
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="text-center py-8 space-y-2 border-t border-brand-200">
+            <div class="text-brand-400 text-lg">❦</div>
+            <h2 class="font-cormorant text-2xl font-bold text-brand-900">
+                Minh Thịnh &amp; Huỳnh Hương
+            </h2>
+            <p class="font-script text-xl text-brand-600">Forever starts here.</p>
+            <p class="text-[10px] text-brand-400 pt-4">Copyright ©2026. Minh Thịnh - Huỳnh Hương</p>
+        </footer>
+
+    </div>
+
+
+    <!-- MODAL RSVP (XÁC NHẬN THAM DỰ) -->
+    <div id="rsvpModal" class="fixed inset-0 bg-black/60 z-50 hidden items-center justify-center p-4">
+        <div
+            class="bg-[#fbf8f3] rounded-3xl max-w-sm w-full p-6 text-center space-y-4 border border-brand-200 relative animate-fadeIn">
+            <button onclick="closeRSVPModal()"
+                class="absolute top-4 right-4 text-brand-500 hover:text-brand-900 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="font-cormorant text-2xl font-bold text-brand-900">Xác Nhận Tham Dự</h3>
+            <p class="text-xs text-brand-600">Vui lòng phản hồi trước ngày 25/10/2026 để chúng mình đón tiếp chu đáo
+                nhất nhé!</p>
+
+            <form onsubmit="submitRSVP(event)" class="space-y-3 text-left">
+                <div>
+                    <label class="block text-[11px] text-brand-700 uppercase mb-1 font-semibold">Họ và tên</label>
+                    <input type="text" required
+                        class="w-full px-3 py-2 rounded-xl border border-brand-300 text-xs bg-white focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-[11px] text-brand-700 uppercase mb-1 font-semibold">Bạn là khách
+                        của</label>
+                    <select
+                        class="w-full px-3 py-2 rounded-xl border border-brand-300 text-xs bg-white focus:outline-none">
+                        <option>Chú rể (Minh Thịnh)</option>
+                        <option>Cô dâu (Huỳnh Hương)</option>
+                        <option>Cả hai dâu rể</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-[11px] text-brand-700 uppercase mb-1 font-semibold">Khả năng tham
+                        dự</label>
+                    <div class="space-y-2 text-xs pt-1">
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="radio" name="attend" value="yes" checked class="accent-brand-700">
+                            <span>Chắc chắn sẽ đến tham dự</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="radio" name="attend" value="no" class="accent-brand-700">
+                            <span>Rất tiếc không thể đến dự</span>
+                        </label>
+                    </div>
+                </div>
+                <button type="submit"
+                    class="w-full py-3 bg-[#5c4d42] text-white text-xs uppercase tracking-wider font-semibold rounded-full mt-3 shadow">
+                    XÁC NHẬN PHẢN HỒI
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+   <!-- MODAL HỘP QUÀ MỪNG CƯỚI -->
+<div id="giftModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4 transition-all duration-300">
+    <!-- Mở rộng max-w-2xl để đủ chỗ hiển thị 2 thẻ nằm ngang -->
+    <div class="bg-[#fbf8f3] rounded-3xl p-6 max-w-2xl w-full text-center space-y-4 border border-brand-200 shadow-2xl relative animate-fadeIn max-h-[90vh] overflow-y-auto">
+        
+        <!-- Nút Đóng -->
+        <button onclick="toggleGiftModal()" class="absolute top-4 right-4 text-gray-400 hover:text-black text-2xl font-bold focus:outline-none">&times;</button>
+        
+        <h3 class="text-base font-bold text-brand-800 uppercase tracking-widest pt-2">Mừng Cưới Dầu Rể</h3>
+        <p class="text-xs text-brand-600 italic">Sự hiện diện của quý khách là niềm vinh hạnh lớn nhất của gia đình chúng tôi!</p>
+        
+        <!-- Khung 2 thẻ QR nằm ngang (Sử dụng Grid) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            
+            <!-- THẺ MỪNG CƯỚI CHÚ RỂ -->
+            <div class="bg-white p-4 rounded-2xl border border-brand-200 shadow-sm flex flex-col justify-between items-center">
+                <p class="text-xs font-bold text-brand-900 mb-2 uppercase">MỪNG CƯỚI CHÚ RỂ</p>
+                <div class="w-full flex items-center justify-center min-h-[220px]">
+                    <img src="img/qr_chure.jpg" alt="Mã QR Chú Rể" class="w-full max-w-[200px] h-auto object-contain rounded-xl shadow-sm">
+                </div>
+                <div class="mt-2 text-center">
+                    <p class="text-xs text-brand-700 font-medium">Vietcombank: 1029009282</p>
+                    <p class="text-xs font-bold text-brand-900 uppercase mt-0.5">VÕ MINH THỊNH</p>
+                </div>
+            </div>
+
+            <!-- THẺ MỪNG CƯỚI CÔ DÂU -->
+            <div class="bg-white p-4 rounded-2xl border border-brand-200 shadow-sm flex flex-col justify-between items-center">
+                <p class="text-xs font-bold text-brand-900 mb-2 uppercase">MỪNG CƯỚI CÔ DÂU</p>
+                <div class="w-full flex items-center justify-center min-h-[220px]">
+                    <img src="img/qr_codau.jpg" alt="Mã QR Cô Dâu" class="w-full max-w-[200px] h-auto object-contain rounded-xl shadow-sm">
+                </div>
+                <div class="mt-2 text-center">
+                    <p class="text-xs text-brand-700 font-medium">Vietcombank: 9393129489</p>
+                    <p class="text-xs font-bold text-brand-900 uppercase mt-0.5">NGUYỄN THỊ HUỲNH HƯƠNG</p>
+                </div>
+            </div>
+
+        </div>
+
+        <button onclick="toggleGiftModal()" class="w-full py-2.5 bg-brand-700 text-white text-xs font-bold rounded-xl shadow hover:bg-brand-800 transition-colors mt-2">
+            Đóng cửa sổ
+        </button>
+    </div>
+</div>
+
+
+    <!-- LIGHTBOX ALBUM -->
+    <div id="lightbox" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4"
+        onclick="closeLightbox()">
+        <button class="absolute top-5 right-5 text-white text-2xl"><i class="fa-solid fa-xmark"></i></button>
+        <img id="lightboxImg" src="" alt="Album Enlarged" class="max-w-full max-h-[85vh] object-contain rounded-xl">
+    </div>
+
+
+
 </body>
 
 </html>
