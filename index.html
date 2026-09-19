@@ -117,7 +117,7 @@
 
                 <h1 class="font-cormorant text-4xl md:text-5xl text-brand-900 font-bold leading-tight">
                     Minh Thịnh
-                    <span class="block font-script text-3xl md:text-4xl text-brand-600 font-normal my-1">&</span>
+                    <span class="block font-script text-3xl md:text-4xl text-brand-600 font-normal my-1">&amp;</span>
                     Huỳnh Hương
                 </h1>
 
@@ -214,8 +214,7 @@
             </h2>
 
             <p class="description text-sm leading-relaxed text-brand-700 max-w-md mx-auto italic">
-                "Từ những ngày đầu gặp gỡ, chúng mình đã cùng nhau trải qua thật nhiều khoảnh khắc đáng nhớ. Và giờ đây,
-                chúng mình muốn viết tiếp câu chuyện ấy bằng một chương mới tràn ngập tình yêu."
+                "Hôn nhân là chuyện cả đời, yêu người vừa ý, cưới người mình thương..."
             </p>
         </section>
 
@@ -229,13 +228,13 @@
                 <!-- Hai bên gia đình -->
                 <div class="grid grid-cols-2 gap-4 text-xs text-brand-800 border-b border-brand-200 pb-6">
                     <div class="space-y-1">
-                        <p class="text-brand-500 italic">Gia Đình Nhà Trai</p>
+                        <p class="text-brand-500 italic uppercase tracking-wider font-semibold">Nhà Trai</p>
                         <p class="font-semibold">Ông: Võ Văn Đông</p>
                         <p class="font-semibold">Bà: Nguyễn Thị Trang</p>
                         <p class="text-[10px] text-brand-600 pt-1">Khóm 25, Phường Giá Rai, Tỉnh Cà Mau</p>
                     </div>
                     <div class="space-y-1">
-                        <p class="text-brand-500 italic">Gia Đình Nhà Gái</p>
+                        <p class="text-brand-500 italic uppercase tracking-wider font-semibold">Nhà Gái</p>
                         <p class="font-semibold">Ông: Nguyễn Đàm</p>
                         <p class="font-semibold">Bà: Phan Thị Diệp</p>
                         <p class="text-[10px] text-brand-600 pt-1">Thôn Cát Thành, Xã Cát Tiến, Tỉnh Gia Lai</p>
@@ -246,27 +245,70 @@
                     TRÂN TRỌNG BÁO TIN LỄ THÀNH HÔN CỦA CON CHÚNG TÔI
                 </div>
 
-                <!-- Chú rể & Cô dâu -->
-                <div class="space-y-4">
-                    <div>
-                        <h2 class="font-cormorant text-3xl font-bold text-brand-900">Minh Thịnh</h2>
-                        <span class="text-[11px] uppercase tracking-widest text-brand-500">QUÝ NAM</span>
+                <!-- Chú rể & Cô dâu dạng Cột + 2 Ảnh Song Song (Cập nhật theo ảnh mẫu) -->
+                <!-- Chú rể & Cô dâu dạng Cột + Trái tim ở giữa + 2 Ảnh Song Song -->
+                <div class="space-y-6 pt-2">
+                    <!-- Cột Tên & Trái tim ở giữa -->
+                    <div class="grid grid-cols-7 items-center text-center">
+                        <!-- Chú Rể -->
+                        <div class="col-span-3 space-y-1">
+                            <span class="text-[11px] uppercase tracking-widest text-brand-500 font-semibold block">Chú
+                                rể</span>
+                            <h2 class="font-script text-3xl sm:text-4xl md:text-5xl text-brand-900 leading-tight">Minh
+                                Thịnh</h2>
+                        </div>
+
+                        <!-- Trái Tim Ở Giữa -->
+                        <div class="col-span-1 flex items-center justify-center pt-3">
+                            <span class="text-rose-900 text-4xl sm:text-5xl animate-pulse">♥</span>
+                        </div>
+
+                        <!-- Cô Dâu -->
+                        <div class="col-span-3 space-y-1">
+                            <span class="text-[11px] uppercase tracking-widest text-brand-500 font-semibold block">Cô
+                                dâu</span>
+                            <h2 class="font-script text-3xl sm:text-4xl md:text-5xl text-brand-900 leading-tight">Huỳnh
+                                Hương</h2>
+                        </div>
                     </div>
 
-                    <div class="font-script text-3xl text-brand-600">&amp;</div>
+                    <!-- Khung 2 Ảnh Song Song -->
+                    <div class="grid grid-cols-2 gap-3 pt-2">
+                        <div class="groom-bride-card overflow-hidden rounded-2xl border border-brand-200 shadow-md aspect-[3/4] relative group cursor-pointer"
+                            onclick="openLightbox(0)">
+                            <img src="img/DOJ_5786_1.jpg" alt="Chú rể Minh Thịnh"
+                                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80">
+                            </div>
+                            <div
+                                class="absolute bottom-3 left-0 right-0 text-center text-white text-xs font-medium uppercase tracking-wider">
+                                Minh Thịnh
+                            </div>
+                        </div>
 
-                    <div>
-                        <h2 class="font-cormorant text-3xl font-bold text-brand-900">Huỳnh Hương</h2>
-                        <span class="text-[11px] uppercase tracking-widest text-brand-500">TRƯỞNG NỮ</span>
+                        <div class="groom-bride-card overflow-hidden rounded-2xl border border-brand-200 shadow-md aspect-[3/4] relative group cursor-pointer"
+                            onclick="openLightbox(1)">
+                            <img src="img/DOJ_5795_1.jpg" alt="Cô dâu Huỳnh Hương"
+                                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80">
+                            </div>
+                            <div
+                                class="absolute bottom-3 left-0 right-0 text-center text-white text-xs font-medium uppercase tracking-wider">
+                                Huỳnh Hương
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="pt-4 border-t border-brand-200 space-y-2 text-xs text-brand-800">
+                <div class="pt-6 border-t border-brand-200 space-y-2 text-xs text-brand-800">
                     <p class="uppercase tracking-wider">LỄ THÀNH HÔN ĐƯỢC CỬ HÀNH TẠI TƯ GIA</p>
                     <p class="text-brand-600">VÀO LÚC</p>
                     <p class="text-2xl font-extrabold text-brand-800">09:00</p>
 
-                    <div class="flex items-center justify-center space-x-2 text-2xl font-extrabold text-brand-800 pt-1">
+                    <div
+                        class="flex items-center justify-center space-x-2 text-base sm:text-lg font-extrabold text-brand-600 pt-1">
                         <span>THỨ BẢY</span>
                         <span>|</span>
                         <span>12</span>
@@ -275,7 +317,6 @@
                         <span>.</span>
                         <span>2026</span>
                     </div>
-
                     <p class="text-[11px] text-brand-600 italic">(Tức ngày 04 tháng 11 năm Bính Ngọ)</p>
                 </div>
             </div>
@@ -312,7 +353,8 @@
                             <img src="img/ANH BAN (1)_1.jpg" alt="Wedding Photo 1">
                             <div class="card-caption">
                                 <p class="font-script text-xl text-brand-800">Save The Date</p>
-                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh & Huỳnh Hương
+                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh
+                                    Hương
                                 </p>
                             </div>
                         </div>
@@ -324,7 +366,8 @@
                             <img src="img/ANH BAN (2)_1.jpg" alt="Wedding Photo 2">
                             <div class="card-caption">
                                 <p class="font-script text-xl text-brand-800">Save The Date</p>
-                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh & Huỳnh Hương
+                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh
+                                    Hương
                                 </p>
                             </div>
                         </div>
@@ -336,7 +379,8 @@
                             <img src="img/ANH BAN (3)_1.jpg" alt="Wedding Photo 3">
                             <div class="card-caption">
                                 <p class="font-script text-xl text-brand-800">Save The Date</p>
-                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh & Huỳnh Hương
+                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh
+                                    Hương
                                 </p>
                             </div>
                         </div>
@@ -348,7 +392,8 @@
                             <img src="img/ANH BAN (4)_1.jpg" alt="Wedding Photo 4">
                             <div class="card-caption">
                                 <p class="font-script text-xl text-brand-800">Save The Date</p>
-                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh & Huỳnh Hương
+                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh
+                                    Hương
                                 </p>
                             </div>
                         </div>
@@ -360,7 +405,8 @@
                             <img src="img/ANH BAN (5)_1.jpg" alt="Wedding Photo 5">
                             <div class="card-caption">
                                 <p class="font-script text-xl text-brand-800">Save The Date</p>
-                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh & Huỳnh Hương
+                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh
+                                    Hương
                                 </p>
                             </div>
                         </div>
@@ -372,7 +418,8 @@
                             <img src="img/Cong2.jpg" alt="Wedding Photo 6">
                             <div class="card-caption">
                                 <p class="font-script text-xl text-brand-800">Save The Date</p>
-                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh & Huỳnh Hương
+                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh
+                                    Hương
                                 </p>
                             </div>
                         </div>
@@ -420,15 +467,16 @@
 
             <p class="text-2xl font-extrabold text-brand-800">09:00</p>
 
-<div class="flex items-center justify-center space-x-2 text-2xl font-extrabold text-brand-800 pt-1">
-    <span>THỨ BẢY</span>
-    <span>|</span>
-    <span>12</span>
-    <span>.</span>
-    <span>12</span>
-    <span>.</span>
-    <span>2026</span>
-</div>
+            <div
+                class="flex items-center justify-center space-x-2 text-base sm:text-lg font-extrabold text-brand-600 pt-1">
+                <span>THỨ BẢY</span>
+                <span>|</span>
+                <span>12</span>
+                <span>.</span>
+                <span>12</span>
+                <span>.</span>
+                <span>2026</span>
+            </div>
 
             <p class="text-xs text-brand-600 italic">( TỨC NGÀY 04 THÁNG 11 NĂM BÍNH NGỌ )</p>
 

@@ -65,6 +65,17 @@ body {
     to { opacity: 1; }
 }
 
+/* Styling Khung 2 Ảnh Song Song Cô Dâu & Chú Rể */
+.groom-bride-card {
+    background-color: #f5efeb;
+    box-shadow: 0 8px 20px -5px rgba(92, 77, 66, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.groom-bride-card:hover {
+    box-shadow: 0 12px 25px -5px rgba(92, 77, 66, 0.3);
+}
+
 /* =====================================================
    STYLING CHO ALBUM CAROUSEL 3D (GIỐNG ẢNH MẪU)
 ===================================================== */

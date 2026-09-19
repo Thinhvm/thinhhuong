@@ -79,7 +79,7 @@ function createDots() {
         dot.onclick = () => {
             currentImgIndex = idx;
             updateCarousel();
-            resetAutoplay(); // Reset thời gian chờ khi chọn chấm tròn
+            resetAutoplay();
         };
         dotsContainer.appendChild(dot);
     });
@@ -194,8 +194,8 @@ if (openBtn) {
 function addToCalendar() {
     const title = encodeURIComponent("Lễ Cưới Minh Thịnh & Huỳnh Hương");
     const details = encodeURIComponent("Trân trọng kính mời bạn đến tham dự tiệc cưới của chúng mình!");
-    const location = encodeURIComponent("White Palace, 194 Hoàng Văn Thụ, Phường 9, Phú Nhuận, TP.HCM");
-    const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20261104T110000Z/20261104T140000Z&details=${details}&location=${location}`;
+    const location = encodeURIComponent("Nhà hàng tiệc cưới Phương Loan, Thôn Thắng Kiên, xã Đề Gi, tỉnh Gia Lai");
+    const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20261212T040000Z/20261212T070000Z&details=${details}&location=${location}`;
     window.open(googleCalUrl, '_blank');
 }
 
@@ -203,7 +203,7 @@ function addToCalendar() {
 // 7. LIGHTBOX ALBUM (ZOOM-IN)
 // ==========================================
 function openLightbox(index) {
-    stopAutoplay(); // Dừng autoplay khi mở xem ảnh lớn
+    stopAutoplay();
     currentImgIndex = index;
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
@@ -255,7 +255,7 @@ function closeLightboxForce() {
             lightbox.classList.add('hidden');
             lightbox.classList.remove('flex', 'active');
         }
-        startAutoplay(); // Tiếp tục chạy tự động sau khi đóng lightbox
+        startAutoplay();
     }, 250);
 }
 
@@ -353,9 +353,8 @@ window.onload = function() {
     initFallingLeaves();
     createDots();
     updateCarousel();
-    startAutoplay(); // Kích hoạt chạy tự động
+    startAutoplay();
 
-    // Dừng khi rê chuột vào album, tiếp tục khi rà chuột ra ngoài
     const carouselContainer = document.querySelector('.album-carousel-container');
     if (carouselContainer) {
         carouselContainer.addEventListener('mouseenter', stopAutoplay);
