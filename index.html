@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+
     <!-- Tiêu đề trang hiển thị trên thẻ tab trình duyệt -->
     <title>Thiệp Cưới Minh Thịnh & Huỳnh Hương</title>
 
@@ -18,7 +18,7 @@
     <meta property="og:url" content="https://thinhvm.github.io/thinhhuong/">
     <meta property="og:title" content="Thiệp Cưới Minh Thịnh & Huỳnh Hương">
     <meta property="og:description" content="Chúng mình sắp về chung một nhà! Rất hân hạnh được đón tiếp quý khách.">
-    
+
     <!-- -->
     <meta property="og:image" content="https://thinhvm.github.io/thinhhuong/img/Cong1.jpg">
     <meta property="og:image:secure_url" content="https://thinhvm.github.io/thinhhuong/img/Cong1.jpg">
@@ -431,29 +431,92 @@
                     <strong class="text-sm font-bold text-brand-900">11:30</strong>
                 </div>
             </div>
+            <!-- Widget Lịch Tháng 12 / 2026 (Âm & Dương) -->
+            <div class="bg-[#5c4d42] text-amber-50 rounded-2xl p-5 max-w-sm mx-auto shadow-inner space-y-3">
+                <div class="font-script text-2xl text-amber-100 text-center">Tháng 12 / 2026</div>
 
-            <!-- Widget Lịch Tháng 11 / 2026 -->
-            <div class="bg-[#5c4d42] text-amber-50 rounded-2xl p-5 max-w-xs mx-auto shadow-inner space-y-3">
-                <div class="font-script text-2xl text-amber-100">Tháng 11 / 2026</div>
-
+                <!-- Tiêu đề các thứ trong tuần -->
                 <div class="grid grid-cols-7 gap-1 text-center text-xs font-semibold border-b border-amber-200/20 pb-2">
                     <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span>
                 </div>
 
+                <!-- Danh sách ngày (Dương trên - Âm dưới) -->
                 <div class="grid grid-cols-7 gap-1 text-center text-xs">
-                    <!-- Blank cells cho Tháng 11 2026 ( Bắt đầu CN ) -->
-                    <span></span><span></span><span></span><span></span><span></span><span></span><span>1</span>
-                    <span>2</span><span>3</span>
-                    <!-- Ngày 4 Highlight -->
-                    <span class="relative flex items-center justify-center">
-                        <span
-                            class="w-6 h-6 rounded-full bg-white text-brand-900 flex items-center justify-center font-bold shadow-md">4</span>
-                    </span>
-                    <span>5</span><span>6</span><span>7</span><span>8</span>
-                    <span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
-                    <span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span>
-                    <span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span>
-                    <span>30</span>
+                    <!-- Ngày 1/12/2026 rơi vào Thứ Ba -->
+                    <span></span>
+
+                    <!-- Ngày 1 -> 11 -->
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">1</span><span
+                            class="text-[9px] opacity-60">23/10</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">2</span><span
+                            class="text-[9px] opacity-60">24</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">3</span><span
+                            class="text-[9px] opacity-60">25</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">4</span><span
+                            class="text-[9px] opacity-60">26</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">5</span><span
+                            class="text-[9px] opacity-60">27</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">6</span><span
+                            class="text-[9px] opacity-60">28</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">7</span><span
+                            class="text-[9px] opacity-60">29</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">8</span><span
+                            class="text-[9px] opacity-60">30</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">9</span><span
+                            class="text-[9px] opacity-60">1/11</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">10</span><span
+                            class="text-[9px] opacity-60">2</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">11</span><span
+                            class="text-[9px] opacity-60">3</span></div>
+
+                    <!-- 🔴 NGÀY CƯỚI HIGHLIGHT (12/12 Dương - 4/11 Âm) 🔴 -->
+                    <div class="flex flex-col items-center justify-center">
+                        <div
+                            class="w-8 h-8 rounded-full bg-white text-brand-900 flex flex-col items-center justify-center font-bold shadow-md">
+                            <span class="text-xs leading-none">12</span>
+                            <span class="text-[8px] leading-none text-red-600 font-normal">4/11</span>
+                        </div>
+                    </div>
+
+                    <!-- Ngày 13 -> 31 -->
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">13</span><span
+                            class="text-[9px] opacity-60">5</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">14</span><span
+                            class="text-[9px] opacity-60">6</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">15</span><span
+                            class="text-[9px] opacity-60">7</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">16</span><span
+                            class="text-[9px] opacity-60">8</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">17</span><span
+                            class="text-[9px] opacity-60">9</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">18</span><span
+                            class="text-[9px] opacity-60">10</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">19</span><span
+                            class="text-[9px] opacity-60">11</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">20</span><span
+                            class="text-[9px] opacity-60">12</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">21</span><span
+                            class="text-[9px] opacity-60">13</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">22</span><span
+                            class="text-[9px] opacity-60">14</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">23</span><span
+                            class="text-[9px] opacity-60">15</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">24</span><span
+                            class="text-[9px] opacity-60">16</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">25</span><span
+                            class="text-[9px] opacity-60">17</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">26</span><span
+                            class="text-[9px] opacity-60">18</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">27</span><span
+                            class="text-[9px] opacity-60">19</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">28</span><span
+                            class="text-[9px] opacity-60">20</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">29</span><span
+                            class="text-[9px] opacity-60">21</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">30</span><span
+                            class="text-[9px] opacity-60">22</span></div>
+                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">31</span><span
+                            class="text-[9px] opacity-60">23</span></div>
                 </div>
             </div>
 
@@ -647,51 +710,60 @@
     </div>
 
 
-   <!-- MODAL HỘP QUÀ MỪNG CƯỚI -->
-<div id="giftModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4 transition-all duration-300">
-    <!-- Mở rộng max-w-2xl để đủ chỗ hiển thị 2 thẻ nằm ngang -->
-    <div class="bg-[#fbf8f3] rounded-3xl p-6 max-w-2xl w-full text-center space-y-4 border border-brand-200 shadow-2xl relative animate-fadeIn max-h-[90vh] overflow-y-auto">
-        
-        <!-- Nút Đóng -->
-        <button onclick="toggleGiftModal()" class="absolute top-4 right-4 text-gray-400 hover:text-black text-2xl font-bold focus:outline-none">&times;</button>
-        
-        <h3 class="text-base font-bold text-brand-800 uppercase tracking-widest pt-2">Mừng Cưới Dầu Rể</h3>
-        <p class="text-xs text-brand-600 italic">Sự hiện diện của quý khách là niềm vinh hạnh lớn nhất của gia đình chúng tôi!</p>
-        
-        <!-- Khung 2 thẻ QR nằm ngang (Sử dụng Grid) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-            
-            <!-- THẺ MỪNG CƯỚI CHÚ RỂ -->
-            <div class="bg-white p-4 rounded-2xl border border-brand-200 shadow-sm flex flex-col justify-between items-center">
-                <p class="text-xs font-bold text-brand-900 mb-2 uppercase">MỪNG CƯỚI CHÚ RỂ</p>
-                <div class="w-full flex items-center justify-center min-h-[220px]">
-                    <img src="img/qr_chure.jpg" alt="Mã QR Chú Rể" class="w-full max-w-[200px] h-auto object-contain rounded-xl shadow-sm">
+    <!-- MODAL HỘP QUÀ MỪNG CƯỚI -->
+    <div id="giftModal"
+        class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4 transition-all duration-300">
+        <!-- Mở rộng max-w-2xl để đủ chỗ hiển thị 2 thẻ nằm ngang -->
+        <div
+            class="bg-[#fbf8f3] rounded-3xl p-6 max-w-2xl w-full text-center space-y-4 border border-brand-200 shadow-2xl relative animate-fadeIn max-h-[90vh] overflow-y-auto">
+
+            <!-- Nút Đóng -->
+            <button onclick="toggleGiftModal()"
+                class="absolute top-4 right-4 text-gray-400 hover:text-black text-2xl font-bold focus:outline-none">&times;</button>
+
+            <h3 class="text-base font-bold text-brand-800 uppercase tracking-widest pt-2">Mừng Cưới Dầu Rể</h3>
+            <p class="text-xs text-brand-600 italic">Sự hiện diện của quý khách là niềm vinh hạnh lớn nhất của gia đình
+                chúng tôi!</p>
+
+            <!-- Khung 2 thẻ QR nằm ngang (Sử dụng Grid) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+
+                <!-- THẺ MỪNG CƯỚI CHÚ RỂ -->
+                <div
+                    class="bg-white p-4 rounded-2xl border border-brand-200 shadow-sm flex flex-col justify-between items-center">
+                    <p class="text-xs font-bold text-brand-900 mb-2 uppercase">MỪNG CƯỚI CHÚ RỂ</p>
+                    <div class="w-full flex items-center justify-center min-h-[220px]">
+                        <img src="img/qr_chure.jpg" alt="Mã QR Chú Rể"
+                            class="w-full max-w-[200px] h-auto object-contain rounded-xl shadow-sm">
+                    </div>
+                    <div class="mt-2 text-center">
+                        <p class="text-xs text-brand-700 font-medium">Vietcombank: 1029009282</p>
+                        <p class="text-xs font-bold text-brand-900 uppercase mt-0.5">VÕ MINH THỊNH</p>
+                    </div>
                 </div>
-                <div class="mt-2 text-center">
-                    <p class="text-xs text-brand-700 font-medium">Vietcombank: 1029009282</p>
-                    <p class="text-xs font-bold text-brand-900 uppercase mt-0.5">VÕ MINH THỊNH</p>
+
+                <!-- THẺ MỪNG CƯỚI CÔ DÂU -->
+                <div
+                    class="bg-white p-4 rounded-2xl border border-brand-200 shadow-sm flex flex-col justify-between items-center">
+                    <p class="text-xs font-bold text-brand-900 mb-2 uppercase">MỪNG CƯỚI CÔ DÂU</p>
+                    <div class="w-full flex items-center justify-center min-h-[220px]">
+                        <img src="img/qr_codau.jpg" alt="Mã QR Cô Dâu"
+                            class="w-full max-w-[200px] h-auto object-contain rounded-xl shadow-sm">
+                    </div>
+                    <div class="mt-2 text-center">
+                        <p class="text-xs text-brand-700 font-medium">Vietcombank: 9393129489</p>
+                        <p class="text-xs font-bold text-brand-900 uppercase mt-0.5">NGUYỄN THỊ HUỲNH HƯƠNG</p>
+                    </div>
                 </div>
+
             </div>
 
-            <!-- THẺ MỪNG CƯỚI CÔ DÂU -->
-            <div class="bg-white p-4 rounded-2xl border border-brand-200 shadow-sm flex flex-col justify-between items-center">
-                <p class="text-xs font-bold text-brand-900 mb-2 uppercase">MỪNG CƯỚI CÔ DÂU</p>
-                <div class="w-full flex items-center justify-center min-h-[220px]">
-                    <img src="img/qr_codau.jpg" alt="Mã QR Cô Dâu" class="w-full max-w-[200px] h-auto object-contain rounded-xl shadow-sm">
-                </div>
-                <div class="mt-2 text-center">
-                    <p class="text-xs text-brand-700 font-medium">Vietcombank: 9393129489</p>
-                    <p class="text-xs font-bold text-brand-900 uppercase mt-0.5">NGUYỄN THỊ HUỲNH HƯƠNG</p>
-                </div>
-            </div>
-
+            <button onclick="toggleGiftModal()"
+                class="w-full py-2.5 bg-brand-700 text-white text-xs font-bold rounded-xl shadow hover:bg-brand-800 transition-colors mt-2">
+                Đóng cửa sổ
+            </button>
         </div>
-
-        <button onclick="toggleGiftModal()" class="w-full py-2.5 bg-brand-700 text-white text-xs font-bold rounded-xl shadow hover:bg-brand-800 transition-colors mt-2">
-            Đóng cửa sổ
-        </button>
     </div>
-</div>
 
 
     <!-- LIGHTBOX ALBUM -->
