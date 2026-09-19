@@ -2,14 +2,15 @@
 // 1. DATA ALBUM ẢNH (Khai báo duy nhất 1 lần)
 // ==========================================
 const albumImages = [
-    'img/DOJ_5786_1.jpg', // Index 0: Ảnh Chú Rể
-    'img/DOJ_5795_1.jpg', // Index 1: Ảnh Cô Dâu
-    'img/ANH BAN (1)_1.jpg',
-    'img/ANH BAN (2)_1.jpg',
-    'img/ANH BAN (3)_1.jpg',
-    'img/ANH BAN (4)_1.jpg',
-    'img/ANH BAN (5)_1.jpg',
-    'img/Cong2.jpg'
+    'img/ANH BAN (4)_1.jpg', // Index 0 - Slide 1
+    'img/Cong2.jpg',         // Index 1 - Slide 2
+    'img/ANH BAN (1)_1.jpg', // Index 2 - Slide 3
+    'img/DOJ_6227_1.jpg',    // Index 3 - Slide 4
+    'img/DOJ_6851_1.jpg',    // Index 4 - Slide 5
+    'img/DOJ_7032_1.jpg',    // Index 5 - Slide 6
+    'img/DOJ_6149_1.jpg',    // Index 6 - Slide 7
+    'img/DOJ_6509_1.jpg',    // Index 7 - Slide 8
+    'img/DOJ_7063_1.jpg'     // Index 8 - Slide 9
 ];
 let currentImgIndex = 0; // Quản lý slide album & lightbox
 let autoplayTimer = null;
