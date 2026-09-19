@@ -6,6 +6,7 @@ const albumImages = [
     'img/Cong2.jpg',
     'img/ANH BAN (1)_1.jpg',
     'img/DOJ_5785_1.jpg',
+    'img/DOJ_6227_1.jpg',
     'img/DOJ_5795_1.jpg',
     'img/DOJ_6227_1.jpg',
     'img/DOJ_6851_1.jpg',
