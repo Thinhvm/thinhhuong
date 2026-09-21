@@ -411,3 +411,43 @@ window.addEventListener('DOMContentLoaded', () => {
         carouselContainer.addEventListener('mouseleave', startAutoplay);
     }
 });
+function openLightbox(srcOrIndex) {
+    stopAutoplay();
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+
+    if (!lightbox || !lightboxImg) return;
+
+    if (typeof srcOrIndex === 'string') {
+        // Nếu truyền vào đường dẫn trực tiếp (ví dụ 'image/Cong1.webp')
+        lightboxImg.src = srcOrIndex;
+    } else if (typeof srcOrIndex === 'number') {
+        // Nếu truyền vào chỉ số album (index)
+        currentImgIndex = srcOrIndex;
+        lightboxImg.src = albumImages[currentImgIndex];
+    }
+
+    lightboxImg.classList.remove('zoom-in');
+    lightbox.classList.remove('hidden');
+    lightbox.classList.add('flex', 'active');
+
+    setTimeout(() => lightboxImg.classList.add('zoom-in'), 50);
+}
+document.addEventListener("DOMContentLoaded", function () {
+    const observerOptions = {
+        threshold: 0.2 // Kích hoạt khi cuộn thấy 20% khung hình
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target); // Chỉ chạy hiệu ứng xuất hiện 1 lần
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+        observer.observe(el);
+    });
+});

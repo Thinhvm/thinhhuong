@@ -50,9 +50,17 @@ body {
 }
 
 @keyframes floating {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 /* Custom Modal Backdrop */
@@ -62,8 +70,13 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 /* Styling Khung 2 Ảnh Song Song Cô Dâu & Chú Rể */
@@ -257,14 +270,34 @@ body {
   transform: scale(1.1);
 }
 
-.close-btn { top: 25px; right: 25px; font-size: 2.2rem; }
-.prev-btn { left: 20px; }
-.next-btn { right: 20px; }
+.close-btn {
+  top: 25px;
+  right: 25px;
+  font-size: 2.2rem;
+}
+
+.prev-btn {
+  left: 20px;
+}
+
+.next-btn {
+  right: 20px;
+}
 
 @media (max-width: 640px) {
-  .lightbox-btn { width: 40px; height: 40px; font-size: 1.3rem; }
-  .prev-btn { left: 10px; }
-  .next-btn { right: 10px; }
+  .lightbox-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+  }
+
+  .prev-btn {
+    left: 10px;
+  }
+
+  .next-btn {
+    right: 10px;
+  }
 }
 
 /* Lá/Trái tim rơi */
@@ -290,16 +323,40 @@ body {
 }
 
 @keyframes fallAnimation {
-  0% { transform: translateY(0px) rotate(0deg); opacity: 0.9; }
-  50% { transform: translateY(50vh) rotate(180deg) translateX(15px); }
-  100% { transform: translateY(105vh) rotate(360deg) translateX(-15px); opacity: 0.2; }
+  0% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: translateY(50vh) rotate(180deg) translateX(15px);
+  }
+
+  100% {
+    transform: translateY(105vh) rotate(360deg) translateX(-15px);
+    opacity: 0.2;
+  }
 }
 
 /* HIỆU ỨNG LỐC XOÁY MỞ THIỆP */
 @keyframes tornadoOut {
-  0% { transform: scale(1) rotate(0deg); opacity: 1; filter: blur(0px); }
-  50% { transform: scale(1.1) rotate(180deg); opacity: 0.8; filter: blur(2px); }
-  100% { transform: scale(0) rotate(720deg); opacity: 0; filter: blur(10px); }
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+    filter: blur(0px);
+  }
+
+  50% {
+    transform: scale(1.1) rotate(180deg);
+    opacity: 0.8;
+    filter: blur(2px);
+  }
+
+  100% {
+    transform: scale(0) rotate(720deg);
+    opacity: 0;
+    filter: blur(10px);
+  }
 }
 
 .envelope-wrapper.tornado-active .cover-card {
@@ -322,11 +379,217 @@ body {
 }
 
 @keyframes giftBounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-8px); }
-  60% { transform: translateY(-4px); }
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-8px);
+  }
+
+  60% {
+    transform: translateY(-4px);
+  }
 }
 
 #floatingGiftBtn:hover {
   animation: none;
+}
+
+/* Animation đung đưa nhẹ cho khung ảnh Polaroid */
+@keyframes polaroidSwing {
+  0% {
+    transform: rotate(-3deg) translateY(0px);
+  }
+
+  50% {
+    transform: rotate(-1deg) translateY(-6px);
+  }
+
+  100% {
+    transform: rotate(-3deg) translateY(0px);
+  }
+}
+
+.animate-polaroid-swing {
+  animation: polaroidSwing 6s ease-in-out infinite;
+}
+
+/* Tạm dừng animation khi di chuột vào để người dùng nhìn rõ */
+.animate-polaroid-swing:hover {
+  animation-play-state: paused;
+}
+
+/* Animation đập nhẹ cho con dấu sáp trái tim */
+@keyframes pulseHeart {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.animate-pulse-heart {
+  animation: pulseHeart 2s ease-in-out infinite;
+}
+
+/* Cắt toàn bộ khung ghép thành hình Trái Tim */
+.heart-container {
+  /* Toạ độ SVG Path tạo đường cong trái tim mềm mại */
+  clip-path: path('M 150 270 C 20 180 0 110 0 65 C 0 25 35 0 75 0 C 110 0 135 20 150 45 C 165 20 190 0 225 0 C 265 0 300 25 300 65 C 300 110 280 180 150 270 Z');
+  /* Sử dụng SVG mask để vừa vặn chuẩn tỉ lệ trên mọi thiết bị */
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 270"><path d="M 150 270 C 20 180 0 110 0 65 C 0 25 35 0 75 0 C 110 0 135 20 150 45 C 165 20 190 0 225 0 C 265 0 300 25 300 65 C 300 110 280 180 150 270 Z"/></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 270"><path d="M 150 270 C 20 180 0 110 0 65 C 0 25 35 0 75 0 C 110 0 135 20 150 45 C 165 20 190 0 225 0 C 265 0 300 25 300 65 C 300 110 280 180 150 270 Z"/></svg>');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* --- 1. Tạo hình khuôn Trái Tim --- */
+.heart-container {
+  clip-path: path('M 150 270 C 20 180 0 110 0 65 C 0 25 35 0 75 0 C 110 0 135 20 150 45 C 165 20 190 0 225 0 C 265 0 300 25 300 65 C 300 110 280 180 150 270 Z');
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 270"><path d="M 150 270 C 20 180 0 110 0 65 C 0 25 35 0 75 0 C 110 0 135 20 150 45 C 165 20 190 0 225 0 C 265 0 300 25 300 65 C 300 110 280 180 150 270 Z"/></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 270"><path d="M 150 270 C 20 180 0 110 0 65 C 0 25 35 0 75 0 C 110 0 135 20 150 45 C 165 20 190 0 225 0 C 265 0 300 25 300 65 C 300 110 280 180 150 270 Z"/></svg>');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* --- 2. Animation Nhịp Đập Trái Tim (Heartbeat Animation) --- */
+@keyframes heartBeat {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+
+  12% {
+    transform: scale(1.05) translateY(-4px);
+  }
+
+  24% {
+    transform: scale(1) translateY(0);
+  }
+
+  36% {
+    transform: scale(1.05) translateY(-4px);
+  }
+
+  48% {
+    transform: scale(1) translateY(0);
+  }
+
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+.heart-beat-anim {
+  animation: heartBeat 3s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+/* --- Cấu trúc khuôn Trái Tim --- */
+.heart-container {
+  clip-path: path('M 150 270 C 20 180 0 110 0 65 C 0 25 35 0 75 0 C 110 0 135 20 150 45 C 165 20 190 0 225 0 C 265 0 300 25 300 65 C 300 110 280 180 150 270 Z');
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 270"><path d="M 150 270 C 20 180 0 110 0 65 C 0 25 35 0 75 0 C 110 0 135 20 150 45 C 165 20 190 0 225 0 C 265 0 300 25 300 65 C 300 110 280 180 150 270 Z"/></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 270"><path d="M 150 270 C 20 180 0 110 0 65 C 0 25 35 0 75 0 C 110 0 135 20 150 45 C 165 20 190 0 225 0 C 265 0 300 25 300 65 C 300 110 280 180 150 270 Z"/></svg>');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* --- Hiệu ứng 1: Trái tim nhỏ từ từ bự ra khi xuất hiện (Pop-up/Grow) --- */
+.scroll-reveal {
+  opacity: 0;
+  transform: scale(0.2);
+  /* Bắt đầu với kích thước rất nhỏ */
+  transition: opacity 1.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* Hiệu ứng nảy đàn hồi (bounce) */
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --- Hiệu ứng 2: Chuyển động nhún nhảy liên tục (Spring & Bounce Loop) --- */
+@keyframes heartSpringBounce {
+
+  0%,
+  100% {
+    transform: scale(1) translateY(0);
+  }
+
+  15% {
+    transform: scale(1.06, 0.94) translateY(4px);
+    /* Nhún nén nhẹ xuống */
+  }
+
+  30% {
+    transform: scale(0.95, 1.05) translateY(-8px);
+    /* Bật nảy lên trên */
+  }
+
+  45% {
+    transform: scale(1.03, 0.97) translateY(2px);
+    /* Nhún nhẹ lấy đà */
+  }
+
+  60% {
+    transform: scale(0.98, 1.02) translateY(-2px);
+    /* Nảy nhẹ */
+  }
+
+  75% {
+    transform: scale(1) translateY(0);
+    /* Trở về trạng thái tĩnh */
+  }
+}
+
+/* Kích hoạt nhún lặp lại sau khi trái tim đã nở to hoàn toàn */
+.scroll-reveal.revealed {
+  animation: heartSpringBounce 2.5s ease-in-out infinite 1.2s;
+  /* Chờ 1.2s bự ra xong rồi mới nhún */
+}
+
+/* Tạm dừng nhún khi di chuột vào để người dùng bấm xem ảnh dễ dàng */
+.heart-container:hover {
+  animation-play-state: paused !important;
+}
+
+/* Icon trái tim nhỏ giữa tâm nhún nhẹ theo */
+@keyframes miniPulse {
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.25);
+  }
+}
+
+.mini-pulse {
+  animation: miniPulse 1.2s ease-in-out infinite;
+}
+
+.font-script {
+  font-family: 'Great Vibes', cursive;
+}
+
+.font-wedding {
+  font-family: 'Great Vibes', cursive;
 }
