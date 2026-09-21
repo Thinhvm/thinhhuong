@@ -2,21 +2,21 @@
 // 1. DATA ALBUM ẢNH & THÔNG SỐ EMAILJS
 // ==========================================
 const albumImages = [
-    'img/ANH BAN (4)_1.jpg',
-    'img/Cong2.jpg',
-    'img/ANH BAN (1)_1.jpg',
-    'img/DOJ_6227_1.jpg',
-    'img/DOJ_6851_1.jpg',
-    'img/DOJ_7032_1.jpg',
-    'img/DOJ_6149_1.jpg',
-    'img/DOJ_6509_1.jpg',
-    'img/DOJ_7063_1.jpg'
+    'image/ANH BAN (4)_1.jpg',
+    'image/Cong2.webp',
+    'image/ANH BAN (1)_1.webp',
+    'image/DOJ_6227_1.webp',
+    'image/DOJ_6851_1.webp',
+    'image/DOJ_7032_1.webp',
+    'image/DOJ_6149_1.webp',
+    'image/DOJ_6509_1.webp',
+    'image/DOJ_7063_1.webp'
 ];
 
 const EMAILJS_SERVICE_ID = "service_sot14yp";
 const EMAILJS_TEMPLATE_ID = "template_mfogq2l";
 
-let currentImgIndex = 0;
+let currentimageIndex = 0;
 let autoplayTimer = null;
 const AUTOPLAY_DELAY = 3000;
 
@@ -50,7 +50,7 @@ function updateCarousel() {
 
     cards.forEach((card, i) => {
         card.className = 'carousel-card';
-        let diff = i - currentImgIndex;
+        let diff = i - currentimageIndex;
 
         if (diff < -Math.floor(total / 2)) diff += total;
         if (diff > Math.floor(total / 2)) diff -= total;
@@ -72,9 +72,9 @@ function createDots() {
     dotsContainer.innerHTML = '';
     albumImages.forEach((_, idx) => {
         const dot = document.createElement('span');
-        dot.className = `carousel-dot ${idx === currentImgIndex ? 'active' : ''}`;
+        dot.className = `carousel-dot ${idx === currentimageIndex ? 'active' : ''}`;
         dot.onclick = () => {
-            currentImgIndex = idx;
+            currentimageIndex = idx;
             updateCarousel();
             resetAutoplay();
         };
@@ -85,29 +85,29 @@ function createDots() {
 function updateDots() {
     const dots = document.querySelectorAll('.carousel-dot');
     dots.forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === currentImgIndex);
+        dot.classList.toggle('active', idx === currentimageIndex);
     });
 }
 
 function nextSlide(e) {
     if (e) e.stopPropagation();
-    currentImgIndex = (currentImgIndex + 1) % albumImages.length;
+    currentimageIndex = (currentimageIndex + 1) % albumImages.length;
     updateCarousel();
     if (e) resetAutoplay();
 }
 
 function prevSlide(e) {
     if (e) e.stopPropagation();
-    currentImgIndex = (currentImgIndex - 1 + albumImages.length) % albumImages.length;
+    currentimageIndex = (currentimageIndex - 1 + albumImages.length) % albumImages.length;
     updateCarousel();
     if (e) resetAutoplay();
 }
 
 function onCardClick(index) {
-    if (index === currentImgIndex) {
+    if (index === currentimageIndex) {
         openLightbox(index);
     } else {
-        currentImgIndex = index;
+        currentimageIndex = index;
         updateCarousel();
         resetAutoplay();
     }
@@ -178,31 +178,35 @@ function addToCalendar() {
 function openLightbox(srcOrIndex) {
     stopAutoplay();
     const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboximage = document.getElementById('lightboximage');
 
-    if (!lightbox || !lightboxImg) return;
+    if (!lightbox || !lightboximage) return;
 
-    currentImgIndex = (typeof srcOrIndex === 'number') ? srcOrIndex : currentImgIndex;
-    lightboxImg.src = (typeof srcOrIndex === 'number') ? albumImages[currentImgIndex] : srcOrIndex;
+    if (typeof srcOrIndex === 'string') {
+        lightboximage.src = srcOrIndex;
+    } else if (typeof srcOrIndex === 'number') {
+        currentimageIndex = srcOrIndex;
+        lightboximage.src = albumImages[currentimageIndex];
+    }
 
-    lightboxImg.classList.remove('zoom-in');
+    lightboximage.classList.remove('zoom-in');
     lightbox.classList.remove('hidden');
     lightbox.classList.add('flex', 'active');
 
-    setTimeout(() => lightboxImg.classList.add('zoom-in'), 50);
+    setTimeout(() => lightboximage.classList.add('zoom-in'), 50);
 }
 
 function changeImage(step, event) {
     if (event) event.stopPropagation();
 
-    const lightboxImg = document.getElementById('lightboxImg');
-    if (!lightboxImg) return;
+    const lightboximage = document.getElementById('lightboximage');
+    if (!lightboximage) return;
 
-    lightboxImg.classList.remove('zoom-in');
+    lightboximage.classList.remove('zoom-in');
     setTimeout(() => {
-        currentImgIndex = (currentImgIndex + step + albumImages.length) % albumImages.length;
-        lightboxImg.src = albumImages[currentImgIndex];
-        lightboxImg.classList.add('zoom-in');
+        currentimageIndex = (currentimageIndex + step + albumImages.length) % albumImages.length;
+        lightboximage.src = albumImages[currentimageIndex];
+        lightboximage.classList.add('zoom-in');
         updateCarousel();
     }, 150);
 }
@@ -214,9 +218,9 @@ function closeLightbox(event) {
 
 function closeLightboxForce() {
     const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboximage = document.getElementById('lightboximage');
 
-    if (lightboxImg) lightboxImg.classList.remove('zoom-in');
+    if (lightboximage) lightboximage.classList.remove('zoom-in');
 
     setTimeout(() => {
         if (lightbox) {
@@ -396,7 +400,7 @@ if (openBtn) {
 }
 
 // ==========================================
-// 11. KHỞI CHẠY TRANG
+// 11. KHỞI CHẠY TRANG & SCROLL OBSERVER
 // ==========================================
 window.addEventListener('DOMContentLoaded', () => {
     initFallingLeaves();
@@ -410,39 +414,13 @@ window.addEventListener('DOMContentLoaded', () => {
         carouselContainer.addEventListener('mouseenter', stopAutoplay);
         carouselContainer.addEventListener('mouseleave', startAutoplay);
     }
-});
-function openLightbox(srcOrIndex) {
-    stopAutoplay();
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
 
-    if (!lightbox || !lightboxImg) return;
-
-    if (typeof srcOrIndex === 'string') {
-        // Nếu truyền vào đường dẫn trực tiếp (ví dụ 'image/Cong1.webp')
-        lightboxImg.src = srcOrIndex;
-    } else if (typeof srcOrIndex === 'number') {
-        // Nếu truyền vào chỉ số album (index)
-        currentImgIndex = srcOrIndex;
-        lightboxImg.src = albumImages[currentImgIndex];
-    }
-
-    lightboxImg.classList.remove('zoom-in');
-    lightbox.classList.remove('hidden');
-    lightbox.classList.add('flex', 'active');
-
-    setTimeout(() => lightboxImg.classList.add('zoom-in'), 50);
-}
-document.addEventListener("DOMContentLoaded", function () {
-    const observerOptions = {
-        threshold: 0.2 // Kích hoạt khi cuộn thấy 20% khung hình
-    };
-
+    const observerOptions = { threshold: 0.2 };
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('revealed');
-                observer.unobserve(entry.target); // Chỉ chạy hiệu ứng xuất hiện 1 lần
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
