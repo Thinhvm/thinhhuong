@@ -5,17 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Tiêu đề & Mô tả -->
     <title>Thiệp Cưới Minh Thịnh & Huỳnh Hương</title>
+    <meta name="description" content="Chúng mình sắp về chung một nhà! Rất hân hạnh được đón tiếp quý khách." />
+
+    <!-- Open Graph / Facebook / Zalo -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://thinhvm.github.io/thinhhuong/" />
     <meta property="og:title" content="Thiệp Cưới Minh Thịnh & Huỳnh Hương" />
     <meta property="og:description" content="Chúng mình sắp về chung một nhà! Rất hân hạnh được đón tiếp quý khách." />
-    <meta property="og:url" content="https://thinhvm.github.io/thinhhuong/" />
-    <meta property="og:type" content="website" />
     <meta property="og:image" content="https://thinhvm.github.io/thinhhuong/image/DOJ_6485_1.jpg" />
+    <meta property="og:image:secure_url" content="https://thinhvm.github.io/thinhhuong/image/DOJ_6485_1.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://thinhvm.github.io/thinhhuong/image/10 (1).jpg" />
+    <meta name="twitter:title" content="Thiệp Cưới Minh Thịnh & Huỳnh Hương" />
+    <meta name="twitter:description" content="Chúng mình sắp về chung một nhà! Rất hân hạnh được đón tiếp quý khách." />
+    <meta name="twitter:image" content="https://thinhvm.github.io/thinhhuong/image/DOJ_6485_1.jpg" />
 
 
     <!-- Tailwind CSS CDN -->
@@ -72,109 +81,111 @@
         <i id="musicIcon" class="fa-solid fa-music"></i>
     </button>
 
-<!-- MÀN HÌNH BÌA / MỞ THIỆP -->
-<div id="coverScreen"
-    class="fixed inset-0 z-40 bg-[#f5efeb] flex items-center justify-center p-3 sm:p-4 transition-all duration-700">
+    <!-- MÀN HÌNH BÌA / MỞ THIỆP -->
+    <div id="coverScreen"
+        class="fixed inset-0 z-40 bg-[#f5efeb] flex items-center justify-center p-3 sm:p-4 transition-all duration-700">
 
-    <!-- Giảm max-width xuống max-w-md (di động) và max-w-xl (máy tính) để cân đối -->
-    <div id="envelopeWrapper" class="envelope-wrapper relative w-full max-w-md sm:max-w-xl mx-auto">
+        <!-- Giảm max-width xuống max-w-md (di động) và max-w-xl (máy tính) để cân đối -->
+        <div id="envelopeWrapper" class="envelope-wrapper relative w-full max-w-md sm:max-w-xl mx-auto">
 
-        <!-- NẮP BAO THƯ -->
-        <div
-            class="envelope-flap absolute top-0 inset-x-0 h-12 sm:h-16 z-30 pointer-events-none origin-top transition-transform duration-700 ease-in-out">
-            <svg class="w-full h-full drop-shadow-md" viewBox="0 0 700 80" preserveAspectRatio="none">
-                <path d="M0,0 L350,75 L700,0 Z" fill="#f5efeb" stroke="#ceaf8d" stroke-width="1.5" />
-            </svg>
-        </div>
-
-        <!-- THẺ THIỆP BÌA: Di động tỷ lệ 3:4 (đứng hơn), Màn hình lớn dùng tỷ lệ 3:2 -->
-        <div id="coverCard"
-            class="cover-card relative w-full aspect-[3/4] sm:aspect-[3/2] bg-[#fbf8f3] rounded-2xl sm:rounded-3xl p-3 sm:p-6 pt-8 sm:pt-12 text-center border-2 border-[#ceaf8d]/60 shadow-[0_20px_50px_rgba(92,77,66,0.25)] overflow-hidden flex flex-col justify-between items-center transition-all duration-1000 ease-in-out">
-
-            <!-- Lựa chọn A: Nền phủ tràn -->
-            <img src="image/DOJ_6641_1.webp" alt="Nền thiệp cưới"
-                class="absolute inset-0 w-full h-full object-cover object-top opacity-85 pointer-events-none" />
-
-            <!-- LỚP MỜ ĐỂ CHỮ NỔI BẬT DỄ ĐỌC HƠN -->
-            <div class="absolute inset-0 bg-white/25 pointer-events-none"></div>
-
-            <!-- VIỀN TRONG THIỆP -->
-            <div class="absolute inset-2 sm:inset-3 border border-[#ceaf8d]/60 rounded-xl sm:rounded-[1.25rem] pointer-events-none z-10">
+            <!-- NẮP BAO THƯ -->
+            <div
+                class="envelope-flap absolute top-0 inset-x-0 h-12 sm:h-16 z-30 pointer-events-none origin-top transition-transform duration-700 ease-in-out">
+                <svg class="w-full h-full drop-shadow-md" viewBox="0 0 700 80" preserveAspectRatio="none">
+                    <path d="M0,0 L350,75 L700,0 Z" fill="#f5efeb" stroke="#ceaf8d" stroke-width="1.5" />
+                </svg>
             </div>
 
-            <!-- NỘI DUNG CHÍNH -->
-            <div class="cover-content relative z-20 space-y-1 sm:space-y-2.5 my-auto w-full px-1 sm:px-2">
+            <!-- THẺ THIỆP BÌA: Di động tỷ lệ 3:4 (đứng hơn), Màn hình lớn dùng tỷ lệ 3:2 -->
+            <div id="coverCard"
+                class="cover-card relative w-full aspect-[3/4] sm:aspect-[3/2] bg-[#fbf8f3] rounded-2xl sm:rounded-3xl p-3 sm:p-6 pt-8 sm:pt-12 text-center border-2 border-[#ceaf8d]/60 shadow-[0_20px_50px_rgba(92,77,66,0.25)] overflow-hidden flex flex-col justify-between items-center transition-all duration-1000 ease-in-out">
+
+                <!-- Lựa chọn A: Nền phủ tràn -->
+                <img src="image/DOJ_6479_1.webp" alt="Nền thiệp cưới"
+                    class="absolute inset-0 w-full h-full object-cover object-top opacity-85 pointer-events-none" />
+
+                <!-- LỚP MỜ ĐỂ CHỮ NỔI BẬT DỄ ĐỌC HƠN -->
+                <div class="absolute inset-0 bg-white/25 pointer-events-none"></div>
+
+                <!-- VIỀN TRONG THIỆP -->
                 <div
-                    class="heart inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/80 text-brand-700 text-xs sm:text-sm floating shadow-md backdrop-blur-sm">
-                    ♥
+                    class="absolute inset-2 sm:inset-3 border border-[#ceaf8d]/60 rounded-xl sm:rounded-[1.25rem] pointer-events-none z-10">
                 </div>
 
-                <p
-                    class="uppercase tracking-[0.25em] sm:tracking-[0.3em] text-[9px] sm:text-xs text-brand-900 font-bold drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)]">
-                    THIỆP MỜI
-                </p>
-
-                <!-- Tên Chú Rể (Căn trái) -->
-                <div class="text-left pl-2 sm:pl-4">
-                    <h2
-                        class="font-wedding text-3xl sm:text-5xl text-brand-900 font-normal tracking-wide inline-block drop-shadow-sm leading-tight sm:leading-snug">
-                        Huỳnh Hương
-                    </h2>
-                </div>
-
-                <!-- Biểu tượng & (Căn giữa) -->
-                <div class="relative z-10 flex items-center justify-center space-x-2 sm:space-x-3 py-0.5 sm:py-1">
-                    <span class="h-px w-8 sm:w-12 bg-brand-300"></span>
-                    <span
-                        class="font-wedding text-2xl sm:text-4xl text-rose-500 font-normal hover:scale-125 transition-transform duration-300 inline-block">
-                        &amp;
-                    </span>
-                    <span class="h-px w-8 sm:w-12 bg-brand-300"></span>
-                </div>
-
-                <!-- Tên Cô Dâu (Căn phải) -->
-                <div class="text-right pr-2 sm:pr-4">
-                    <h2
-                        class="font-wedding text-3xl sm:text-5xl text-brand-900 font-normal tracking-wide inline-block drop-shadow-sm leading-tight sm:leading-snug">
-                        Minh Thịnh
-                    </h2>
-                </div>
-
-                <div class="mini-line flex items-center justify-center space-x-2 sm:space-x-3 text-brand-600 my-0.5">
-                    <span class="h-px w-8 sm:w-20 bg-brand-600/60"></span>
-                    <b class="text-[10px] sm:text-xs">❦</b>
-                    <span class="h-px w-8 sm:w-20 bg-brand-600/60"></span>
-                </div>
-
-                <!-- NGÀY THÁNG -->
-                <div
-                    class="flex flex-col sm:flex-row items-center justify-center space-y-0.5 sm:space-y-0 sm:space-x-2">
+                <!-- NỘI DUNG CHÍNH -->
+                <div class="cover-content relative z-20 space-y-1 sm:space-y-2.5 my-auto w-full px-1 sm:px-2">
                     <div
-                        class="cover-lunar text-xs sm:text-base font-bold tracking-wider text-brand-900 uppercase drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)]">
-                        12.12.2026
+                        class="heart inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/80 text-brand-700 text-xs sm:text-sm floating shadow-md backdrop-blur-sm">
+                        ♥
                     </div>
-                    <span class="hidden sm:inline text-brand-800">•</span>
+
+                    <p
+                        class="uppercase tracking-[0.25em] sm:tracking-[0.3em] text-[9px] sm:text-xs text-brand-900 font-bold drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)]">
+                        THIỆP MỜI
+                    </p>
+
+                    <!-- Tên Chú Rể (Căn trái) -->
+                    <div class="text-left pl-2 sm:pl-4">
+                        <h2
+                            class="font-wedding text-3xl sm:text-5xl text-brand-900 font-normal tracking-wide inline-block drop-shadow-sm leading-tight sm:leading-snug">
+                            Huỳnh Hương
+                        </h2>
+                    </div>
+
+                    <!-- Biểu tượng & (Căn giữa) -->
+                    <div class="relative z-10 flex items-center justify-center space-x-2 sm:space-x-3 py-0.5 sm:py-1">
+                        <span class="h-px w-8 sm:w-12 bg-brand-300"></span>
+                        <span
+                            class="font-wedding text-2xl sm:text-4xl text-rose-500 font-normal hover:scale-125 transition-transform duration-300 inline-block">
+                            &amp;
+                        </span>
+                        <span class="h-px w-8 sm:w-12 bg-brand-300"></span>
+                    </div>
+
+                    <!-- Tên Cô Dâu (Căn phải) -->
+                    <div class="text-right pr-2 sm:pr-4">
+                        <h2
+                            class="font-wedding text-3xl sm:text-5xl text-brand-900 font-normal tracking-wide inline-block drop-shadow-sm leading-tight sm:leading-snug">
+                            Minh Thịnh
+                        </h2>
+                    </div>
+
                     <div
-                        class="cover-lunar text-[8px] sm:text-xs tracking-wider text-brand-800 font-semibold uppercase drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)]">
-                        ( Tức Ngày 04 Tháng 11 năm Bính Ngọ)
+                        class="mini-line flex items-center justify-center space-x-2 sm:space-x-3 text-brand-600 my-0.5">
+                        <span class="h-px w-8 sm:w-20 bg-brand-600/60"></span>
+                        <b class="text-[10px] sm:text-xs">❦</b>
+                        <span class="h-px w-8 sm:w-20 bg-brand-600/60"></span>
                     </div>
-                </div>
 
-                <div
-                    class="invite-text font-script text-base sm:text-2xl text-brand-900 font-medium drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)] pt-0.5">
-                    Thân Mời Đến Dự Buổi Tiệc
-                </div>
+                    <!-- NGÀY THÁNG -->
+                    <div
+                        class="flex flex-col sm:flex-row items-center justify-center space-y-0.5 sm:space-y-0 sm:space-x-2">
+                        <div
+                            class="cover-lunar text-xs sm:text-base font-bold tracking-wider text-brand-900 uppercase drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)]">
+                            12.12.2026
+                        </div>
+                        <span class="hidden sm:inline text-brand-800">•</span>
+                        <div
+                            class="cover-lunar text-[8px] sm:text-xs tracking-wider text-brand-800 font-semibold uppercase drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)]">
+                            ( Tức Ngày 04 Tháng 11 năm Bính Ngọ)
+                        </div>
+                    </div>
 
-                <div class="pt-1 sm:pt-2">
-                    <button id="openInvitation"
-                        class="open-btn px-5 sm:px-8 py-1.5 sm:py-2.5 bg-[#5c4d42] hover:bg-[#4e372b] text-white font-medium rounded-full shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5 transition-all duration-200 tracking-wider text-[10px] sm:text-xs uppercase">
-                        <i class="fa-regular fa-envelope-open mr-1.5"></i> Mở thiệp cưới
-                    </button>
+                    <div
+                        class="invite-text font-script text-base sm:text-2xl text-brand-900 font-medium drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)] pt-0.5">
+                        Thân Mời Đến Dự Buổi Tiệc
+                    </div>
+
+                    <div class="pt-1 sm:pt-2">
+                        <button id="openInvitation"
+                            class="open-btn px-5 sm:px-8 py-1.5 sm:py-2.5 bg-[#5c4d42] hover:bg-[#4e372b] text-white font-medium rounded-full shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5 transition-all duration-200 tracking-wider text-[10px] sm:text-xs uppercase">
+                            <i class="fa-regular fa-envelope-open mr-1.5"></i> Mở thiệp cưới
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
     <!-- NỘI DUNG THIỆP -->
     <div id="invitation"
