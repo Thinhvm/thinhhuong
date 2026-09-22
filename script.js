@@ -1,8 +1,8 @@
 // ==========================================
-// 1. DATA ALBUM ẢNH & THÔNG SỐ EMAILJS
+// 1. DATA ALBUM ẢNH
 // ==========================================
 const albumImages = [
-    'image/ANH BAN (4)_1.jpg',
+    'image/ANH BAN (4)_1.webp',
     'image/Cong2.webp',
     'image/ANH BAN (1)_1.webp',
     'image/DOJ_6227_1.webp',
@@ -12,9 +12,6 @@ const albumImages = [
     'image/DOJ_6509_1.webp',
     'image/DOJ_7063_1.webp'
 ];
-
-const EMAILJS_SERVICE_ID = "service_sot14yp";
-const EMAILJS_TEMPLATE_ID = "template_mfogq2l";
 
 let currentimageIndex = 0;
 let autoplayTimer = null;
@@ -173,7 +170,7 @@ function addToCalendar() {
 }
 
 // ==========================================
-// 7. LIGHTBOX ALBUM (ZOOM-IN)
+// 7. LIGHTBOX ALBUM (ZOOM-IN & ĐÃ SỬA LỖI)
 // ==========================================
 function openLightbox(srcOrIndex) {
     stopAutoplay();
@@ -184,6 +181,11 @@ function openLightbox(srcOrIndex) {
 
     if (typeof srcOrIndex === 'string') {
         lightboximage.src = srcOrIndex;
+        // Tự động đồng bộ index nếu ảnh có trong danh sách albumImages
+        const foundIdx = albumImages.indexOf(srcOrIndex);
+        if (foundIdx !== -1) {
+            currentimageIndex = foundIdx;
+        }
     } else if (typeof srcOrIndex === 'number') {
         currentimageIndex = srcOrIndex;
         lightboximage.src = albumImages[currentimageIndex];
@@ -241,7 +243,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ==========================================
-// 8. RSVP & MODAL HỘP QUÀ + GỬI MAIL RSVP
+// 8. RSVP & MODAL HỘP QUÀ (ĐÃ BỎ MAIL)
 // ==========================================
 function openRSVPModal() {
     const rsvpModal = document.getElementById('rsvpModal');
@@ -255,36 +257,9 @@ function closeRSVPModal() {
 
 function submitRSVP(e) {
     e.preventDefault();
-    const form = e.target;
-    const name = form.querySelector('input[type="text"]').value.trim();
-    const guestOf = form.querySelector('select').value;
-    const attend = form.querySelector('input[name="attend"]:checked').value === 'yes' 
-        ? "Chắc chắn sẽ đến tham dự" 
-        : "Rất tiếc không thể đến dự";
-
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerText;
-    submitBtn.innerText = "ĐANG XÁC NHẬN...";
-    submitBtn.disabled = true;
-
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-        from_name: name,
-        type: "Xác nhận tham dự (RSVP)",
-        message: `Khách của: ${guestOf}\nTrạng thái: ${attend}`
-    })
-    .then(() => {
-        alert("Cảm ơn bạn đã phản hồi! Rất hân hạnh được đón tiếp bạn.");
-        closeRSVPModal();
-        form.reset();
-    })
-    .catch((error) => {
-        console.error("Lỗi gửi RSVP:", error);
-        alert("Có lỗi xảy ra khi gửi RSVP. Vui lòng thử lại sau!");
-    })
-    .finally(() => {
-        submitBtn.innerText = originalText;
-        submitBtn.disabled = false;
-    });
+    alert("Cảm ơn bạn đã phản hồi! Rất hân hạnh được đón tiếp bạn.");
+    closeRSVPModal();
+    e.target.reset();
 }
 
 function toggleGiftModal() {
@@ -293,7 +268,7 @@ function toggleGiftModal() {
 }
 
 // ==========================================
-// 9. LỜI CHÚC: LƯU LOCALSTORAGE & GỬI MAIL
+// 9. LỜI CHÚC: LƯU LOCALSTORAGE (ĐÃ BỎ MAIL)
 // ==========================================
 const wishForm = document.getElementById('wishForm');
 const messagesList = document.getElementById('messagesList');
@@ -328,36 +303,16 @@ if (wishForm) {
         const wish = wishInput ? wishInput.value.trim() : '';
 
         if (name && wish) {
-            const submitBtn = wishForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerText;
-            submitBtn.innerText = "ĐANG GỬI...";
-            submitBtn.disabled = true;
+            const now = new Date();
+            const timeStr = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
+            const savedWishes = JSON.parse(localStorage.getItem('wedding_wishes')) || defaultWishes;
 
-            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-                from_name: name,
-                type: "Lời chúc mới",
-                message: wish
-            })
-            .then(() => {
-                const now = new Date();
-                const timeStr = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
-                const savedWishes = JSON.parse(localStorage.getItem('wedding_wishes')) || defaultWishes;
+            savedWishes.unshift({ name, wish, time: timeStr });
+            localStorage.setItem('wedding_wishes', JSON.stringify(savedWishes));
 
-                savedWishes.unshift({ name, wish, time: timeStr });
-                localStorage.setItem('wedding_wishes', JSON.stringify(savedWishes));
-
-                renderWishes();
-                wishForm.reset();
-                alert("Cảm ơn bạn đã gửi lời chúc ý nghĩa!");
-            })
-            .catch((error) => {
-                console.error("Lỗi gửi lời chúc:", error);
-                alert("Có lỗi xảy ra khi gửi lời chúc. Vui lòng thử lại!");
-            })
-            .finally(() => {
-                submitBtn.innerText = originalText;
-                submitBtn.disabled = false;
-            });
+            renderWishes();
+            wishForm.reset();
+            alert("Cảm ơn bạn đã gửi lời chúc ý nghĩa!");
         }
     });
 }
