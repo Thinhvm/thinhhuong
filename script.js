@@ -110,27 +110,7 @@ function onCardClick(index) {
     }
 }
 
-// ==========================================
-// 4. HIỆU ỨNG LÁ/TRÁI TIM RƠI
-// ==========================================
-function initFallingLeaves() {
-    const container = document.getElementById('fallingLeavesContainer');
-    if (!container) return;
 
-    const fragment = document.createDocumentFragment();
-    const heartIcons = ['❤️', '💖', '💕', '💗', '🌸', '❣'];
-    
-    for (let i = 0; i < 15; i++) {
-        const leaf = document.createElement('span');
-        leaf.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
-        leaf.style.left = (Math.random() * 90 + 5) + '%';
-        leaf.style.animationDuration = (Math.random() * 4 + 5) + 's';
-        leaf.style.animationDelay = (Math.random() * 5) + 's';
-        leaf.style.fontSize = (Math.random() * 8 + 12) + 'px';
-        fragment.appendChild(leaf);
-    }
-    container.appendChild(fragment);
-}
 
 // ==========================================
 // 5. BẬT / TẮT NHẠC NỀN
@@ -385,30 +365,58 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 });
 // ==========================================
-// HIỆU ỨNG BÓNG BAY TỪ DƯỚI LÊN
+// 4. HIỆU ỨNG TRÁI TIM RƠI (ĐÃ GIẢM SỐ LƯỢNG)
+// ==========================================
+function initFallingLeaves() {
+    const container = document.getElementById('fallingLeavesContainer');
+    if (!container) return;
+
+    const fragment = document.createDocumentFragment();
+    // Loại bỏ hoa '🌸', chỉ giữ lại các icon Trái tim
+    const heartIcons = ['❤️', '💖', '💕', '💗'];
+    
+    // Giảm từ 15 xuống 7-8 trái tim rơi
+    for (let i = 0; i < 7; i++) {
+        const leaf = document.createElement('span');
+        leaf.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+        leaf.style.left = (Math.random() * 90 + 5) + '%';
+        // Tăng thời gian rơi thong thả hơn (từ 6s đến 11s)
+        leaf.style.animationDuration = (Math.random() * 5 + 6) + 's';
+        // Giãn khoảng cách thời gian xuất hiện (độ trễ đến 7s)
+        leaf.style.animationDelay = (Math.random() * 7) + 's';
+        leaf.style.fontSize = (Math.random() * 6 + 12) + 'px';
+        fragment.appendChild(leaf);
+    }
+    container.appendChild(fragment);
+}
+
+// ==========================================
+// HIỆU ỨNG TRÁI TIM BAY TỪ DƯỚI LÊN (ĐÃ GIẢM SỐ LƯỢNG)
 // ==========================================
 function initBalloons() {
     const container = document.getElementById('balloonsContainer');
     if (!container) return;
 
-    const balloonIcons = ['🎈', '🎈', '💖', '🎈', '❤️', '🎈'];
+    // Chỉ giữ lại các icon Trái tim nhẹ nhàng
+    const heartIcons = ['❤️', '💖', '💕', '💗'];
     const fragment = document.createDocumentFragment();
 
-    for (let i = 0; i < 18; i++) {
+    // Giảm từ 15 xuống 6-7 trái tim bay lên
+    for (let i = 0; i < 6; i++) {
         const balloon = document.createElement('span');
-        balloon.innerHTML = balloonIcons[Math.floor(Math.random() * balloonIcons.length)];
+        balloon.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
         
-        // Vị trí xuất hiện ngẫu nhiên theo chiều ngang (0 - 100%)
+        // Vị trí xuất hiện ngẫu nhiên theo chiều ngang
         balloon.style.left = (Math.random() * 92 + 4) + '%';
         
-        // Thời gian bay ngẫu nhiên (từ 7s đến 13s)
-        balloon.style.animationDuration = (Math.random() * 6 + 7) + 's';
+        // Thời gian bay chậm rãi hơn (từ 9s đến 15s)
+        balloon.style.animationDuration = (Math.random() * 6 + 9) + 's';
         
-        // Đô trễ xuất hiện ngẫu nhiên
-        balloon.style.animationDelay = (Math.random() * 6) + 's';
+        // Tăng độ trễ xuất hiện để không bị tập trung một lúc (đến 8s)
+        balloon.style.animationDelay = (Math.random() * 8) + 's';
         
-        // Kích thước bong bóng ngẫu nhiên (18px đến 34px)
-        balloon.style.fontSize = (Math.random() * 16 + 18) + 'px';
+        // Kích thước vừa phải (16px đến 24px)
+        balloon.style.fontSize = (Math.random() * 8 + 16) + 'px';
         
         fragment.appendChild(balloon);
     }
