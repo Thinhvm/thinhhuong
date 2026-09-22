@@ -60,7 +60,7 @@
 
     <!-- Lá bay nền -->
     <div class="falling-leaves" id="fallingLeavesContainer"></div>
-<!-- Bong bóng bay từ dưới lên -->
+    <!-- Bong bóng bay từ dưới lên -->
     <div class="floating-balloons" id="balloonsContainer"></div>
 
     <!-- NHẠC CƯỚI -->
@@ -134,32 +134,56 @@
         class="invitation max-w-xl mx-auto px-4 py-8 space-y-12 opacity-0 transition-opacity duration-1000">
 
         <!-- HERO SECTION -->
-        <section
-            class="hero bg-[#fbf8f3] rounded-3xl p-6 md:p-10 card-shadow border border-brand-200 text-center relative overflow-hidden paper-bg">
-            <div class="hero-content relative z-10 space-y-4">
-                <div class="small-title tracking-[0.3em] uppercase text-xs font-medium text-brand-600 font-serif">THE
-                    WEDDING OF</div>
+       <section
+    class="hero bg-[#fbf8f3] rounded-3xl p-6 md:p-10 card-shadow border border-brand-200 text-center relative overflow-hidden paper-bg">
+    <div class="hero-content relative z-10 space-y-4">
+        <div class="small-title tracking-[0.3em] uppercase text-xs font-medium text-brand-600 font-serif">
+            THE WEDDING OF
+        </div>
 
-                <div
-                    class="relative max-w-[280px] sm:max-w-[320px] mx-auto my-6 p-2 bg-[#fbf8f3] border-2 border-[#ceaf8d]/60 shadow-md rounded-2xl">
-                    <div class="relative w-full p-1.5 border border-[#ceaf8d]/40 rounded-xl">
-                        <div class="w-full aspect-[3/4] overflow-hidden"
-                            style="mask-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 130%22><path d=%22M15 0 C15 8 5 8 5 15 L5 115 C5 122 15 122 15 130 L85 130 C85 122 95 122 95 115 L95 15 C95 8 85 8 85 0 Z%22 fill=%22black%22/></svg>'); mask-size: 100% 100%; -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 130%22><path d=%22M15 0 C15 8 5 8 5 15 L5 115 C5 122 15 122 15 130 L85 130 C85 122 95 122 95 115 L95 15 C95 8 85 8 85 0 Z%22 fill=%22black%22/></svg>'); -webkit-mask-size: 100% 100%;">
-                            <img src="image/Cong1.webp" alt="Ảnh cưới Minh Thịnh & Huỳnh Hương"
-                                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700 ease-in-out" />
-                        </div>
-                    </div>
+        <!-- Tên Chú Rể (Căn trái) -->
+        <div class="text-left pl-2 sm:pl-4">
+            <h2 class="font-wedding text-4xl sm:text-5xl text-brand-900 font-normal tracking-wide inline-block drop-shadow-sm leading-snug">
+                Minh Thịnh
+            </h2>
+        </div>
+
+        <!-- Biểu tượng & (Căn giữa) -->
+        <div class="relative z-10 flex items-center justify-center space-x-3 py-1">
+            <span class="h-px w-12 bg-brand-300"></span>
+            <span class="font-wedding text-3xl sm:text-4xl text-rose-500 font-normal hover:scale-125 transition-transform duration-300 inline-block">
+                &amp;
+            </span>
+            <span class="h-px w-12 bg-brand-300"></span>
+        </div>
+
+        <!-- Tên Cô Dâu (Căn phải) -->
+        <div class="text-right pr-2 sm:pr-4">
+            <h2 class="font-wedding text-4xl sm:text-5xl text-brand-900 font-normal tracking-wide inline-block drop-shadow-sm leading-snug">
+                Huỳnh Hương
+            </h2>
+        </div> <!-- ĐÃ ĐÓNG THẺ TẠI ĐÂY -->
+
+        <!-- Khung Ảnh (Căn giữa) -->
+        <div class="relative max-w-[280px] sm:max-w-[320px] mx-auto my-6 p-2 bg-[#fbf8f3] border-2 border-[#ceaf8d]/60 shadow-md rounded-2xl">
+            <div class="relative w-full p-1.5 border border-[#ceaf8d]/40 rounded-xl">
+                <div class="w-full aspect-[3/4] overflow-hidden"
+                    style="mask-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 130%22><path d=%22M15 0 C15 8 5 8 5 15 L5 115 C5 122 15 122 15 130 L85 130 C85 122 95 122 95 115 L95 15 C95 8 85 8 85 0 Z%22 fill=%22black%22/></svg>'); mask-size: 100% 100%; -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 130%22><path d=%22M15 0 C15 8 5 8 5 15 L5 115 C5 122 15 122 15 130 L85 130 C85 122 95 122 95 115 L95 15 C95 8 85 8 85 0 Z%22 fill=%22black%22/></svg>'); -webkit-mask-size: 100% 100%;">
+                    <img src="image/Cong1.webp" alt="Ảnh cưới Minh Thịnh & Huỳnh Hương"
+                        class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700 ease-in-out" />
                 </div>
-
-                <p class="hero-subtitle italic text-xs text-brand-600">"Chúng mình sắp về chung một nhà!"</p>
-
-
-
-                <div class="cover-lunar text-lg font-bold tracking-wider text-brand-800 uppercase">12.12.2026</div>
-                <p class="lunar text-xs text-brand-600 uppercase font-medium tracking-wider">( Tức Ngày 04 Tháng 11 năm
-                    Bính Ngọ)</p>
             </div>
-        </section>
+        </div>
+
+        <!-- Các đoạn Text phía dưới (Căn giữa chuẩn) -->
+        <p class="hero-subtitle italic text-xs text-brand-600">"Chúng mình sắp về chung một nhà!"</p>
+
+        <div class="cover-lunar text-lg font-bold tracking-wider text-brand-800 uppercase">12.12.2026</div>
+        <p class="lunar text-xs text-brand-600 uppercase font-medium tracking-wider">
+            ( Tức Ngày 04 Tháng 11 năm Bính Ngọ)
+        </p>
+    </div>
+</section>
 
         <!-- OUR STORY SECTION -->
         <section
