@@ -558,3 +558,48 @@ body {
 .font-wedding {
   font-family: 'Great Vibes', cursive;
 }
+/* --- BONG BÓNG BAY TỪ DƯỚI LÊN --- */
+#balloonsContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9998;
+  overflow: hidden;
+}
+
+#balloonsContainer span {
+  position: absolute;
+  bottom: -60px; /* Bắt đầu từ dưới màn hình */
+  display: inline-block;
+  animation-name: balloonRiseAnimation;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+  filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.15));
+}
+
+@keyframes balloonRiseAnimation {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.8) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.85;
+  }
+  30% {
+    transform: translateY(-35vh) translateX(25px) scale(1) rotate(6deg);
+  }
+  60% {
+    transform: translateY(-70vh) translateX(-20px) scale(1.05) rotate(-6deg);
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-115vh) translateX(15px) scale(1.1) rotate(4deg);
+    opacity: 0;
+  }
+}

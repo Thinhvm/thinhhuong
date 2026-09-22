@@ -384,3 +384,65 @@ window.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 });
+// ==========================================
+// HIỆU ỨNG BÓNG BAY TỪ DƯỚI LÊN
+// ==========================================
+function initBalloons() {
+    const container = document.getElementById('balloonsContainer');
+    if (!container) return;
+
+    const balloonIcons = ['🎈', '🎈', '💖', '🎈', '❤️', '🎈'];
+    const fragment = document.createDocumentFragment();
+
+    for (let i = 0; i < 18; i++) {
+        const balloon = document.createElement('span');
+        balloon.innerHTML = balloonIcons[Math.floor(Math.random() * balloonIcons.length)];
+        
+        // Vị trí xuất hiện ngẫu nhiên theo chiều ngang (0 - 100%)
+        balloon.style.left = (Math.random() * 92 + 4) + '%';
+        
+        // Thời gian bay ngẫu nhiên (từ 7s đến 13s)
+        balloon.style.animationDuration = (Math.random() * 6 + 7) + 's';
+        
+        // Đô trễ xuất hiện ngẫu nhiên
+        balloon.style.animationDelay = (Math.random() * 6) + 's';
+        
+        // Kích thước bong bóng ngẫu nhiên (18px đến 34px)
+        balloon.style.fontSize = (Math.random() * 16 + 18) + 'px';
+        
+        fragment.appendChild(balloon);
+    }
+    container.appendChild(fragment);
+}
+
+// ==========================================
+// KHỞI CHẠY TRANG & SCROLL OBSERVER
+// ==========================================
+window.addEventListener('DOMContentLoaded', () => {
+    initFallingLeaves();
+    initBalloons(); // <--- Thêm gọi hàm tạo bong bóng ở đây
+    createDots();
+    updateCarousel();
+    startAutoplay();
+    renderWishes();
+
+    const carouselContainer = document.querySelector('.album-carousel-container');
+    if (carouselContainer) {
+        carouselContainer.addEventListener('mouseenter', stopAutoplay);
+        carouselContainer.addEventListener('mouseleave', startAutoplay);
+    }
+
+    const observerOptions = { threshold: 0.2 };
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+        observer.observe(el);
+    });
+});
