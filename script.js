@@ -358,6 +358,7 @@ function listenForWishes() {
 }
 
 // Xử lý sự kiện khi khách gửi Form lời chúc
+// Sự kiện gửi lời chúc mới
 if (wishForm) {
     wishForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -370,13 +371,20 @@ if (wishForm) {
         if (name && wish) {
             try {
                 const now = new Date();
-                const timeStr = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
+                
+                // 1. Định dạng giờ:phút (thêm số 0 phía trước nếu < 10)
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const dateStr = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
+                
+                // Tạo chuỗi thời gian đầy đủ giờ và ngày
+                const timeStr = `${hours}:${minutes} - ${dateStr}`;
 
-                // Lưu lời chúc vào collection 'wishes' trên Firestore
+                // 2. Lưu lời chúc vào collection 'wishes' trên Firestore
                 await db.collection("wishes").add({
                     name: name,
                     wish: wish,
-                    time: timeStr,
+                    time: timeStr, // Giá trị hiển thị mới: HH:mm - DD/MM/YYYY
                     timestamp: firebase.firestore.FieldValue.serverTimestamp()
                 });
 
