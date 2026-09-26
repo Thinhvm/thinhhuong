@@ -422,270 +422,269 @@
                         </div>
                     </div>
                     <div class="carousel-card" onclick="onCardClick(7)">
-                        <div class="card-inner"><img src="image/DOJ_7215_1.jpg" alt="Wedding Photo 8" loading="lazy">
-                            <div class="card-caption">
-                                <p class="font-script text-xl text-brand-800">Save The Date</p>
-                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh
-                                    Hương</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-card" onclick="onCardClick(8)">
-                        <div class="card-inner"><img src="image/DOJ_7063_1.webp" alt="Wedding Photo 9" loading="lazy">
-                            <div class="card-caption">
-                                <p class="font-script text-xl text-brand-800">Save The Date</p>
-                                <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh
-                                    Hương</p>
-                            </div>
+                        <img src="image/DOJ_7271_1.webp" alt="Wedding Photo 8" loading="lazy">
+                        <div class="card-caption">
+                            <p class="font-script text-xl text-brand-800">Save The Date</p>
+                            <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh
+                                Hương</p>
                         </div>
                     </div>
                 </div>
-
-                <button
-                    class="carousel-btn next-btn absolute right-1 sm:right-2 z-30 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/70 shadow hover:bg-white flex items-center justify-center text-brand-800 transition"
-                    onclick="nextSlide(event)">
-                    <i class="fa-solid fa-chevron-right text-sm"></i>
-                </button>
+                <div class="carousel-card" onclick="onCardClick(8)">
+                    <div class="card-inner"><img src="image/DOJ_7063_1.webp" alt="Wedding Photo 9" loading="lazy">
+                        <div class="card-caption">
+                            <p class="font-script text-xl text-brand-800">Save The Date</p>
+                            <p class="text-[9px] uppercase tracking-widest text-brand-600">Minh Thịnh &amp; Huỳnh
+                                Hương</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="carousel-dots flex justify-center items-center space-x-2 pt-2" id="carouselDots"></div>
-            <p class="text-[11px] text-brand-600 italic">Chạm vào ảnh để phóng to xem rõ hơn</p>
-        </section>
+            <button
+                class="carousel-btn next-btn absolute right-1 sm:right-2 z-30 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/70 shadow hover:bg-white flex items-center justify-center text-brand-800 transition"
+                onclick="nextSlide(event)">
+                <i class="fa-solid fa-chevron-right text-sm"></i>
+            </button>
+    </div>
 
-        <!-- LIGHTBOX MODAL -->
-        <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
-            <button class="lightbox-btn close-btn" onclick="closeLightboxForce()">&times;</button>
-            <button class="lightbox-btn prev-btn" onclick="changeImage(-1, event)">&#10094;</button>
-            <div class="lightbox-content">
-                <img id="lightboximage" src="" alt="Zoomed Wedding Photo">
-            </div>
-            <button class="lightbox-btn next-btn" onclick="changeImage(1, event)">&#10095;</button>
+    <div class="carousel-dots flex justify-center items-center space-x-2 pt-2" id="carouselDots"></div>
+    <p class="text-[11px] text-brand-600 italic">Chạm vào ảnh để phóng to xem rõ hơn</p>
+    </section>
+
+    <!-- LIGHTBOX MODAL -->
+    <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+        <button class="lightbox-btn close-btn" onclick="closeLightboxForce()">&times;</button>
+        <button class="lightbox-btn prev-btn" onclick="changeImage(-1, event)">&#10094;</button>
+        <div class="lightbox-content">
+            <img id="lightboximage" src="" alt="Zoomed Wedding Photo">
+        </div>
+        <button class="lightbox-btn next-btn" onclick="changeImage(1, event)">&#10095;</button>
+    </div>
+
+    <!-- NGÀY CƯỚI & TIỆC CƯỚI -->
+    <section
+        class="section wedding-day bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 text-center space-y-6 relative overflow-hidden">
+        <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">THÔNG TIN TIỆC CƯỚI</div>
+        <h2 class="font-cormorant text-2xl md:text-3xl font-bold text-brand-900">TIỆC CƯỚI SẼ DIỄN RA VÀO LÚC</h2>
+
+        <div class="flex items-center justify-center space-x-2 text-base sm:text-lg font-extrabold text-brand-600 pt-1">
+            <span>THỨ
+                BẢY</span><span>|</span><span>12</span><span>.</span><span>12</span><span>.</span><span>2026</span>
         </div>
 
-        <!-- NGÀY CƯỚI & TIỆC CƯỚI -->
-        <section
-            class="section wedding-day bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 text-center space-y-6 relative overflow-hidden">
-            <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">THÔNG TIN TIỆC CƯỚI</div>
-            <h2 class="font-cormorant text-2xl md:text-3xl font-bold text-brand-900">TIỆC CƯỚI SẼ DIỄN RA VÀO LÚC</h2>
+        <p class="text-xs text-brand-600 italic">( TỨC NGÀY 04 THÁNG 11 NĂM BÍNH NGỌ )</p>
 
-            <div
-                class="flex items-center justify-center space-x-2 text-base sm:text-lg font-extrabold text-brand-600 pt-1">
-                <span>THỨ
-                    BẢY</span><span>|</span><span>12</span><span>.</span><span>12</span><span>.</span><span>2026</span>
+        <div class="flex justify-center space-x-8 text-xs text-brand-700 py-2">
+            <div>
+                <span class="block text-brand-500 uppercase">ĐÓN KHÁCH</span>
+                <strong class="text-sm font-bold text-brand-900">10:30</strong>
+            </div>
+            <div class="border-r border-brand-300"></div>
+            <div>
+                <span class="block text-brand-500 uppercase">KHAI TIỆC</span>
+                <strong class="text-sm font-bold text-brand-900">11:00</strong>
+            </div>
+        </div>
+
+        <!-- Widget Lịch -->
+        <div class="bg-[#5c4d42] text-amber-50 rounded-2xl p-5 max-w-sm mx-auto shadow-inner space-y-3">
+            <div class="font-script text-2xl text-amber-100 text-center">Tháng 12 / 2026</div>
+
+            <div class="grid grid-cols-7 gap-1 text-center text-xs font-semibold border-b border-amber-200/20 pb-2">
+                <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span>
             </div>
 
-            <p class="text-xs text-brand-600 italic">( TỨC NGÀY 04 THÁNG 11 NĂM BÍNH NGỌ )</p>
+            <div class="grid grid-cols-7 gap-1 text-center text-xs">
+                <span></span>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">1</span><span
+                        class="text-[9px] opacity-60">23/10</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">2</span><span
+                        class="text-[9px] opacity-60">24</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">3</span><span
+                        class="text-[9px] opacity-60">25</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">4</span><span
+                        class="text-[9px] opacity-60">26</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">5</span><span
+                        class="text-[9px] opacity-60">27</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">6</span><span
+                        class="text-[9px] opacity-60">28</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">7</span><span
+                        class="text-[9px] opacity-60">29</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">8</span><span
+                        class="text-[9px] opacity-60">30</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">9</span><span
+                        class="text-[9px] opacity-60">1/11</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">10</span><span
+                        class="text-[9px] opacity-60">2</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">11</span><span
+                        class="text-[9px] opacity-60">3</span></div>
 
-            <div class="flex justify-center space-x-8 text-xs text-brand-700 py-2">
-                <div>
-                    <span class="block text-brand-500 uppercase">ĐÓN KHÁCH</span>
-                    <strong class="text-sm font-bold text-brand-900">10:30</strong>
-                </div>
-                <div class="border-r border-brand-300"></div>
-                <div>
-                    <span class="block text-brand-500 uppercase">KHAI TIỆC</span>
-                    <strong class="text-sm font-bold text-brand-900">11:00</strong>
-                </div>
-            </div>
-
-            <!-- Widget Lịch -->
-            <div class="bg-[#5c4d42] text-amber-50 rounded-2xl p-5 max-w-sm mx-auto shadow-inner space-y-3">
-                <div class="font-script text-2xl text-amber-100 text-center">Tháng 12 / 2026</div>
-
-                <div class="grid grid-cols-7 gap-1 text-center text-xs font-semibold border-b border-amber-200/20 pb-2">
-                    <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span>
-                </div>
-
-                <div class="grid grid-cols-7 gap-1 text-center text-xs">
-                    <span></span>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">1</span><span
-                            class="text-[9px] opacity-60">23/10</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">2</span><span
-                            class="text-[9px] opacity-60">24</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">3</span><span
-                            class="text-[9px] opacity-60">25</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">4</span><span
-                            class="text-[9px] opacity-60">26</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">5</span><span
-                            class="text-[9px] opacity-60">27</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">6</span><span
-                            class="text-[9px] opacity-60">28</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">7</span><span
-                            class="text-[9px] opacity-60">29</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">8</span><span
-                            class="text-[9px] opacity-60">30</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">9</span><span
-                            class="text-[9px] opacity-60">1/11</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">10</span><span
-                            class="text-[9px] opacity-60">2</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">11</span><span
-                            class="text-[9px] opacity-60">3</span></div>
-
-                    <div class="flex flex-col items-center justify-center">
-                        <div
-                            class="w-8 h-8 rounded-full bg-white text-brand-900 flex flex-col items-center justify-center font-bold shadow-md">
-                            <span class="text-xs leading-none">12</span>
-                            <span class="text-[8px] leading-none text-red-600 font-normal">4/11</span>
-                        </div>
+                <div class="flex flex-col items-center justify-center">
+                    <div
+                        class="w-8 h-8 rounded-full bg-white text-brand-900 flex flex-col items-center justify-center font-bold shadow-md">
+                        <span class="text-xs leading-none">12</span>
+                        <span class="text-[8px] leading-none text-red-600 font-normal">4/11</span>
                     </div>
-
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">13</span><span
-                            class="text-[9px] opacity-60">5</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">14</span><span
-                            class="text-[9px] opacity-60">6</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">15</span><span
-                            class="text-[9px] opacity-60">7</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">16</span><span
-                            class="text-[9px] opacity-60">8</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">17</span><span
-                            class="text-[9px] opacity-60">9</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">18</span><span
-                            class="text-[9px] opacity-60">10</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">19</span><span
-                            class="text-[9px] opacity-60">11</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">20</span><span
-                            class="text-[9px] opacity-60">12</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">21</span><span
-                            class="text-[9px] opacity-60">13</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">22</span><span
-                            class="text-[9px] opacity-60">14</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">23</span><span
-                            class="text-[9px] opacity-60">15</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">24</span><span
-                            class="text-[9px] opacity-60">16</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">25</span><span
-                            class="text-[9px] opacity-60">17</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">26</span><span
-                            class="text-[9px] opacity-60">18</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">27</span><span
-                            class="text-[9px] opacity-60">19</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">28</span><span
-                            class="text-[9px] opacity-60">20</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">29</span><span
-                            class="text-[9px] opacity-60">21</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">30</span><span
-                            class="text-[9px] opacity-60">22</span></div>
-                    <div class="flex flex-col items-center py-0.5"><span class="font-bold">31</span><span
-                            class="text-[9px] opacity-60">23</span></div>
                 </div>
-            </div>
 
-            <div class="space-y-3 pt-2">
-                <button id="calendarBtn" onclick="addToCalendar()"
-                    class="text-xs uppercase tracking-wider text-brand-700 hover:text-brand-900 underline font-semibold">
-                    + THÊM VÀO LỊCH GOOGLE
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">13</span><span
+                        class="text-[9px] opacity-60">5</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">14</span><span
+                        class="text-[9px] opacity-60">6</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">15</span><span
+                        class="text-[9px] opacity-60">7</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">16</span><span
+                        class="text-[9px] opacity-60">8</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">17</span><span
+                        class="text-[9px] opacity-60">9</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">18</span><span
+                        class="text-[9px] opacity-60">10</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">19</span><span
+                        class="text-[9px] opacity-60">11</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">20</span><span
+                        class="text-[9px] opacity-60">12</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">21</span><span
+                        class="text-[9px] opacity-60">13</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">22</span><span
+                        class="text-[9px] opacity-60">14</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">23</span><span
+                        class="text-[9px] opacity-60">15</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">24</span><span
+                        class="text-[9px] opacity-60">16</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">25</span><span
+                        class="text-[9px] opacity-60">17</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">26</span><span
+                        class="text-[9px] opacity-60">18</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">27</span><span
+                        class="text-[9px] opacity-60">19</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">28</span><span
+                        class="text-[9px] opacity-60">20</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">29</span><span
+                        class="text-[9px] opacity-60">21</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">30</span><span
+                        class="text-[9px] opacity-60">22</span></div>
+                <div class="flex flex-col items-center py-0.5"><span class="font-bold">31</span><span
+                        class="text-[9px] opacity-60">23</span></div>
+            </div>
+        </div>
+
+        <div class="space-y-3 pt-2">
+            <button id="calendarBtn" onclick="addToCalendar()"
+                class="text-xs uppercase tracking-wider text-brand-700 hover:text-brand-900 underline font-semibold">
+                + THÊM VÀO LỊCH GOOGLE
+            </button>
+            <div>
+                <button id="rsvpBtn" onclick="openRSVPModal()"
+                    class="w-full max-w-xs py-3.5 px-6 bg-[#5c4d42] hover:bg-[#4e372b] text-white text-xs uppercase tracking-widest font-semibold rounded-full shadow-md transition-all">
+                    XÁC NHẬN THAM DỰ (RSVP)
                 </button>
-                <div>
-                    <button id="rsvpBtn" onclick="openRSVPModal()"
-                        class="w-full max-w-xs py-3.5 px-6 bg-[#5c4d42] hover:bg-[#4e372b] text-white text-xs uppercase tracking-widest font-semibold rounded-full shadow-md transition-all">
-                        XÁC NHẬN THAM DỰ (RSVP)
-                    </button>
-                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ĐỊA ĐIỂM & BẢN ĐỒ -->
-        <section
-            class="section location bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 text-center space-y-4">
-            <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">TIỆC CƯỚI SẼ TỔ CHỨC TẠI</div>
+    <!-- ĐỊA ĐIỂM & BẢN ĐỒ -->
+    <section
+        class="section location bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 text-center space-y-4">
+        <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">TIỆC CƯỚI SẼ TỔ CHỨC TẠI</div>
 
-            <h3 class="font-cormorant text-xl md:text-2xl font-bold text-brand-900">
-                Nhà hàng tiệc cưới Phương Loan
-            </h3>
-            <p class="text-xs text-brand-700 leading-relaxed">
-                Thôn Thắng Kiên, xã Đề Gi, tỉnh Gia Lai
-            </p>
+        <h3 class="font-cormorant text-xl md:text-2xl font-bold text-brand-900">
+            Nhà hàng tiệc cưới Phương Loan
+        </h3>
+        <p class="text-xs text-brand-700 leading-relaxed">
+            Thôn Thắng Kiên, xã Đề Gi, tỉnh Gia Lai
+        </p>
 
-            <div class="rounded-2xl overflow-hidden border border-brand-200 shadow-sm relative my-4 bg-gray-100">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.7313886120893!2d109.1864345!3d14.1020213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x316f49f9a87b04e3%3A0x9a32fc956641d0f6!2zTmjDoCBow6BuZyB0aeG7h2MgY8aw4bubaSBQaMawxqFuZyBMb2FuIDE!5e0!3m2!1svi!2svn!4v1710000000000!5m2!1svi!2svn"
-                    width="100%" height="250" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+        <div class="rounded-2xl overflow-hidden border border-brand-200 shadow-sm relative my-4 bg-gray-100">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.7313886120893!2d109.1864345!3d14.1020213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x316f49f9a87b04e3%3A0x9a32fc956641d0f6!2zTmjDoCBow6BuZyB0aeG7h2MgY8aw4bubaSBQaMawxqFuZyBMb2FuIDE!5e0!3m2!1svi!2svn!4v1710000000000!5m2!1svi!2svn"
+                width="100%" height="250" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+        <a href="https://www.google.com/maps/place/Nh%C3%A0+h%C3%A0ng+ti%E1%BB%87c+c%C6%B0%E1%BB%9Bi+Ph%C6%B0%C6%A1ng+Loan+1/@14.1020213,109.1864345,17z/data=!3m1!4b1!4m6!3m5!1s0x316f49f9a87b04e3:0x9a32fc956641d0f6!8m2!3d14.1020161!4d109.1890094!16s%2Fg%2F11fjzxk98n"
+            target="_blank"
+            class="inline-flex items-center justify-center space-x-2 text-xs font-semibold text-brand-800 hover:text-brand-600 border border-brand-300 rounded-full px-6 py-2.5 bg-white/80">
+            <i class="fa-solid fa-location-arrow"></i>
+            <span>Xem chỉ đường</span>
+        </a>
+    </section>
+
+    <!-- NÚT MỪNG CƯỚI FLOATING -->
+    <button id="floatingGiftBtn" onclick="toggleGiftModal()" title="Mừng cưới"
+        class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#5c4d42] hover:bg-[#4e372b] text-amber-200 rounded-full shadow-2xl border-2 border-amber-300/60 transition-all duration-300 transform hover:scale-110 active:scale-95 group">
+        <i class="fa-solid fa-gift text-2xl group-hover:rotate-12 transition-transform duration-300"></i>
+        <span class="absolute -inset-1 rounded-full bg-amber-400/30 animate-ping pointer-events-none"></span>
+        <span
+            class="absolute right-16 bg-[#5c4d42] text-amber-100 text-[11px] font-medium px-2.5 py-1 rounded-md shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none border border-amber-300/30">
+            Mừng Cưới
+        </span>
+    </button>
+
+    <!-- SỔ LƯU BÚT -->
+    <section
+        class="section guestbook bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 space-y-6">
+        <div class="text-center">
+            <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">SỔ LƯU BÚT TÌNH YÊU</div>
+        </div>
+
+        <form id="wishForm" class="space-y-3">
+            <div>
+                <input id="guestName" type="text" placeholder="Nhập tên của bạn*" required
+                    class="w-full px-4 py-2.5 rounded-xl border border-brand-300 bg-white focus:outline-none focus:ring-1 focus:ring-brand-500 text-xs text-brand-900 placeholder-brand-400">
             </div>
-
-            <a href="https://www.google.com/maps/place/Nh%C3%A0+h%C3%A0ng+ti%E1%BB%87c+c%C6%B0%E1%BB%9Bi+Ph%C6%B0%C6%A1ng+Loan+1/@14.1020213,109.1864345,17z/data=!3m1!4b1!4m6!3m5!1s0x316f49f9a87b04e3:0x9a32fc956641d0f6!8m2!3d14.1020161!4d109.1890094!16s%2Fg%2F11fjzxk98n"
-                target="_blank"
-                class="inline-flex items-center justify-center space-x-2 text-xs font-semibold text-brand-800 hover:text-brand-600 border border-brand-300 rounded-full px-6 py-2.5 bg-white/80">
-                <i class="fa-solid fa-location-arrow"></i>
-                <span>Xem chỉ đường</span>
-            </a>
-        </section>
-
-        <!-- NÚT MỪNG CƯỚI FLOATING -->
-        <button id="floatingGiftBtn" onclick="toggleGiftModal()" title="Mừng cưới"
-            class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#5c4d42] hover:bg-[#4e372b] text-amber-200 rounded-full shadow-2xl border-2 border-amber-300/60 transition-all duration-300 transform hover:scale-110 active:scale-95 group">
-            <i class="fa-solid fa-gift text-2xl group-hover:rotate-12 transition-transform duration-300"></i>
-            <span class="absolute -inset-1 rounded-full bg-amber-400/30 animate-ping pointer-events-none"></span>
-            <span
-                class="absolute right-16 bg-[#5c4d42] text-amber-100 text-[11px] font-medium px-2.5 py-1 rounded-md shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none border border-amber-300/30">
-                Mừng Cưới
-            </span>
-        </button>
-
-        <!-- SỔ LƯU BÚT -->
-        <section
-            class="section guestbook bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 space-y-6">
-            <div class="text-center">
-                <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">SỔ LƯU BÚT TÌNH YÊU</div>
+            <div>
+                <textarea id="guestWish" rows="3" placeholder="Nhập lời chúc dành cho dâu rể*" required
+                    class="w-full px-4 py-2.5 rounded-xl border border-brand-300 bg-white focus:outline-none focus:ring-1 focus:ring-brand-500 text-xs text-brand-900 placeholder-brand-400 resize-none"></textarea>
             </div>
-
-            <form id="wishForm" class="space-y-3">
-                <div>
-                    <input id="guestName" type="text" placeholder="Nhập tên của bạn*" required
-                        class="w-full px-4 py-2.5 rounded-xl border border-brand-300 bg-white focus:outline-none focus:ring-1 focus:ring-brand-500 text-xs text-brand-900 placeholder-brand-400">
-                </div>
-                <div>
-                    <textarea id="guestWish" rows="3" placeholder="Nhập lời chúc dành cho dâu rể*" required
-                        class="w-full px-4 py-2.5 rounded-xl border border-brand-300 bg-white focus:outline-none focus:ring-1 focus:ring-brand-500 text-xs text-brand-900 placeholder-brand-400 resize-none"></textarea>
-                </div>
-                <div class="text-right">
-                    <button type="submit"
-                        class="px-6 py-2.5 bg-[#5c4d42] hover:bg-[#4e372b] text-white text-xs uppercase tracking-wider rounded-full shadow font-medium transition-all">
-                        GỬI LỜI CHÚC
-                    </button>
-                </div>
-            </form>
-
-            <div class="space-y-3 pt-4 border-t border-brand-200 max-h-80 overflow-y-auto pr-1" id="messagesList"></div>
-        </section>
-
-        <!-- MỪNG CƯỚI ONLINE -->
-        <section
-            class="section gift bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 text-center space-y-6">
-            <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">MỪNG CƯỚI ONLINE</div>
-
-            <div class="py-2">
-                <div id="giftBoxTrigger" onclick="toggleGiftModal()"
-                    class="cursor-pointer group inline-block transform hover:scale-105 transition-transform duration-300">
-                    <div class="w-24 h-24 mx-auto relative flex items-center justify-center">
-                        <svg viewBox="0 0 100 100" class="w-20 h-20 text-brand-600 drop-shadow-md" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <rect x="15" y="40" width="70" height="50" rx="6" fill="#ceaf8d" />
-                            <rect x="10" y="30" width="80" height="15" rx="4" fill="#b88f68" />
-                            <rect x="42" y="30" width="16" height="60" fill="#5c4d42" />
-                            <rect x="10" y="34" width="80" height="7" fill="#825a36" opacity="0.3" />
-                            <path d="M50 30 C35 10 20 25 42 30 Z" fill="#5c4d42" />
-                            <path d="M50 30 C65 10 80 25 58 30 Z" fill="#5c4d42" />
-                        </svg>
-                    </div>
-                    <p class="text-xs text-brand-600 mt-2 italic font-medium group-hover:text-brand-900">Chạm để mở mã
-                        QR Mừng Cưới</p>
-                </div>
+            <div class="text-right">
+                <button type="submit"
+                    class="px-6 py-2.5 bg-[#5c4d42] hover:bg-[#4e372b] text-white text-xs uppercase tracking-wider rounded-full shadow font-medium transition-all">
+                    GỬI LỜI CHÚC
+                </button>
             </div>
+        </form>
 
-            <p class="text-xs text-brand-700 italic">
-                Sự hiện diện của quý khách là niềm vinh hạnh lớn nhất của gia đình chúng tôi!
-            </p>
-        </section>
+        <div class="space-y-3 pt-4 border-t border-brand-200 max-h-80 overflow-y-auto pr-1" id="messagesList"></div>
+    </section>
 
-        <!-- FOOTER -->
-        <footer class="text-center py-8 space-y-2 border-t border-brand-200">
-            <div class="text-brand-400 text-lg">❦</div>
-            <h2 class="font-cormorant text-2xl font-bold text-brand-900">Minh Thịnh &amp; Huỳnh Hương</h2>
-            <p class="font-script text-xl text-brand-600">Forever starts here.</p>
-            <p class="text-[10px] text-brand-400 pt-4">Copyright ©2026. Minh Thịnh - Huỳnh Hương</p>
-        </footer>
+    <!-- MỪNG CƯỚI ONLINE -->
+    <section
+        class="section gift bg-[#fbf8f3] rounded-3xl p-6 md:p-8 card-shadow border border-brand-200 text-center space-y-6">
+        <div class="text-xs uppercase tracking-widest text-brand-600 font-bold">MỪNG CƯỚI ONLINE</div>
+
+        <div class="py-2">
+            <div id="giftBoxTrigger" onclick="toggleGiftModal()"
+                class="cursor-pointer group inline-block transform hover:scale-105 transition-transform duration-300">
+                <div class="w-24 h-24 mx-auto relative flex items-center justify-center">
+                    <svg viewBox="0 0 100 100" class="w-20 h-20 text-brand-600 drop-shadow-md" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <rect x="15" y="40" width="70" height="50" rx="6" fill="#ceaf8d" />
+                        <rect x="10" y="30" width="80" height="15" rx="4" fill="#b88f68" />
+                        <rect x="42" y="30" width="16" height="60" fill="#5c4d42" />
+                        <rect x="10" y="34" width="80" height="7" fill="#825a36" opacity="0.3" />
+                        <path d="M50 30 C35 10 20 25 42 30 Z" fill="#5c4d42" />
+                        <path d="M50 30 C65 10 80 25 58 30 Z" fill="#5c4d42" />
+                    </svg>
+                </div>
+                <p class="text-xs text-brand-600 mt-2 italic font-medium group-hover:text-brand-900">Chạm để mở mã
+                    QR Mừng Cưới</p>
+            </div>
+        </div>
+
+        <p class="text-xs text-brand-700 italic">
+            Sự hiện diện của quý khách là niềm vinh hạnh lớn nhất của gia đình chúng tôi!
+        </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-8 space-y-2 border-t border-brand-200">
+        <div class="text-brand-400 text-lg">❦</div>
+        <h2 class="font-cormorant text-2xl font-bold text-brand-900">Minh Thịnh &amp; Huỳnh Hương</h2>
+        <p class="font-script text-xl text-brand-600">Forever starts here.</p>
+        <p class="text-[10px] text-brand-400 pt-4">Copyright ©2026. Minh Thịnh - Huỳnh Hương</p>
+    </footer>
 
     </div>
 
