@@ -10,7 +10,8 @@ const albumImages = [
     'image/DOJ_7032_1.webp',
     'image/DOJ_6149_1.webp',
     'image/DOJ_6509_1.webp',
-    'image/DOJ_7063_1.webp'
+    'image/DOJ_7063_1.webp',
+    'image/DOJ_7215_1.jpg'
 ];
 
 let currentimageIndex = 0;
