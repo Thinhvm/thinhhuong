@@ -3,7 +3,7 @@
 // ==========================================
 const albumImages = [
     'image/ANH BAN (4)_1.webp',
-    'image/Cong2.webp',
+    'image/DOJ_5889_1.webp',
     'image/ANH BAN (1)_1.webp',
     'image/DOJ_6227_1.webp',
     'image/DOJ_6851_1.webp',
