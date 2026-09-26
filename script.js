@@ -140,17 +140,6 @@ if (musicBtn) {
 }
 
 // ==========================================
-// 6. THÊM VÀO LỊCH GOOGLE
-// ==========================================
-function addToCalendar() {
-    const title = encodeURIComponent("Lễ Cưới Minh Thịnh & Huỳnh Hương");
-    const details = encodeURIComponent("Trân trọng kính mời bạn đến tham dự tiệc cưới của chúng mình!");
-    const location = encodeURIComponent("Nhà hàng tiệc cưới Phương Loan, Thôn Thắng Kiên, xã Đề Gi, tỉnh Gia Lai");
-    const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20261212T040000Z/20261212T070000Z&details=${details}&location=${location}`;
-    window.open(googleCalUrl, '_blank');
-}
-
-// ==========================================
 // 7. LIGHTBOX ALBUM (ZOOM-IN & ĐÃ SỬA LỖI)
 // ==========================================
 function openLightbox(srcOrIndex) {
