@@ -251,13 +251,166 @@ function toggleGiftModal() {
 // ==========================================
 // 9. LỜI CHÚC: LƯU LOCALSTORAGE (ĐÃ BỎ MAIL)
 // ==========================================
+// ==========================================
+// 1. KHỞI TẠO FIREBASE VỚI CONFIG CỦA BẠN
+// ==========================================
+const firebaseConfig = {
+  apiKey: "AIzaSyDlV5F4Y13Ld61uslRCmeCi47ud4gFA-lI",
+  authDomain: "minhthinh-12581.firebaseapp.com",
+  projectId: "minhthinh-12581",
+  storageBucket: "minhthinh-12581.firebasestorage.app",
+  messagingSenderId: "1024318003193",
+  appId: "1:1024318003193:web:963a4e8620d2e934800f28",
+  measurementId: "G-FE19JQSXEC"
+};
+
+// Khởi tạo app & cơ sở dữ liệu Cloud Firestore
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// ==========================================
+// 2. RSVP (XÁC NHẬN THAM DỰ) - LƯU VÀO FIREBASE
+// ==========================================
+function openRSVPModal() {
+    const rsvpModal = document.getElementById('rsvpModal');
+    if (rsvpModal) rsvpModal.classList.add('modal-active');
+}
+
+function closeRSVPModal() {
+    const rsvpModal = document.getElementById('rsvpModal');
+    if (rsvpModal) rsvpModal.classList.remove('modal-active');
+}
+
+async function submitRSVP(e) {
+    e.preventDefault();
+    const form = e.target;
+    
+    // Lấy thông tin từ các ô nhập liệu trong Modal RSVP
+    const nameInput = form.querySelector('input[type="text"]');
+    const guestTypeSelect = form.querySelector('select');
+    const attendanceRadio = form.querySelector('input[name="attend"]:checked');
+
+    const name = nameInput ? nameInput.value.trim() : '';
+    const guestType = guestTypeSelect ? guestTypeSelect.value : '';
+    const attendance = attendanceRadio ? (attendanceRadio.value === 'yes' ? 'Tham dự' : 'Không tham dự') : '';
+
+    if (!name) {
+        alert("Vui lòng nhập họ và tên của bạn!");
+        return;
+    }
+
+    try {
+        // Lưu phản hồi RSVP vào collection 'rsvps' trên Firestore
+        await db.collection("rsvps").add({
+            name: name,
+            guestType: guestType,
+            attendance: attendance,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+        alert("Cảm ơn bạn đã xác nhận phản hồi! Rất hân hạnh được đón tiếp bạn.");
+        closeRSVPModal();
+        form.reset();
+    } catch (error) {
+        console.error("Lỗi khi gửi RSVP:", error);
+        alert("Có lỗi xảy ra khi gửi xác nhận, vui lòng thử lại sau!");
+    }
+}
+
+function toggleGiftModal() {
+    const giftModal = document.getElementById('giftModal');
+    if (giftModal) giftModal.classList.toggle('modal-active');
+}
+
+// ==========================================
+// 3. SỔ LƯU BÚT (LỜI CHÚC) - TẢI REALTIME & LƯU FIREBASE
+// ==========================================
 const wishForm = document.getElementById('wishForm');
 const messagesList = document.getElementById('messagesList');
 
-const defaultWishes = [
-    { name: "Mỹ Linh", wish: "Chúc hai bạn trăm năm hạnh phúc, vạn sự như ý, một đám cưới thật vui vẻ và trọn vẹn!", time: "14/11/2026" },
-    { name: "Trọng Nhân", wish: "Chúc mừng Thịnh và Hương về chung một nhà! Luôn ngọt ngào như ngày đầu nhé.", time: "14/11/2026" }
-];
+// Lắng nghe và cập nhật danh sách lời chúc theo thời gian thực (Realtime)
+function listenForWishes() {
+    if (!messagesList) return;
+
+    db.collection("wishes")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+          if (snapshot.empty) {
+              messagesList.innerHTML = '<p class="text-center text-xs text-brand-400">Chưa có lời chúc nào. Hãy là người đầu tiên gửi lời chúc nhé!</p>';
+              return;
+          }
+
+          messagesList.innerHTML = snapshot.docs.map(doc => {
+              const item = doc.data();
+              return `
+                  <div class="p-3.5 bg-white/90 rounded-xl border border-brand-200 text-xs space-y-1 animate-fadeIn">
+                      <div class="flex justify-between items-center font-bold text-brand-900">
+                          <span>${escapeHtml(item.name)}</span>
+                          <span class="text-[10px] text-brand-400 font-normal">${item.time || ''}</span>
+                      </div>
+                      <p class="text-brand-700">${escapeHtml(item.wish)}</p>
+                  </div>
+              `;
+          }).join('');
+      }, (error) => {
+          console.error("Lỗi khi tải danh sách lời chúc:", error);
+      });
+}
+
+// Xử lý sự kiện khi khách gửi Form lời chúc
+if (wishForm) {
+    wishForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const nameInput = document.getElementById('guestName');
+        const wishInput = document.getElementById('guestWish');
+
+        const name = nameInput ? nameInput.value.trim() : '';
+        const wish = wishInput ? wishInput.value.trim() : '';
+
+        if (name && wish) {
+            try {
+                const now = new Date();
+                const timeStr = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
+
+                // Lưu lời chúc vào collection 'wishes' trên Firestore
+                await db.collection("wishes").add({
+                    name: name,
+                    wish: wish,
+                    time: timeStr,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                wishForm.reset();
+                alert("Cảm ơn bạn đã gửi lời chúc ý nghĩa!");
+            } catch (error) {
+                console.error("Lỗi khi gửi lời chúc:", error);
+                alert("Không thể gửi lời chúc. Vui lòng kiểm tra lại kết nối mạng!");
+            }
+        }
+    });
+}
+
+function escapeHtml(text) {
+    if (!text) return '';
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+// Khởi chạy khi trang tải xong
+window.addEventListener('DOMContentLoaded', () => {
+    initFallingLeaves();
+    initBalloons();
+    createDots();
+    updateCarousel();
+    startAutoplay();
+    
+    // Kích hoạt lắng nghe dữ liệu từ Firebase
+    listenForWishes();
+});
 
 function renderWishes() {
     if (!messagesList) return;
