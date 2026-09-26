@@ -641,9 +641,49 @@
 
         <!-- NÚT MỪNG CƯỚI FLOATING -->
         <button id="floatingGiftBtn" onclick="toggleGiftModal()" title="Mừng cưới"
-            class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#5c4d42] hover:bg-[#4e372b] text-amber-200 rounded-full shadow-2xl border-2 border-amber-300/60 transition-all duration-300 transform hover:scale-110 active:scale-95 group">
-            <i class="fa-solid fa-gift text-2xl group-hover:rotate-12 transition-transform duration-300"></i>
-            <span class="absolute -inset-1 rounded-full bg-amber-400/30 animate-ping pointer-events-none"></span>
+            class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#FFF8E7] hover:bg-[#FDF0D5] text-amber-800 rounded-full shadow-2xl border-2 border-amber-400/80 transition-all duration-300 transform hover:scale-110 active:scale-95 group">
+
+            <!-- SVG Thiệp Đỏ Hoa Vàng nổi bật trên nền kem -->
+            <svg viewBox="0 0 100 80"
+                class="w-9 h-9 group-hover:rotate-6 transition-transform duration-300 drop-shadow-md" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="goldGradFloat" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#FEF08A" />
+                        <stop offset="50%" stop-color="#D97706" />
+                        <stop offset="100%" stop-color="#B45309" />
+                    </linearGradient>
+                    <linearGradient id="redGradFloat" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#DC2626" />
+                        <stop offset="100%" stop-color="#991B1B" />
+                    </linearGradient>
+                </defs>
+                <rect x="5" y="10" width="90" height="60" rx="6" fill="url(#redGradFloat)" stroke="#7F1D1D"
+                    stroke-width="1.5" />
+                <path d="M5 52 C35 55 65 48 95 52" stroke="url(#goldGradFloat)" stroke-width="1" opacity="0.6" />
+                <g transform="translate(68, 30)">
+                    <circle cx="0" cy="0" r="14" fill="none" stroke="url(#goldGradFloat)" stroke-width="1"
+                        stroke-dasharray="2,1.5" />
+                    <circle cx="-5" cy="-5" r="4" fill="none" stroke="url(#goldGradFloat)" stroke-width="1.2" />
+                    <circle cx="5" cy="-5" r="4" fill="none" stroke="url(#goldGradFloat)" stroke-width="1.2" />
+                    <circle cx="-5" cy="5" r="4" fill="none" stroke="url(#goldGradFloat)" stroke-width="1.2" />
+                    <circle cx="5" cy="5" r="4" fill="none" stroke="url(#goldGradFloat)" stroke-width="1.2" />
+                    <circle cx="0" cy="0" r="3" fill="url(#goldGradFloat)" />
+                </g>
+                <g transform="translate(68, 48)">
+                    <path d="M0 0 C-6 -8 -14 -4 -12 2 C-10 6 -2 2 0 0 Z" fill="url(#goldGradFloat)" stroke="#78350F"
+                        stroke-width="0.5" />
+                    <path d="M0 0 C6 -8 14 -4 12 2 C10 6 2 2 0 0 Z" fill="url(#goldGradFloat)" stroke="#78350F"
+                        stroke-width="0.5" />
+                    <circle cx="0" cy="0" r="2.5" fill="#FEF08A" stroke="#78350F" stroke-width="0.5" />
+                    <path d="M-1 1 C-4 6 -8 10 -10 12 C-7 11 -4 9 -1 1 Z" fill="url(#goldGradFloat)" />
+                    <path d="M1 1 C4 6 8 10 10 12 C7 11 4 9 1 1 Z" fill="url(#goldGradFloat)" />
+                </g>
+                <path d="M15 48 Q 22 45 28 48 T 40 48" stroke="url(#goldGradFloat)" stroke-width="1.2" fill="none"
+                    stroke-linecap="round" />
+            </svg>
+
+            <span class="absolute -inset-1 rounded-full bg-amber-300/40 animate-ping pointer-events-none"></span>
             <span
                 class="absolute right-16 bg-[#5c4d42] text-amber-100 text-[11px] font-medium px-2.5 py-1 rounded-md shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none border border-amber-300/30">
                 Mừng Cưới
@@ -686,18 +726,64 @@
                 <div id="giftBoxTrigger" onclick="toggleGiftModal()"
                     class="cursor-pointer group inline-block transform hover:scale-105 transition-transform duration-300">
                     <div class="w-24 h-24 mx-auto relative flex items-center justify-center">
-                        <svg viewBox="0 0 100 100" class="w-20 h-20 text-brand-600 drop-shadow-md" fill="none"
+                        <!-- SVG Thiệp Đỏ Hoa Vàng Nơ Vàng Chuẩn Ảnh Mẫu -->
+                        <svg viewBox="0 0 100 80" class="w-20 h-20 drop-shadow-lg" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
-                            <rect x="15" y="40" width="70" height="50" rx="6" fill="#ceaf8d" />
-                            <rect x="10" y="30" width="80" height="15" rx="4" fill="#b88f68" />
-                            <rect x="42" y="30" width="16" height="60" fill="#5c4d42" />
-                            <rect x="10" y="34" width="80" height="7" fill="#825a36" opacity="0.3" />
-                            <path d="M50 30 C35 10 20 25 42 30 Z" fill="#5c4d42" />
-                            <path d="M50 30 C65 10 80 25 58 30 Z" fill="#5c4d42" />
+                            <defs>
+                                <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#FEF08A" />
+                                    <stop offset="50%" stop-color="#D97706" />
+                                    <stop offset="100%" stop-color="#B45309" />
+                                </linearGradient>
+                                <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#DC2626" />
+                                    <stop offset="100%" stop-color="#991B1B" />
+                                </linearGradient>
+                            </defs>
+                            <!-- Thân thiệp đỏ -->
+                            <rect x="5" y="10" width="90" height="60" rx="6" fill="url(#redGradient)" stroke="#7F1D1D"
+                                stroke-width="1.5" />
+                            <!-- Đường chỉ gờ dưới -->
+                            <path d="M5 52 C35 55 65 48 95 52" stroke="url(#goldGradient)" stroke-width="1"
+                                opacity="0.6" />
+                            <!-- Cụm hoa tròn -->
+                            <g transform="translate(68, 30)">
+                                <circle cx="0" cy="0" r="14" fill="none" stroke="url(#goldGradient)" stroke-width="1"
+                                    stroke-dasharray="2,1.5" />
+                                <circle cx="-5" cy="-5" r="4" fill="none" stroke="url(#goldGradient)"
+                                    stroke-width="1.2" />
+                                <circle cx="5" cy="-5" r="4" fill="none" stroke="url(#goldGradient)"
+                                    stroke-width="1.2" />
+                                <circle cx="-5" cy="5" r="4" fill="none" stroke="url(#goldGradient)"
+                                    stroke-width="1.2" />
+                                <circle cx="5" cy="5" r="4" fill="none" stroke="url(#goldGradient)"
+                                    stroke-width="1.2" />
+                                <circle cx="0" cy="0" r="3" fill="url(#goldGradient)" />
+                                <circle cx="-8" cy="0" r="1" fill="url(#goldGradient)" />
+                                <circle cx="8" cy="0" r="1" fill="url(#goldGradient)" />
+                                <circle cx="0" cy="-8" r="1" fill="url(#goldGradient)" />
+                                <circle cx="0" cy="8" r="1" fill="url(#goldGradient)" />
+                            </g>
+                            <!-- Chiếc nơ vàng -->
+                            <g transform="translate(68, 48)">
+                                <path d="M0 0 C-6 -8 -14 -4 -12 2 C-10 6 -2 2 0 0 Z" fill="url(#goldGradient)"
+                                    stroke="#78350F" stroke-width="0.5" />
+                                <path d="M0 0 C6 -8 14 -4 12 2 C10 6 2 2 0 0 Z" fill="url(#goldGradient)"
+                                    stroke="#78350F" stroke-width="0.5" />
+                                <circle cx="0" cy="0" r="2.5" fill="#FEF08A" stroke="#78350F" stroke-width="0.5" />
+                                <path d="M-1 1 C-4 6 -8 10 -10 12 C-7 11 -4 9 -1 1 Z" fill="url(#goldGradient)" />
+                                <path d="M1 1 C4 6 8 10 10 12 C7 11 4 9 1 1 Z" fill="url(#goldGradient)" />
+                            </g>
+                            <!-- Chữ Wedding Invitation giả lập -->
+                            <path d="M15 48 Q 22 45 28 48 T 40 48" stroke="url(#goldGradient)" stroke-width="1.2"
+                                fill="none" stroke-linecap="round" />
+                            <path d="M18 52 Q 25 50 32 52 T 42 52" stroke="url(#goldGradient)" stroke-width="0.8"
+                                fill="none" stroke-linecap="round" opacity="0.8" />
                         </svg>
                     </div>
-                    <p class="text-xs text-brand-600 mt-2 italic font-medium group-hover:text-brand-900">Chạm để mở mã
-                        QR Mừng Cưới</p>
+                    <p class="text-xs text-brand-600 mt-2 italic font-medium group-hover:text-brand-900">
+                        Chạm để mở mã QR Mừng Cưới
+                    </p>
                 </div>
             </div>
 
@@ -709,9 +795,9 @@
         <!-- FOOTER -->
         <footer class="text-center py-8 space-y-2 border-t border-brand-200">
             <div class="text-brand-400 text-lg">❦</div>
-           
+
             <p class="font-script text-2xl text-brand-800">Minh Thịnh &amp; Huỳnh Hương</p>
-             <h2 class="font-cormorant text-2xl font-bold text-brand-900">Xin chân thành cảm ơn !</h2>
+            <h2 class="font-cormorant text-2xl font-bold text-brand-900">Xin chân thành cảm ơn !</h2>
             <p class="text-[10px] text-brand-400 pt-4">Copyright ©2026 of Võ Minh Thịnh</p>
         </footer>
 
