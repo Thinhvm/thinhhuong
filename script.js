@@ -212,37 +212,10 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// ==========================================
-// 8. RSVP & MODAL HỘP QUÀ (ĐÃ BỎ MAIL)
-// ==========================================
-function openRSVPModal() {
-    const rsvpModal = document.getElementById('rsvpModal');
-    if (rsvpModal) rsvpModal.classList.add('modal-active');
-}
-
 function closeRSVPModal() {
     const rsvpModal = document.getElementById('rsvpModal');
     if (rsvpModal) rsvpModal.classList.remove('modal-active');
 }
-
-function submitRSVP(e) {
-    e.preventDefault();
-    alert("Cảm ơn bạn đã phản hồi! Rất hân hạnh được đón tiếp bạn.");
-    closeRSVPModal();
-    e.target.reset();
-}
-
-function toggleGiftModal() {
-    const giftModal = document.getElementById('giftModal');
-    if (giftModal) giftModal.classList.toggle('modal-active');
-}
-
-// ==========================================
-// 9. LỜI CHÚC: LƯU LOCALSTORAGE (ĐÃ BỎ MAIL)
-// ==========================================
-// ==========================================
-// 1. KHỞI TẠO FIREBASE VỚI CONFIG CỦA BẠN
-// ==========================================
 const firebaseConfig = {
   apiKey: "AIzaSyDlV5F4Y13Ld61uslRCmeCi47ud4gFA-lI",
   authDomain: "minhthinh-12581.firebaseapp.com",
@@ -263,11 +236,6 @@ const db = firebase.firestore();
 function openRSVPModal() {
     const rsvpModal = document.getElementById('rsvpModal');
     if (rsvpModal) rsvpModal.classList.add('modal-active');
-}
-
-function closeRSVPModal() {
-    const rsvpModal = document.getElementById('rsvpModal');
-    if (rsvpModal) rsvpModal.classList.remove('modal-active');
 }
 
 async function submitRSVP(e) {
@@ -387,28 +355,6 @@ if (wishForm) {
     });
 }
 
-function escapeHtml(text) {
-    if (!text) return '';
-    return text
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
-// Khởi chạy khi trang tải xong
-window.addEventListener('DOMContentLoaded', () => {
-    initFallingLeaves();
-    initBalloons();
-    createDots();
-    updateCarousel();
-    startAutoplay();
-    
-    // Kích hoạt lắng nghe dữ liệu từ Firebase
-    listenForWishes();
-});
-
 function renderWishes() {
     if (!messagesList) return;
 
@@ -488,6 +434,17 @@ if (openBtn) {
 // ==========================================
 // 11. KHỞI CHẠY TRANG & SCROLL OBSERVER
 // ==========================================
+// Khởi chạy khi trang tải xong
+window.addEventListener('DOMContentLoaded', () => {
+    initFallingLeaves();
+    initBalloons();
+    createDots();
+    updateCarousel();
+    startAutoplay();
+    
+    // Kích hoạt lắng nghe dữ liệu từ Firebase
+    listenForWishes();
+});
 window.addEventListener('DOMContentLoaded', () => {
     initFallingLeaves();
     createDots();
