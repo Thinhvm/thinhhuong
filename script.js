@@ -11,20 +11,48 @@ const albumImages = [
     'image/DOJ_6149_1.webp',
     'image/DOJ_7271_1.webp',
     'image/DOJ_7063_1.webp',
-    
 ];
 
 let currentimageIndex = 0;
 let autoplayTimer = null;
-const AUTOPLAY_DELAY = 3000;
+const AUTOPLAY_DELAY = 4500;
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let motionOverride = false;
+function motionAllowed() { return !reducedMotion.matches || motionOverride; }
+let invitationOpened = false;
+let albumVisible = false;
+let albumHovered = false;
+let albumPaused = false;
+let albumFocused = false;
+let albumDragging = false;
+let suppressAlbumClickUntil = 0;
+let renderedAlbumIndex = 0;
+let activeDialog = null;
+let dialogReturnFocus = null;
+let wishesStarted = false;
+let toastTimer;
+
+function notify(message) {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+    toast.textContent = message;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { toast.textContent = ''; }, 5000);
+}
+
+function syncAutoplay() {
+    stopAutoplay();
+    const running = invitationOpened && albumVisible && !albumHovered && !albumPaused && !albumFocused && !albumDragging && motionAllowed() && !document.hidden && !activeDialog;
+    document.querySelector('.album')?.classList.toggle('is-playing', Boolean(running));
+    if (running) {
+        autoplayTimer = setInterval(nextSlide, AUTOPLAY_DELAY);
+    }
+}
 
 // ==========================================
 // 2. CHẠY TỰ ĐỘNG ALBUM (AUTOPLAY)
 // ==========================================
-function startAutoplay() {
-    stopAutoplay();
-    autoplayTimer = setInterval(nextSlide, AUTOPLAY_DELAY);
-}
+function startAutoplay() { syncAutoplay(); }
 
 function stopAutoplay() {
     if (autoplayTimer) {
@@ -39,27 +67,33 @@ function resetAutoplay() {
 }
 
 // ==========================================
-// 3. KHỞI TẠO CAROUSEL 3D ALBUM
+// 3. KHỞI TẠO ALBUM TRƯỢT NGANG
 // ==========================================
 function updateCarousel() {
     const cards = document.querySelectorAll('.carousel-card');
     const total = cards.length;
     if (!total) return;
+    const outgoing = cards[renderedAlbumIndex];
+    const transferFocus = document.activeElement === outgoing;
+    const changed = renderedAlbumIndex !== currentimageIndex;
 
     cards.forEach((card, i) => {
         card.className = 'carousel-card';
-        let diff = i - currentimageIndex;
-
-        if (diff < -Math.floor(total / 2)) diff += total;
-        if (diff > Math.floor(total / 2)) diff -= total;
+        card.style.removeProperty('--drag-x');
+        card.setAttribute('role', 'button');
+        card.tabIndex = i === currentimageIndex ? 0 : -1;
+        card.setAttribute('aria-hidden', String(i !== currentimageIndex));
+        card.setAttribute('aria-label', `Phóng lớn ảnh cưới ${i + 1}`);
+        const diff = (i - currentimageIndex + total) % total;
 
         if (diff === 0) card.classList.add('active');
-        else if (diff === -1) card.classList.add('prev');
         else if (diff === 1) card.classList.add('next');
-        else if (diff <= -2) card.classList.add('far-prev');
-        else if (diff >= 2) card.classList.add('far-next');
+        else if (diff === total - 1) card.classList.add('prev');
     });
-
+    renderedAlbumIndex = currentimageIndex;
+    if (changed && transferFocus) cards[currentimageIndex].focus({preventScroll:true});
+    const counter = document.getElementById('albumCounter');
+    if (counter) counter.textContent = `${String(currentimageIndex + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
     updateDots();
 }
 
@@ -69,7 +103,9 @@ function createDots() {
 
     dotsContainer.innerHTML = '';
     albumImages.forEach((_, idx) => {
-        const dot = document.createElement('span');
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Xem ảnh cưới ${idx + 1}`);
         dot.className = `carousel-dot ${idx === currentimageIndex ? 'active' : ''}`;
         dot.onclick = () => {
             currentimageIndex = idx;
@@ -84,6 +120,7 @@ function updateDots() {
     const dots = document.querySelectorAll('.carousel-dot');
     dots.forEach((dot, idx) => {
         dot.classList.toggle('active', idx === currentimageIndex);
+        dot.setAttribute('aria-current', idx === currentimageIndex ? 'true' : 'false');
     });
 }
 
@@ -102,6 +139,7 @@ function prevSlide(e) {
 }
 
 function onCardClick(index) {
+    if (Date.now() < suppressAlbumClickUntil) return;
     if (index === currentimageIndex) {
         openLightbox(index);
     } else {
@@ -111,8 +149,6 @@ function onCardClick(index) {
     }
 }
 
-
-
 // ==========================================
 // 5. BẬT / TẮT NHẠC NỀN
 // ==========================================
@@ -121,18 +157,30 @@ const musicBtn = document.getElementById('musicBtn');
 const musicIcon = document.getElementById('musicIcon');
 let isPlaying = false;
 
+function syncMusic() {
+    isPlaying = Boolean(bgMusic && !bgMusic.paused);
+    if (musicIcon) musicIcon.className = isPlaying ? 'fa-solid fa-compact-disc fa-spin text-brand-700' : 'fa-solid fa-music';
+    if (musicBtn) {
+        musicBtn.setAttribute('aria-pressed', String(isPlaying));
+        musicBtn.setAttribute('aria-label', isPlaying ? 'Tắt nhạc' : 'Bật nhạc');
+        musicBtn.title = isPlaying ? 'Tắt nhạc' : 'Bật nhạc';
+    }
+}
+
+function playMusic() {
+    if (!bgMusic) return;
+    const result = bgMusic.play();
+    if (result) result.catch(() => { syncMusic(); });
+}
+
 function toggleMusic() {
     if (!bgMusic) return;
+    if (bgMusic.paused) playMusic(); else bgMusic.pause();
+}
 
-    if (isPlaying) {
-        bgMusic.pause();
-        if (musicIcon) musicIcon.className = "fa-solid fa-music text-gray-400";
-    } else {
-        bgMusic.play().then(() => {
-            if (musicIcon) musicIcon.className = "fa-solid fa-compact-disc fa-spin text-brand-700";
-        }).catch(() => {});
-    }
-    isPlaying = !isPlaying;
+if (bgMusic) {
+    bgMusic.addEventListener('play', syncMusic);
+    bgMusic.addEventListener('pause', syncMusic);
 }
 
 if (musicBtn) {
@@ -140,7 +188,7 @@ if (musicBtn) {
 }
 
 // ==========================================
-// 7. LIGHTBOX ALBUM (ZOOM-IN & ĐÃ SỬA LỖI)
+// 7. LIGHTBOX ALBUM
 // ==========================================
 function openLightbox(srcOrIndex) {
     stopAutoplay();
@@ -151,7 +199,6 @@ function openLightbox(srcOrIndex) {
 
     if (typeof srcOrIndex === 'string') {
         lightboximage.src = srcOrIndex;
-        // Tự động đồng bộ index nếu ảnh có trong danh sách albumImages
         const foundIdx = albumImages.indexOf(srcOrIndex);
         if (foundIdx !== -1) {
             currentimageIndex = foundIdx;
@@ -164,6 +211,7 @@ function openLightbox(srcOrIndex) {
     lightboximage.classList.remove('zoom-in');
     lightbox.classList.remove('hidden');
     lightbox.classList.add('flex', 'active');
+    showDialog(lightbox);
 
     setTimeout(() => lightboximage.classList.add('zoom-in'), 50);
 }
@@ -198,367 +246,341 @@ function closeLightboxForce() {
         if (lightbox) {
             lightbox.classList.add('hidden');
             lightbox.classList.remove('flex', 'active');
+            hideDialog(lightbox);
         }
         startAutoplay();
     }, 200);
 }
 
-document.addEventListener('keydown', (e) => {
-    const lightbox = document.getElementById('lightbox');
-    if (lightbox && !lightbox.classList.contains('hidden')) {
-        if (e.key === 'Escape') closeLightboxForce();
-        if (e.key === 'ArrowLeft') changeImage(-1);
-        if (e.key === 'ArrowRight') changeImage(1);
+function closeRSVPModal() { hideDialog(document.getElementById('rsvpModal')); }
+
+function showDialog(dialog) {
+    if (!dialog || !invitationOpened) return;
+    if (activeDialog && activeDialog !== dialog) hideDialog(activeDialog);
+    dialogReturnFocus = document.activeElement;
+    activeDialog = dialog;
+    dialog.classList.add(dialog.id === 'lightbox' ? 'active' : 'modal-active');
+    dialog.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-locked');
+    document.getElementById('musicBtn').inert = true;
+    const main = document.getElementById('invitation');
+    if (!main.contains(dialog)) main.inert = true;
+    else Array.from(main.children).forEach(el => { if (el !== dialog) el.inert = true; });
+    stopAutoplay();
+}
+
+function hideDialog(dialog) {
+    if (!dialog) return;
+    dialog.classList.remove('modal-active', 'active');
+    dialog.setAttribute('aria-hidden', 'true');
+    if (activeDialog === dialog) {
+        activeDialog = null;
+        document.body.classList.remove('modal-locked');
+        document.getElementById('musicBtn').inert = false;
+        const main = document.getElementById('invitation');
+        main.inert = false;
+        Array.from(main.children).forEach(el => { el.inert = false; });
+        if (dialogReturnFocus && dialogReturnFocus.isConnected) dialogReturnFocus.focus({preventScroll:true});
+        syncAutoplay();
     }
-});
-
-function closeRSVPModal() {
-    const rsvpModal = document.getElementById('rsvpModal');
-    if (rsvpModal) rsvpModal.classList.remove('modal-active');
 }
-const firebaseConfig = {
-  apiKey: "AIzaSyDlV5F4Y13Ld61uslRCmeCi47ud4gFA-lI",
-  authDomain: "minhthinh-12581.firebaseapp.com",
-  projectId: "minhthinh-12581",
-  storageBucket: "minhthinh-12581.firebasestorage.app",
-  messagingSenderId: "1024318003193",
-  appId: "1:1024318003193:web:963a4e8620d2e934800f28",
-  measurementId: "G-FE19JQSXEC"
-};
 
-// Khởi tạo app & cơ sở dữ liệu Cloud Firestore
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+// FIREBASE INIT
+let db = null;
+try {
+    if (typeof firebase !== 'undefined') {
+        if (!firebase.apps.length) firebase.initializeApp({
+            apiKey: "AIzaSyDlV5F4Y13Ld61uslRCmeCi47ud4gFA-lI",
+            authDomain: "minhthinh-12581.firebaseapp.com",
+            projectId: "minhthinh-12581",
+            storageBucket: "minhthinh-12581.firebasestorage.app",
+            messagingSenderId: "1024318003193",
+            appId: "1:1024318003193:web:963a4e8620d2e934800f28"
+        });
+        db = firebase.firestore();
+    }
+} catch (error) { console.warn('Firebase init warning:', error); }
 
-// ==========================================
-// 2. RSVP (XÁC NHẬN THAM DỰ) - LƯU VÀO FIREBASE
-// ==========================================
-function openRSVPModal() {
-    const rsvpModal = document.getElementById('rsvpModal');
-    if (rsvpModal) rsvpModal.classList.add('modal-active');
-}
+function openRSVPModal() { showDialog(document.getElementById('rsvpModal')); }
 
 async function submitRSVP(e) {
     e.preventDefault();
     const form = e.target;
-    
-    // Lấy thông tin từ các ô nhập liệu trong Modal RSVP
-    const nameInput = form.querySelector('input[type="text"]');
-    const guestTypeSelect = form.querySelector('select');
-    const attendanceRadio = form.querySelector('input[name="attend"]:checked');
-
-    const name = nameInput ? nameInput.value.trim() : '';
-    const guestType = guestTypeSelect ? guestTypeSelect.value : '';
-    const attendance = attendanceRadio ? (attendanceRadio.value === 'yes' ? 'Tham dự' : 'Không tham dự') : '';
-
-    if (!name) {
-        alert("Vui lòng nhập họ và tên của bạn!");
-        return;
-    }
-
+    if (form.dataset.sending === 'true' || !form.reportValidity()) return;
+    const name = form.querySelector('input[type="text"]').value.trim();
+    if (!name || !db) return;
     try {
-        // Lưu phản hồi RSVP vào collection 'rsvps' trên Firestore
-        await db.collection("rsvps").add({
-            name: name,
-            guestType: guestType,
-            attendance: attendance,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        await db.collection('rsvps').add({ 
+            name, 
+            guestType: form.querySelector('select').value,
+            attendance: form.querySelector('input[name="attend"]:checked').value === 'yes' ? 'Tham dự' : 'Không tham dự',
+            timestamp: firebase.firestore.FieldValue.serverTimestamp() 
         });
-
-        alert("Cảm ơn bạn đã xác nhận phản hồi! Rất hân hạnh được đón tiếp bạn.");
-        closeRSVPModal();
-        form.reset();
-    } catch (error) {
-        console.error("Lỗi khi gửi RSVP:", error);
-        alert("Có lỗi xảy ra khi gửi xác nhận, vui lòng thử lại sau!");
-    }
+        form.reset(); closeRSVPModal(); notify('Cảm ơn bạn đã xác nhận tham dự!');
+    } catch (error) { notify('Có lỗi xảy ra, vui lòng thử lại.'); }
 }
 
 function toggleGiftModal() {
-    const giftModal = document.getElementById('giftModal');
-    if (giftModal) giftModal.classList.toggle('modal-active');
+    const dialog = document.getElementById('giftModal');
+    if (activeDialog === dialog) hideDialog(dialog); else showDialog(dialog);
 }
 
-// ==========================================
-// 3. SỔ LƯU BÚT (LỜI CHÚC) - TẢI REALTIME & LƯU FIREBASE
-// ==========================================
 const wishForm = document.getElementById('wishForm');
 const messagesList = document.getElementById('messagesList');
 
-// Lắng nghe và cập nhật danh sách lời chúc theo thời gian thực (Realtime)
 function listenForWishes() {
-    if (!messagesList) return;
-
-    db.collection("wishes")
-      .orderBy("timestamp", "desc")
-      .onSnapshot((snapshot) => {
-          if (snapshot.empty) {
-              messagesList.innerHTML = '<p class="text-center text-xs text-brand-400">Chưa có lời chúc nào. Hãy là người đầu tiên gửi lời chúc nhé!</p>';
-              return;
-          }
-
-          messagesList.innerHTML = snapshot.docs.map(doc => {
-              const item = doc.data();
-              return `
-                  <div class="p-3.5 bg-white/90 rounded-xl border border-brand-200 text-xs space-y-1 animate-fadeIn">
-                      <div class="flex justify-between items-center font-bold text-brand-900">
-                          <span>${escapeHtml(item.name)}</span>
-                          <span class="text-[10px] text-brand-400 font-normal">${item.time || ''}</span>
-                      </div>
-                      <p class="text-brand-700">${escapeHtml(item.wish)}</p>
-                  </div>
-              `;
-          }).join('');
-      }, (error) => {
-          console.error("Lỗi khi tải danh sách lời chúc:", error);
-      });
-}
-
-// Xử lý sự kiện khi khách gửi Form lời chúc
-// Sự kiện gửi lời chúc mới
-if (wishForm) {
-    wishForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const nameInput = document.getElementById('guestName');
-        const wishInput = document.getElementById('guestWish');
-
-        const name = nameInput ? nameInput.value.trim() : '';
-        const wish = wishInput ? wishInput.value.trim() : '';
-
-        if (name && wish) {
-            try {
-                const now = new Date();
-                
-                // 1. Định dạng giờ:phút (thêm số 0 phía trước nếu < 10)
-                const hours = String(now.getHours()).padStart(2, '0');
-                const minutes = String(now.getMinutes()).padStart(2, '0');
-                const dateStr = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
-                
-                // Tạo chuỗi thời gian đầy đủ giờ và ngày
-                const timeStr = `${hours}:${minutes} - ${dateStr}`;
-
-                // 2. Lưu lời chúc vào collection 'wishes' trên Firestore
-                await db.collection("wishes").add({
-                    name: name,
-                    wish: wish,
-                    time: timeStr, // Giá trị hiển thị mới: HH:mm - DD/MM/YYYY
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                });
-
-                wishForm.reset();
-                alert("Cảm ơn bạn đã gửi lời chúc ý nghĩa!");
-            } catch (error) {
-                console.error("Lỗi khi gửi lời chúc:", error);
-                alert("Không thể gửi lời chúc. Vui lòng kiểm tra lại kết nối mạng!");
-            }
+    if (!messagesList || wishesStarted) return;
+    wishesStarted = true;
+    if (!db) return;
+    db.collection("wishes").orderBy("timestamp", "desc").limit(50).onSnapshot((snapshot) => {
+        if (snapshot.empty) {
+            messagesList.innerHTML = '<p class="text-center text-xs text-brand-400">Chưa có lời chúc nào.</p>';
+            return;
         }
+        messagesList.innerHTML = snapshot.docs.map(doc => {
+            const item = doc.data();
+            return `
+                <div class="p-3.5 bg-white/90 rounded-xl border border-brand-200 text-xs space-y-1">
+                    <div class="flex justify-between items-center font-bold text-brand-900">
+                        <span>${escapeHtml(item.name)}</span>
+                        <span class="text-[10px] text-brand-400 font-normal">${escapeHtml(item.time || '')}</span>
+                    </div>
+                    <p class="text-brand-700">${escapeHtml(item.wish)}</p>
+                </div>
+            `;
+        }).join('');
     });
 }
 
-function renderWishes() {
-    if (!messagesList) return;
-
-    const savedWishes = JSON.parse(localStorage.getItem('wedding_wishes')) || defaultWishes;
-    messagesList.innerHTML = savedWishes.map(item => `
-        <div class="p-3.5 bg-white/90 rounded-xl border border-brand-200 text-xs space-y-1 animate-fadeIn">
-            <div class="flex justify-between items-center font-bold text-brand-900">
-                <span>${escapeHtml(item.name)}</span>
-                <span class="text-[10px] text-brand-400 font-normal">${item.time}</span>
-            </div>
-            <p class="text-brand-700">${escapeHtml(item.wish)}</p>
-        </div>
-    `).join('');
+async function submitWish(e) {
+    e.preventDefault();
+    if (wishForm.dataset.sending === 'true' || !wishForm.reportValidity()) return;
+    const name = document.getElementById('guestName').value.trim();
+    const wish = document.getElementById('guestWish').value.trim();
+    if (!name || !wish || !db) return;
+    try {
+        const time = new Intl.DateTimeFormat('vi-VN',{dateStyle:'short',timeStyle:'short',timeZone:'Asia/Ho_Chi_Minh'}).format(new Date());
+        await db.collection('wishes').add({ name, wish, time, timestamp: firebase.firestore.FieldValue.serverTimestamp() });
+        wishForm.reset(); notify('Đã gửi lời chúc thành công!');
+    } catch (error) { notify('Gửi lời chúc không thành công.'); }
 }
 
 if (wishForm) {
-    wishForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const nameInput = document.getElementById('guestName');
-        const wishInput = document.getElementById('guestWish');
-
-        const name = nameInput ? nameInput.value.trim() : '';
-        const wish = wishInput ? wishInput.value.trim() : '';
-
-        if (name && wish) {
-            const now = new Date();
-            const timeStr = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
-            const savedWishes = JSON.parse(localStorage.getItem('wedding_wishes')) || defaultWishes;
-
-            savedWishes.unshift({ name, wish, time: timeStr });
-            localStorage.setItem('wedding_wishes', JSON.stringify(savedWishes));
-
-            renderWishes();
-            wishForm.reset();
-            alert("Cảm ơn bạn đã gửi lời chúc ý nghĩa!");
-        }
-    });
+    wishForm.addEventListener('submit', submitWish);
 }
 
 function escapeHtml(text) {
-    return text
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+    return String(text ?? '').replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 }
 
-// ==========================================
-// 10. MỞ THIỆP & LỐC XOÁY
-// ==========================================
+// XỬ LÝ MỞ THIỆP & KÍCH HOẠT TRỰC TIẾP NHẠC
 const openBtn = document.getElementById('openInvitation');
-if (openBtn) {
-    openBtn.addEventListener('click', () => {
-        const envelopeWrapper = document.getElementById('envelopeWrapper');
-        const coverScreen = document.getElementById('coverScreen');
-        const invitation = document.getElementById('invitation');
-
-        toggleMusic();
-
-        if (envelopeWrapper) {
-            envelopeWrapper.classList.add('open');
-            setTimeout(() => envelopeWrapper.classList.add('tornado-active'), 200);
-        }
-
-        setTimeout(() => {
-            if (coverScreen) coverScreen.classList.add('fade-out');
-            if (invitation) invitation.classList.remove('opacity-0');
-        }, 800);
-
-        setTimeout(() => {
-            if (coverScreen) coverScreen.style.display = 'none';
-        }, 1300);
-    });
+function syncHeartViewport() {
+    const layer = document.querySelector('.opening-hearts');
+    if (!layer) return;
+    const height = window.visualViewport?.height || window.innerHeight;
+    layer.style.height = `${height}px`;
+    layer.style.setProperty('--travel', `${height + 80}px`);
 }
-
-// ==========================================
-// 11. KHỞI CHẠY TRANG & SCROLL OBSERVER
-// ==========================================
-// Khởi chạy khi trang tải xong
-window.addEventListener('DOMContentLoaded', () => {
-    initFallingLeaves();
-    initBalloons();
-    createDots();
-    updateCarousel();
-    startAutoplay();
+function startOpeningHearts() {
+    if (!motionAllowed() || document.querySelector('.opening-hearts')) return;
+    const layer = document.createElement('div');
+    layer.className = 'opening-hearts';
+    layer.setAttribute('aria-hidden', 'true');
+    const count = window.innerWidth < 480 ? 16 : 24;
+    for (let i = 0; i < count; i++) {
+        const heart = document.createElement('span');
+        heart.className = 'opening-heart';
+        heart.innerHTML = '<svg viewBox="0 0 32 32" focusable="false" aria-hidden="true"><path d="M16 28C2 18 1 9 6 5c4-3 8-1 10 3 2-4 6-6 10-3 5 4 4 13-10 23Z"/></svg>';
+        heart.style.setProperty('--x', `${4 + Math.random() * 92}%`);
+        heart.style.setProperty('--size', `${12 + Math.random() * 15}px`);
+        const duration = 7 + Math.random() * 5;
+        heart.style.setProperty('--duration', `${duration}s`);
+        heart.style.setProperty('--delay', `${-duration * (.12 + i / count * .68)}s`);
+        heart.style.setProperty('--drift', `${Math.random() * 90 - 45}px`);
+        heart.style.setProperty('--heart-color', i % 3 ? '#c8899d' : '#c6a576');
+        layer.appendChild(heart);
+    }
+    document.body.appendChild(layer);
+    syncHeartViewport();
+    layer.classList.toggle('is-paused', document.hidden);
+}
+window.addEventListener('resize', syncHeartViewport);
+window.visualViewport?.addEventListener('resize', syncHeartViewport);
+document.addEventListener('visibilitychange', () => {
+    document.querySelector('.opening-hearts')?.classList.toggle('is-paused', document.hidden);
+});
+function onMotionChange() {
+    document.body.classList.toggle('motion-enabled', motionOverride);
+    const button = document.getElementById('motionToggle');
+    if (button) {
+        button.hidden = !invitationOpened || !reducedMotion.matches;
+        button.textContent = motionOverride ? 'Tắt hiệu ứng' : 'Bật hiệu ứng';
+        button.setAttribute('aria-pressed', String(motionOverride));
+    }
+    if (!motionAllowed()) document.querySelector('.opening-hearts')?.remove();
+    else if (invitationOpened) startOpeningHearts();
+    syncAutoplay();
+}
+if (reducedMotion.addEventListener) reducedMotion.addEventListener('change', onMotionChange);
+else if (reducedMotion.addListener) reducedMotion.addListener(onMotionChange);
+function openInvitation() {
+    if (invitationOpened || !openBtn || openBtn.disabled) return;
     
-    // Kích hoạt lắng nghe dữ liệu từ Firebase
+    // Phát nhạc trực tiếp ngay trong tương tác chạm/click của người dùng
+    if (bgMusic) {
+        bgMusic.play().then(() => {
+            syncMusic();
+        }).catch(err => {
+            syncMusic();
+            notify('Chưa phát được nhạc. Bạn chạm nút nhạc để thử lại nhé.');
+        });
+    }
+
+    openBtn.disabled = true;
+    openBtn.setAttribute('aria-expanded','true');
+    const cover = document.getElementById('coverScreen');
+    const main = document.getElementById('invitation');
+
+    cover.style.display = 'none';
+    cover.setAttribute('aria-hidden', 'true');
+    main.style.transition = 'none';
+    main.classList.remove('opacity-0');
+    main.inert = false;
+    main.setAttribute('aria-hidden','false');
+    document.body.classList.remove('cover-locked');
+    invitationOpened = true;
+    window.scrollTo(0, 0);
+    document.getElementById('invitationHeading')?.focus({preventScroll:true});
+    onMotionChange();
     listenForWishes();
-});
-window.addEventListener('DOMContentLoaded', () => {
-    initFallingLeaves();
-    createDots();
-    updateCarousel();
-    startAutoplay();
-    renderWishes();
+    syncAutoplay();
+}
 
-    const carouselContainer = document.querySelector('.album-carousel-container');
-    if (carouselContainer) {
-        carouselContainer.addEventListener('mouseenter', stopAutoplay);
-        carouselContainer.addEventListener('mouseleave', startAutoplay);
-    }
+if(openBtn) openBtn.addEventListener('click', openInvitation);
 
-    const observerOptions = { threshold: 0.2 };
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.scroll-reveal').forEach(el => {
-        observer.observe(el);
+function initAlbumInteraction(album) {
+    const section = album.closest('.album');
+    const track = album.querySelector('.carousel-track');
+    const pause = document.getElementById('albumPause');
+    let keyboardInteraction = false;
+    const syncAlbumFocus = () => {
+        albumFocused = keyboardInteraction && section.contains(document.activeElement);
+        syncAutoplay();
+    };
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Tab' || section.contains(e.target)) {
+            keyboardInteraction = true;
+            syncAlbumFocus();
+        }
     });
-});
-// ==========================================
-// 4. HIỆU ỨNG TRÁI TIM RƠI (ĐÃ GIẢM SỐ LƯỢNG)
-// ==========================================
-function initFallingLeaves() {
-    const container = document.getElementById('fallingLeavesContainer');
-    if (!container) return;
+    document.addEventListener('pointerdown', () => {
+        keyboardInteraction = false;
+        syncAlbumFocus();
+    }, {passive:true});
+    pause?.addEventListener('click', () => {
+        albumPaused = !albumPaused;
+        pause.setAttribute('aria-pressed', String(albumPaused));
+        pause.textContent = albumPaused ? 'Tiếp tục' : 'Tạm dừng';
+        syncAutoplay();
+    });
+    section.addEventListener('focusin', syncAlbumFocus);
+    section.addEventListener('focusout', () => setTimeout(syncAlbumFocus, 0));
+    section.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight') { e.preventDefault(); nextSlide(e); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(e); }
+        if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('.carousel-card.active')) {
+            e.preventDefault(); onCardClick(currentimageIndex);
+        }
+    });
+    let gesture = null;
+    track.addEventListener('pointerdown', e => {
+        if (!e.isPrimary || (e.pointerType === 'mouse' && e.button !== 0)) return;
+        gesture = {id:e.pointerId, x:e.clientX, y:e.clientY, dx:0, dy:0};
+        albumDragging = true; syncAutoplay();
+    });
+    track.addEventListener('pointermove', e => {
+        if (!gesture || e.pointerId !== gesture.id) return;
+        gesture.dx = e.clientX - gesture.x; gesture.dy = e.clientY - gesture.y;
+        if (Math.abs(gesture.dy) > Math.abs(gesture.dx) && Math.abs(gesture.dy) > 12) {
+            finishGesture(false); return;
+        }
+        if (Math.abs(gesture.dx) > 12) {
+            try { track.setPointerCapture(e.pointerId); } catch (_) { /* Pointer may already be cancelled by native scrolling. */ }
+            section.classList.add('is-dragging');
+            const card = track.querySelector('.active');
+            card.style.setProperty('--drag-x', `${gesture.dx}px`);
+        }
+    });
+    function finishGesture(commit) {
+        if (!gesture) return;
+        const g = gesture; gesture = null;
+        if (Math.abs(g.dx) > 12 || Math.abs(g.dy) > 12) suppressAlbumClickUntil = Date.now() + 450;
+        section.classList.remove('is-dragging');
+        const card = track.querySelector('.active');
+        card?.style.removeProperty('--drag-x');
+        if (track.hasPointerCapture(g.id)) track.releasePointerCapture(g.id);
+        albumDragging = false;
+        if (commit && Math.abs(g.dx) > 45 && Math.abs(g.dx) > Math.abs(g.dy) * 1.25) {
+            if (g.dx < 0) nextSlide(); else prevSlide();
+        }
+        syncAutoplay();
+    }
+    track.addEventListener('pointerup', () => finishGesture(true));
+    track.addEventListener('pointercancel', () => finishGesture(false));
+    track.addEventListener('lostpointercapture', e => { if (e.target === track) finishGesture(false); });
+}
 
-    const fragment = document.createDocumentFragment();
-    // Loại bỏ hoa '🌸', chỉ giữ lại các icon Trái tim
-    const heartIcons = ['❤️', '💖', '💕', '💗'];
+window.addEventListener('DOMContentLoaded', () => {
+    createDots(); 
+    updateCarousel(); 
+    syncMusic();
+    const motionButton = document.createElement('button');
+    motionButton.id = 'motionToggle';
+    motionButton.type = 'button';
+    motionButton.hidden = true;
+    motionButton.title = 'Thiết bị đang bật giảm chuyển động. Bạn có thể chọn bật tim rơi và album tự chạy.';
+    motionButton.setAttribute('aria-label', 'Bật hoặc tắt tim rơi và album tự chạy khi thiết bị giảm chuyển động');
+    motionButton.addEventListener('click', () => {
+        motionOverride = !motionOverride;
+        onMotionChange();
+        notify(motionOverride ? 'Đã bật tim rơi và album tự chạy.' : 'Đã tắt hiệu ứng theo cài đặt giảm chuyển động của thiết bị.');
+    });
+    document.body.appendChild(motionButton);
     
-    // Giảm từ 15 xuống 7-8 trái tim rơi
-    for (let i = 0; i < 7; i++) {
-        const leaf = document.createElement('span');
-        leaf.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
-        leaf.style.left = (Math.random() * 90 + 5) + '%';
-        // Tăng thời gian rơi thong thả hơn (từ 6s đến 11s)
-        leaf.style.animationDuration = (Math.random() * 5 + 6) + 's';
-        // Giãn khoảng cách thời gian xuất hiện (độ trễ đến 7s)
-        leaf.style.animationDelay = (Math.random() * 7) + 's';
-        leaf.style.fontSize = (Math.random() * 6 + 12) + 'px';
-        fragment.appendChild(leaf);
+    const album = document.querySelector('.album-carousel-container');
+    if (album) {
+        initAlbumInteraction(album);
+        album.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { albumHovered = true; syncAutoplay(); } });
+        album.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') { albumHovered = false; syncAutoplay(); } });
+        
+        const refreshVisible = () => {
+            const rect = album.getBoundingClientRect();
+            albumVisible = rect.bottom > 0 && rect.top < window.innerHeight;
+            syncAutoplay();
+        };
+        if ('IntersectionObserver' in window) {
+            const visible = new IntersectionObserver(entries => {
+                albumVisible = entries[0].isIntersecting;
+                syncAutoplay();
+            }, { threshold: .15 });
+            visible.observe(album);
+        } else {
+            window.addEventListener('scroll', refreshVisible, {passive:true});
+            window.addEventListener('resize', refreshVisible);
+        }
+        const restoreEffects = () => {
+            if (document.hidden) return;
+            albumHovered = false;
+            syncHeartViewport();
+            onMotionChange();
+            document.querySelector('.opening-hearts')?.classList.remove('is-paused');
+            refreshVisible();
+        };
+        window.addEventListener('pageshow', restoreEffects);
+        document.addEventListener('visibilitychange', restoreEffects);
+        refreshVisible();
     }
-    container.appendChild(fragment);
-}
-
-// ==========================================
-// HIỆU ỨNG TRÁI TIM BAY TỪ DƯỚI LÊN (ĐÃ GIẢM SỐ LƯỢNG)
-// ==========================================
-function initBalloons() {
-    const container = document.getElementById('balloonsContainer');
-    if (!container) return;
-
-    // Chỉ giữ lại các icon Trái tim nhẹ nhàng
-    const heartIcons = ['❤️', '💖', '💕', '💗'];
-    const fragment = document.createDocumentFragment();
-
-    // Giảm từ 15 xuống 6-7 trái tim bay lên
-    for (let i = 0; i < 6; i++) {
-        const balloon = document.createElement('span');
-        balloon.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
-        
-        // Vị trí xuất hiện ngẫu nhiên theo chiều ngang
-        balloon.style.left = (Math.random() * 92 + 4) + '%';
-        
-        // Thời gian bay chậm rãi hơn (từ 9s đến 15s)
-        balloon.style.animationDuration = (Math.random() * 6 + 9) + 's';
-        
-        // Tăng độ trễ xuất hiện để không bị tập trung một lúc (đến 8s)
-        balloon.style.animationDelay = (Math.random() * 8) + 's';
-        
-        // Kích thước vừa phải (16px đến 24px)
-        balloon.style.fontSize = (Math.random() * 8 + 16) + 'px';
-        
-        fragment.appendChild(balloon);
-    }
-    container.appendChild(fragment);
-}
-
-// ==========================================
-// KHỞI CHẠY TRANG & SCROLL OBSERVER
-// ==========================================
-window.addEventListener('DOMContentLoaded', () => {
-    initFallingLeaves();
-    initBalloons(); // <--- Thêm gọi hàm tạo bong bóng ở đây
-    createDots();
-    updateCarousel();
-    startAutoplay();
-    renderWishes();
-
-    const carouselContainer = document.querySelector('.album-carousel-container');
-    if (carouselContainer) {
-        carouselContainer.addEventListener('mouseenter', stopAutoplay);
-        carouselContainer.addEventListener('mouseleave', startAutoplay);
-    }
-
-    const observerOptions = { threshold: 0.2 };
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.scroll-reveal').forEach(el => {
-        observer.observe(el);
-    });
+    
+    document.addEventListener('visibilitychange', syncAutoplay);
 });

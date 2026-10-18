@@ -2,6 +2,8 @@
 <html lang="vi">
 
 <head>
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%229%22 fill=%22%23fffaf5%22/%3E%3Cpath d=%22M16 26C2 17 3 6 10 6c3 0 5 2 6 4 1-2 3-4 6-4 7 0 8 11-6 20Z%22 fill=%22none%22 stroke=%22%2398576a%22 stroke-width=%221.8%22/%3E%3C/svg%3E">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -39,9 +41,9 @@
                 extend: {
                     colors: {
                         brand: {
-                            50: '#fdfbf7', 100: '#f5efeb', 200: '#eee3d3',
-                            300: '#e1ceb5', 400: '#ceaf8d', 500: '#b88f68',
-                            600: '#9b714f', 700: '#7d583f', 800: '#5c4d42', 900: '#4e372b',
+                            50: '#fffaf5', 100: '#f8eeee', 200: '#e7cdd0',
+                            300: '#d9b6c0', 400: '#b98696', 500: '#98576a',
+                            600: '#875060', 700: '#76515d', 800: '#603d48', 900: '#51323c',
                         }
                     },
                     fontFamily: {
@@ -53,23 +55,21 @@
             }
         }
     </script>
-    <link rel="stylesheet" href="./style.css">
-    <script src="./script.js" defer></script>
+    <link rel="stylesheet" href="./style.css?v=20261011">
+    <link rel="stylesheet" href="./theme.css?v=20261018-direct2">
+    <script src="./script.js?v=20261018-direct2" defer></script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;1,400&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Playfair+Display:ital,wght@0,400;0,600;1,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap"
         rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body class="relative min-h-screen">
+<body class="relative min-h-screen cover-locked">
 
     <!-- Lá bay nền -->
     <div class="falling-leaves" id="fallingLeavesContainer"></div>
@@ -77,127 +77,52 @@
     <div class="floating-balloons" id="balloonsContainer"></div>
 
     <!-- NHẠC CƯỚI -->
-    <audio id="bgMusic" loop preload="none">
+    <audio id="bgMusic" loop preload="auto">
         <source src="music/Ngày Đầu Tiên.mp3" type="audio/mpeg">
     </audio>
-    <button id="musicBtn" title="Bật/Tắt Nhạc"
+    <button id="musicBtn" title="Bật nhạc" aria-label="Bật nhạc" aria-pressed="false"
         class="fixed top-5 right-5 z-50 w-12 h-12 rounded-full bg-white/90 shadow-lg text-brand-800 flex items-center justify-center border border-brand-300 hover:bg-brand-100 transition-all duration-300 text-lg">
         <i id="musicIcon" class="fa-solid fa-music"></i>
     </button>
 
-    <!-- MÀN HÌNH BÌA / MỞ THIỆP -->
-    <div id="coverScreen"
-        class="fixed inset-0 z-40 bg-[#f5efeb] flex items-center justify-center p-3 sm:p-4 transition-all duration-700">
-
-        <!-- Giới hạn max-width cố định max-w-[430px] cho cả Desktop và Mobile -->
-        <div id="envelopeWrapper" class="envelope-wrapper relative w-full max-w-[430px] mx-auto">
-
-            <!-- NẮP BAO THƯ -->
-            <div
-                class="envelope-flap absolute top-0 inset-x-0 h-12 sm:h-16 z-30 pointer-events-none origin-top transition-transform duration-700 ease-in-out">
-                <svg class="w-full h-full drop-shadow-md" viewBox="0 0 700 80" preserveAspectRatio="none">
-                    <path d="M0,0 L350,75 L700,0 Z" fill="#f5efeb" stroke="#ceaf8d" stroke-width="1.5" />
-                </svg>
+    <!-- Thiệp bìa -->
+    <div id="coverScreen" aria-label="Thiệp mời lễ cưới">
+        <div id="envelopeWrapper" class="envelope-wrapper">
+            <div class="envelope-back" aria-hidden="true"></div>
+            <div id="coverCard" class="cover-card letter-card">
+                <img class="letter-photo" src="image/DOJ_6644_1.webp" alt="Ảnh cưới Minh Thịnh và Huỳnh Hương"
+                    fetchpriority="high" decoding="async">
+                <div class="letter-copy">
+                    <p class="cover-eyebrow">Trân trọng kính mời</p>
+                    <h1 class="cover-names" style="font-size: 42px; line-height: 1.3;">
+                        <span class="groom-name">Minh Thịnh</span>
+                        <span class="ampersand">&amp;</span>
+                        <span class="bride-name">Huỳnh Hương</span>
+                    </h1>
+                    <p class="cover-date" style="font-size: 16px; font-weight: bold; margin: 10px 0;">12 . 12 . 2026</p>
+                </div>
             </div>
-
-            <!-- THẺ THIỆP BÌA -->
-            <div id="coverCard"
-                class="cover-card relative w-full aspect-[3/4] bg-[#fbf8f3] rounded-2xl p-4 pt-6 text-center border-2 border-[#ceaf8d]/60 shadow-[0_20px_50px_rgba(92,77,66,0.25)] overflow-hidden flex flex-col justify-between items-center transition-all duration-1000 ease-in-out">
-
-                <img src="image/DOJ_6644_1.webp" alt="Nền thiệp cưới"
-                    class="absolute inset-0 w-full h-full object-cover object-top opacity-85 pointer-events-none" />
-
-                <!-- LỚP MỜ ĐỂ CHỮ NỔI BẬT DỄ ĐỌC HƠN -->
-                <div class="absolute inset-0 bg-white/30 pointer-events-none"></div>
-
-                <!-- VIỀN TRONG THIỆP -->
-                <div class="absolute inset-2 border border-[#ceaf8d]/60 rounded-xl pointer-events-none z-10">
-                </div>
-
-                <!-- NỘI DUNG CHÍNH -->
-                <div class="cover-content relative z-20 w-full px-2 h-full flex flex-col justify-between py-2">
-
-                    <!-- PHẦN THIỆP MỜI ĐẨY LÊN TRÊN CÙNG -->
-                    <div class="pt-2">
-                        <div
-                            class="heart inline-flex items-center justify-center w-7 h-7 rounded-full bg-white/90 text-rose-600 text-xs floating shadow-md backdrop-blur-sm mb-1">
-                            ♥
-                        </div>
-
-                        <p
-                            class="uppercase tracking-[0.25em] text-[11px] text-[#2C1D11] font-extrabold drop-shadow-[0_2px_4px_rgba(255,255,255,1)]">
-                            THIỆP MỜI
-                        </p>
-                    </div>
-
-                    <!-- PHẦN TÊN CÔ DÂU CHÚ RỂ & NỘI DUNG PHÍA DƯỚI (MÀU SÁNG & NỔI BẬT) -->
-                    <div class="space-y-1 my-auto w-full">
-                        <!-- Tên Chú Rể (Căn trái) -->
-                        <div class="text-left pl-3">
-                            <h2
-                                class="font-wedding text-3xl sm:text-4xl text-[#2A1810] font-bold tracking-wide inline-block drop-shadow-[0_2px_8px_rgba(255,255,255,1)] leading-tight">
-                                Huỳnh Hương
-                            </h2>
-                        </div>
-
-                        <!-- Biểu tượng Trái tim Emoji (Căn giữa, không đường gạch) -->
-                        <div class="relative z-10 flex items-center justify-center py-1">
-                            <span
-                                class="text-3xl sm:text-4xl hover:scale-125 transition-transform duration-300 inline-block drop-shadow-[0_2px_8px_rgba(255,255,255,1)]">
-                                ❤️
-                            </span>
-                        </div>
-
-                        <!-- Tên Cô Dâu (Căn phải) -->
-                        <div class="text-right pr-3">
-                            <h2
-                                class="font-wedding text-3xl sm:text-4xl text-[#2A1810] font-bold tracking-wide inline-block drop-shadow-[0_2px_8px_rgba(255,255,255,1)] leading-tight">
-                                Minh Thịnh
-                            </h2>
-                        </div>
-
-                        <div class="mini-line flex items-center justify-center space-x-2 text-[#7C4A2D] my-1">
-                            <span class="h-0.5 w-12 bg-[#7C4A2D]"></span>
-                            <b class="text-xs text-[#7C4A2D]">❦</b>
-                            <span class="h-0.5 w-12 bg-[#7C4A2D]"></span>
-                        </div>
-
-                        <!-- NGÀY THÁNG -->
-                        <div class="flex flex-col items-center justify-center space-y-0.5">
-                            <div
-                                class="cover-lunar text-base font-extrabold tracking-wider text-[#1A0C06] uppercase drop-shadow-[0_2px_6px_rgba(255,255,255,1)]">
-                                12.12.2026
-                            </div>
-                            <div
-                                class="cover-lunar text-[11px] tracking-wider text-[#2C1D11] font-bold uppercase drop-shadow-[0_2px_6px_rgba(255,255,255,1)]">
-                                ( Ngày 04 Tháng 11 năm Bính Ngọ)
-                            </div>
-                        </div>
-
-                        <div
-                            class="invite-text font-script text-xl sm:text-2xl text-[#1A0C06] font-bold drop-shadow-[0_2px_6px_rgba(255,255,255,1)] pt-1">
-                            Thân Mời Đến Dự Buổi Tiệc
-                        </div>
-                    </div>
-
-                    <!-- NÚT MỞ THIỆP CƯỚI -->
-                    <div class="pb-1">
-                        <button id="openInvitation"
-                            class="open-btn px-6 py-2 bg-[#4A382C] hover:bg-[#38281E] text-white font-semibold rounded-full shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5 transition-all duration-200 tracking-wider text-xs uppercase border border-[#D4B595]/40">
-                            <i class="fa-regular fa-envelope-open mr-1.5"></i> Mở thiệp cưới
-                        </button>
-                    </div>
-
-                </div>
+            <div class="envelope-pocket" aria-hidden="true"></div>
+            <div class="envelope-lid" aria-hidden="true"></div>
+            <div class="envelope-action">
+                <button id="openInvitation" class="seal-button" type="button" aria-label="Mở thiệp cưới"
+                    aria-controls="invitation" aria-expanded="false">
+                    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                        <path d="M20 32C3 21 5 8 12 8c4 0 6 2 8 5 2-3 4-5 8-5 7 0 9 13-8 24Z" stroke="currentColor"
+                            stroke-width="1.3" />
+                        <path d="M11 21h18" stroke="currentColor" stroke-width=".8" opacity=".5" />
+                    </svg>
+                </button>
+                <p class="cover-hint">Chạm dấu sáp để mở thiệp</p>
             </div>
         </div>
 
     </div>
     <!-- NỘI DUNG THIỆP -->
-    <div id="invitation"
+    <main id="invitation" inert aria-hidden="true"
         class="invitation max-w-xl mx-auto px-4 py-8 space-y-12 opacity-0 transition-opacity duration-1000">
 
-        <section
+        <section tabindex="-1" id="invitationHeading"
             class="hero bg-[#fbf8f3] rounded-3xl p-6 md:p-10 card-shadow border border-brand-200 text-center relative overflow-hidden paper-bg">
             <div class="hero-content relative z-10 space-y-4">
                 <div class="small-title tracking-[0.3em] uppercase text-xs font-medium text-brand-600 font-serif">
@@ -356,13 +281,15 @@
         <section
             class="section album bg-[#fbf8f3] rounded-3xl py-8 px-4 card-shadow border border-brand-200 text-center space-y-6 overflow-hidden">
             <div class="text-xs uppercase tracking-[0.2em] text-brand-600 font-bold font-serif">ALBUM ẢNH</div>
+            <h2 class="album-title">Những khoảnh khắc<br>của chúng mình</h2>
+            
 
             <div
                 class="album-carousel-container relative w-full my-6 min-h-[380px] sm:min-h-[440px] flex items-center justify-center">
                 <!-- Nút Prev -->
                 <button
                     class="carousel-btn prev-btn absolute left-1 sm:left-2 z-30 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/70 shadow hover:bg-white flex items-center justify-center text-brand-800 transition"
-                    onclick="prevSlide(event)">
+                    aria-label="Ảnh trước" onclick="prevSlide(event)">
                     <i class="fa-solid fa-chevron-left text-sm"></i>
                 </button>
 
@@ -472,22 +399,26 @@
                 <!-- Nút Next -->
                 <button
                     class="carousel-btn next-btn absolute right-1 sm:right-2 z-30 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/70 shadow hover:bg-white flex items-center justify-center text-brand-800 transition"
-                    onclick="nextSlide(event)">
+                    aria-label="Ảnh tiếp theo" onclick="nextSlide(event)">
                     <i class="fa-solid fa-chevron-right text-sm"></i>
                 </button>
             </div>
 
             <div class="carousel-dots flex justify-center items-center space-x-2 pt-2" id="carouselDots"></div>
+            
         </section>
 
         <!-- LIGHTBOX MODAL -->
-        <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
-            <button class="lightbox-btn close-btn" onclick="closeLightboxForce()">&times;</button>
-            <button class="lightbox-btn prev-btn" onclick="changeImage(-1, event)">&#10094;</button>
+        <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Ảnh cưới phóng lớn"
+            aria-hidden="true" onclick="closeLightbox(event)">
+            <button class="lightbox-btn close-btn" aria-label="Đóng ảnh" onclick="closeLightboxForce()">&times;</button>
+            <button class="lightbox-btn prev-btn" aria-label="Ảnh trước"
+                onclick="changeImage(-1, event)">&#10094;</button>
             <div class="lightbox-content">
                 <img id="lightboximage" src="" alt="Zoomed Wedding Photo">
             </div>
-            <button class="lightbox-btn next-btn" onclick="changeImage(1, event)">&#10095;</button>
+            <button class="lightbox-btn next-btn" aria-label="Ảnh tiếp theo"
+                onclick="changeImage(1, event)">&#10095;</button>
         </div>
 
         <!-- NGÀY CƯỚI & TIỆC CƯỚI -->
@@ -516,6 +447,7 @@
                 </div>
             </div>
 
+            <button type="button" class="action-button" onclick="openRSVPModal()">Xác nhận tham dự</button>
             <!-- Widget Lịch -->
             <div class="bg-[#5c4d42] text-amber-50 rounded-2xl p-5 max-w-sm mx-auto shadow-inner space-y-3">
                 <div class="font-script text-2xl text-amber-100 text-center">Tháng 12 / 2026</div>
@@ -690,11 +622,13 @@
 
             <form id="wishForm" class="space-y-3">
                 <div>
-                    <input id="guestName" type="text" placeholder="Nhập tên của bạn*" required
+                    <input id="guestName" aria-label="Họ và tên" maxlength="100" autocomplete="name" type="text"
+                        placeholder="Nhập tên của bạn*" required
                         class="w-full px-4 py-2.5 rounded-xl border border-brand-300 bg-white focus:outline-none focus:ring-1 focus:ring-brand-500 text-xs text-brand-900 placeholder-brand-400">
                 </div>
                 <div>
-                    <textarea id="guestWish" rows="3" placeholder="Nhập lời chúc dành cho dâu rể*" required
+                    <textarea id="guestWish" aria-label="Lời chúc dành cho dâu rể" maxlength="2000" rows="3"
+                        placeholder="Nhập lời chúc dành cho dâu rể*" required
                         class="w-full px-4 py-2.5 rounded-xl border border-brand-300 bg-white focus:outline-none focus:ring-1 focus:ring-brand-500 text-xs text-brand-900 placeholder-brand-400 resize-none"></textarea>
                 </div>
                 <div class="text-right">
@@ -705,7 +639,8 @@
                 </div>
             </form>
 
-            <div class="space-y-3 pt-4 border-t border-brand-200 max-h-80 overflow-y-auto pr-1" id="messagesList"></div>
+            <div class="space-y-3 pt-4 border-t border-brand-200 max-h-80 overflow-y-auto pr-1" id="messagesList"
+                aria-live="polite"></div>
         </section>
 
         <!-- MỪNG CƯỚI ONLINE -->
@@ -792,10 +727,11 @@
             <p class="text-[10px] text-brand-400 pt-4">Copyright ©2026 of Võ Minh Thịnh</p>
         </footer>
 
-    </div>
+    </main>
 
     <!-- MODAL RSVP -->
-    <div id="rsvpModal" class="fixed inset-0 bg-black/60 z-50 hidden items-center justify-center p-4">
+    <div id="rsvpModal" role="dialog" aria-modal="true" aria-label="Xác nhận tham dự" aria-hidden="true"
+        class="fixed inset-0 bg-black/60 z-50 hidden items-center justify-center p-4">
         <div
             class="bg-[#fbf8f3] rounded-3xl max-w-sm w-full p-6 text-center space-y-4 border border-brand-200 relative animate-fadeIn">
             <button onclick="closeRSVPModal()"
@@ -891,6 +827,7 @@
         </div>
     </div>
 
+    <div id="toast" role="status" aria-live="polite"></div>
 </body>
 
 </html>
