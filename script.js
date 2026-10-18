@@ -11,7 +11,6 @@ const albumImages = [
     'image/DOJ_6149_1.webp',
     'image/DOJ_7271_1.webp',
     'image/DOJ_7063_1.webp',
-    
 ];
 
 let currentimageIndex = 0;
@@ -25,6 +24,7 @@ let activeDialog = null;
 let dialogReturnFocus = null;
 let wishesStarted = false;
 let toastTimer;
+
 function notify(message) {
     const toast = document.getElementById('toast');
     if (!toast) return;
@@ -32,9 +32,10 @@ function notify(message) {
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => { toast.textContent = ''; }, 5000);
 }
+
 function syncAutoplay() {
     stopAutoplay();
-    if (invitationOpened && albumVisible && !albumHovered && !document.hidden && !activeDialog && !reducedMotion.matches) {
+    if (invitationOpened && albumVisible && !albumHovered && !document.hidden && !activeDialog) {
         autoplayTimer = setInterval(nextSlide, AUTOPLAY_DELAY);
     }
 }
@@ -134,8 +135,6 @@ function onCardClick(index) {
     }
 }
 
-
-
 // ==========================================
 // 5. BẬT / TẮT NHẠC NỀN
 // ==========================================
@@ -153,19 +152,21 @@ function syncMusic() {
         musicBtn.title = isPlaying ? 'Tắt nhạc' : 'Bật nhạc';
     }
 }
+
 function playMusic() {
     if (!bgMusic) return;
     const result = bgMusic.play();
-    if (result) result.catch(() => { syncMusic(); notify('Chưa thể phát nhạc. Bạn có thể thử lại bằng nút nhạc.'); });
+    if (result) result.catch(() => { syncMusic(); });
 }
+
 function toggleMusic() {
     if (!bgMusic) return;
     if (bgMusic.paused) playMusic(); else bgMusic.pause();
 }
+
 if (bgMusic) {
     bgMusic.addEventListener('play', syncMusic);
     bgMusic.addEventListener('pause', syncMusic);
-    bgMusic.addEventListener('error', () => { syncMusic(); notify('Không tải được nhạc nền. Thiệp vẫn xem được bình thường.'); });
 }
 
 if (musicBtn) {
@@ -173,7 +174,7 @@ if (musicBtn) {
 }
 
 // ==========================================
-// 7. LIGHTBOX ALBUM (ZOOM-IN & ĐÃ SỬA LỖI)
+// 7. LIGHTBOX ALBUM
 // ==========================================
 function openLightbox(srcOrIndex) {
     stopAutoplay();
@@ -184,7 +185,6 @@ function openLightbox(srcOrIndex) {
 
     if (typeof srcOrIndex === 'string') {
         lightboximage.src = srcOrIndex;
-        // Tự động đồng bộ index nếu ảnh có trong danh sách albumImages
         const foundIdx = albumImages.indexOf(srcOrIndex);
         if (foundIdx !== -1) {
             currentimageIndex = foundIdx;
@@ -239,6 +239,7 @@ function closeLightboxForce() {
 }
 
 function closeRSVPModal() { hideDialog(document.getElementById('rsvpModal')); }
+
 function showDialog(dialog) {
     if (!dialog || !invitationOpened) return;
     if (activeDialog && activeDialog !== dialog) hideDialog(activeDialog);
@@ -252,11 +253,8 @@ function showDialog(dialog) {
     if (!main.contains(dialog)) main.inert = true;
     else Array.from(main.children).forEach(el => { if (el !== dialog) el.inert = true; });
     stopAutoplay();
-    const first = dialog.querySelector('button, input, select, textarea, [tabindex="0"]');
-    requestAnimationFrame(() => {
-        if (first && activeDialog === dialog) first.focus({preventScroll:true});
-    });
 }
+
 function hideDialog(dialog) {
     if (!dialog) return;
     dialog.classList.remove('modal-active', 'active');
@@ -272,106 +270,72 @@ function hideDialog(dialog) {
         syncAutoplay();
     }
 }
-document.addEventListener('keydown', (e) => {
-    if (!activeDialog) return;
-    if (e.key === 'Escape') {
-        e.preventDefault();
-        if (activeDialog.id === 'lightbox') closeLightboxForce(); else hideDialog(activeDialog);
-    }
-    if (activeDialog.id === 'lightbox') {
-        if (e.key === 'ArrowLeft') changeImage(-1);
-        if (e.key === 'ArrowRight') changeImage(1);
-    }
-    if (e.key === 'Tab') {
-        const nodes = Array.from(activeDialog.querySelectorAll('button,input,select,textarea,a[href],[tabindex="0"]')).filter(el => !el.disabled && el.getClientRects().length);
-        if (!nodes.length) return;
-        const first = nodes[0], last = nodes[nodes.length-1];
-        if (e.shiftKey && document.activeElement === first) {e.preventDefault();last.focus();}
-        else if (!e.shiftKey && document.activeElement === last) {e.preventDefault();first.focus();}
-    }
-});
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDlV5F4Y13Ld61uslRCmeCi47ud4gFA-lI",
-  authDomain: "minhthinh-12581.firebaseapp.com",
-  projectId: "minhthinh-12581",
-  storageBucket: "minhthinh-12581.firebasestorage.app",
-  messagingSenderId: "1024318003193",
-  appId: "1:1024318003193:web:963a4e8620d2e934800f28",
-  measurementId: "G-FE19JQSXEC"
-};
-
-// Khởi tạo app & cơ sở dữ liệu Cloud Firestore
+// FIREBASE INIT
 let db = null;
 try {
     if (typeof firebase !== 'undefined') {
-        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        if (!firebase.apps.length) firebase.initializeApp({
+            apiKey: "AIzaSyDlV5F4Y13Ld61uslRCmeCi47ud4gFA-lI",
+            authDomain: "minhthinh-12581.firebaseapp.com",
+            projectId: "minhthinh-12581",
+            storageBucket: "minhthinh-12581.firebasestorage.app",
+            messagingSenderId: "1024318003193",
+            appId: "1:1024318003193:web:963a4e8620d2e934800f28"
+        });
         db = firebase.firestore();
     }
-} catch (error) { console.warn('Không thể kết nối sổ lưu bút:', error.code || error.message); }
+} catch (error) { console.warn('Firebase init warning:', error); }
 
-// ==========================================
-// 2. RSVP (XÁC NHẬN THAM DỰ) - LƯU VÀO FIREBASE
-// ==========================================
 function openRSVPModal() { showDialog(document.getElementById('rsvpModal')); }
+
 async function submitRSVP(e) {
     e.preventDefault();
     const form = e.target;
     if (form.dataset.sending === 'true' || !form.reportValidity()) return;
     const name = form.querySelector('input[type="text"]').value.trim();
-    if (!name) { notify('Vui lòng nhập họ và tên.'); return; }
-    if (!db) { notify('Chưa kết nối được. Vui lòng thử lại sau.'); return; }
-    const button = form.querySelector('button[type="submit"]');
-    const label = button.textContent;
-    form.dataset.sending = 'true'; button.disabled = true; button.textContent = 'Đang gửi…';
+    if (!name || !db) return;
     try {
-        await db.collection('rsvps').add({ name, guestType: form.querySelector('select').value,
+        await db.collection('rsvps').add({ 
+            name, 
+            guestType: form.querySelector('select').value,
             attendance: form.querySelector('input[name="attend"]:checked').value === 'yes' ? 'Tham dự' : 'Không tham dự',
-            timestamp: firebase.firestore.FieldValue.serverTimestamp() });
-        form.reset(); closeRSVPModal(); notify('Cảm ơn bạn đã xác nhận. Hẹn gặp bạn trong ngày chung vui!');
-    } catch (error) { notify('Chưa gửi được xác nhận. Thông tin vẫn được giữ để bạn thử lại.'); }
-    finally { form.dataset.sending = 'false'; button.disabled = false; button.textContent = label; }
+            timestamp: firebase.firestore.FieldValue.serverTimestamp() 
+        });
+        form.reset(); closeRSVPModal(); notify('Cảm ơn bạn đã xác nhận tham dự!');
+    } catch (error) { notify('Có lỗi xảy ra, vui lòng thử lại.'); }
 }
+
 function toggleGiftModal() {
     const dialog = document.getElementById('giftModal');
     if (activeDialog === dialog) hideDialog(dialog); else showDialog(dialog);
 }
 
-// ==========================================
-// 3. SỔ LƯU BÚT (LỜI CHÚC) - TẢI REALTIME & LƯU FIREBASE
-// ==========================================
 const wishForm = document.getElementById('wishForm');
 const messagesList = document.getElementById('messagesList');
 
-// Lắng nghe và cập nhật danh sách lời chúc theo thời gian thực (Realtime)
 function listenForWishes() {
     if (!messagesList || wishesStarted) return;
     wishesStarted = true;
-    messagesList.textContent = 'Đang tải lời chúc…';
-    if (!db) { messagesList.textContent = 'Chưa kết nối được sổ lưu bút. Vui lòng tải lại trang để thử lại.'; return; }
-    db.collection("wishes")
-      .orderBy("timestamp", "desc").limit(50)
-      .onSnapshot((snapshot) => {
-          if (snapshot.empty) {
-              messagesList.innerHTML = '<p class="text-center text-xs text-brand-400">Chưa có lời chúc nào. Hãy là người đầu tiên gửi lời chúc nhé!</p>';
-              return;
-          }
-
-          messagesList.innerHTML = snapshot.docs.map(doc => {
-              const item = doc.data();
-              return `
-                  <div class="p-3.5 bg-white/90 rounded-xl border border-brand-200 text-xs space-y-1 animate-fadeIn">
-                      <div class="flex justify-between items-center font-bold text-brand-900">
-                          <span>${escapeHtml(item.name)}</span>
-                          <span class="text-[10px] text-brand-400 font-normal">${escapeHtml(item.time || '')}</span>
-                      </div>
-                      <p class="text-brand-700">${escapeHtml(item.wish)}</p>
-                  </div>
-              `;
-          }).join('');
-      }, (error) => {
-          messagesList.textContent = "Chưa tải được lời chúc. Vui lòng kiểm tra kết nối và tải lại trang.";
-      });
+    if (!db) return;
+    db.collection("wishes").orderBy("timestamp", "desc").limit(50).onSnapshot((snapshot) => {
+        if (snapshot.empty) {
+            messagesList.innerHTML = '<p class="text-center text-xs text-brand-400">Chưa có lời chúc nào.</p>';
+            return;
+        }
+        messagesList.innerHTML = snapshot.docs.map(doc => {
+            const item = doc.data();
+            return `
+                <div class="p-3.5 bg-white/90 rounded-xl border border-brand-200 text-xs space-y-1">
+                    <div class="flex justify-between items-center font-bold text-brand-900">
+                        <span>${escapeHtml(item.name)}</span>
+                        <span class="text-[10px] text-brand-400 font-normal">${escapeHtml(item.time || '')}</span>
+                    </div>
+                    <p class="text-brand-700">${escapeHtml(item.wish)}</p>
+                </div>
+            `;
+        }).join('');
+    });
 }
 
 async function submitWish(e) {
@@ -379,81 +343,107 @@ async function submitWish(e) {
     if (wishForm.dataset.sending === 'true' || !wishForm.reportValidity()) return;
     const name = document.getElementById('guestName').value.trim();
     const wish = document.getElementById('guestWish').value.trim();
-    const status = document.getElementById('wishStatus');
-    if (!name || !wish) { status.textContent = 'Vui lòng nhập tên và lời chúc.'; return; }
-    if (!db) { status.textContent = 'Chưa kết nối được. Lời chúc chưa được gửi, bạn hãy thử lại sau.'; status.dataset.error = 'true'; return; }
-    const button = wishForm.querySelector('button[type="submit"]');
-    const label = button.textContent;
-    wishForm.dataset.sending = 'true'; wishForm.setAttribute('aria-busy','true'); button.disabled = true;
-    button.textContent = 'Đang gửi…'; status.textContent = 'Đang gửi lời chúc của bạn…'; status.dataset.error = 'false';
+    if (!name || !wish || !db) return;
     try {
         const time = new Intl.DateTimeFormat('vi-VN',{dateStyle:'short',timeStyle:'short',timeZone:'Asia/Ho_Chi_Minh'}).format(new Date());
         await db.collection('wishes').add({ name, wish, time, timestamp: firebase.firestore.FieldValue.serverTimestamp() });
-        wishForm.reset(); status.textContent = 'Cảm ơn bạn đã gửi lời chúc dành cho chúng mình!';
-    } catch (error) { status.textContent = 'Chưa gửi được lời chúc. Nội dung vẫn được giữ để bạn thử lại.'; status.dataset.error = 'true'; }
-    finally {wishForm.dataset.sending = 'false';wishForm.setAttribute('aria-busy','false');button.disabled = false;button.textContent = label;}
+        wishForm.reset(); notify('Đã gửi lời chúc thành công!');
+    } catch (error) { notify('Gửi lời chúc không thành công.'); }
 }
+
 if (wishForm) {
-    const status = document.createElement('p'); status.id = 'wishStatus'; status.className = 'form-status'; status.setAttribute('role','status');
-    wishForm.appendChild(status);
     wishForm.addEventListener('submit', submitWish);
 }
 
 function escapeHtml(text) {
-    return String(text ?? '')
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+    return String(text ?? '').replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 }
 
-// Mở thiệp một lần, chỉ chạy album và tải lời chúc sau khi mở.
+// XỬ LÝ MỞ THIỆP & KÍCH HOẠT TRỰC TIẾP NHẠC
 const openBtn = document.getElementById('openInvitation');
+function startOpeningHearts() {
+    if (reducedMotion.matches || document.querySelector('.opening-hearts')) return;
+    const layer = document.createElement('div');
+    layer.className = 'opening-hearts';
+    layer.setAttribute('aria-hidden', 'true');
+    const count = window.innerWidth < 480 ? 16 : 24;
+    for (let i = 0; i < count; i++) {
+        const heart = document.createElement('span');
+        heart.className = 'opening-heart' + (i % 2 ? ' rising' : '');
+        heart.textContent = '♥';
+        heart.style.setProperty('--x', `${4 + Math.random() * 92}%`);
+        heart.style.setProperty('--size', `${12 + Math.random() * 15}px`);
+        heart.style.setProperty('--duration', `${7 + Math.random() * 5}s`);
+        heart.style.setProperty('--delay', `${i < 2 ? 0 : Math.random() * 6}s`);
+        heart.style.setProperty('--drift', `${Math.random() * 90 - 45}px`);
+        heart.style.setProperty('--heart-color', i % 3 ? '#c8899d' : '#c6a576');
+        layer.appendChild(heart);
+    }
+    document.body.appendChild(layer);
+    layer.classList.toggle('is-paused', document.hidden);
+}
+document.addEventListener('visibilitychange', () => {
+    document.querySelector('.opening-hearts')?.classList.toggle('is-paused', document.hidden);
+});
+reducedMotion.addEventListener('change', () => {
+    if (reducedMotion.matches) document.querySelector('.opening-hearts')?.remove();
+    else if (invitationOpened) startOpeningHearts();
+});
 function openInvitation() {
     if (invitationOpened || !openBtn || openBtn.disabled) return;
+    
+    // Phát nhạc trực tiếp ngay trong tương tác chạm/click của người dùng
+    if (bgMusic) {
+        bgMusic.play().then(() => {
+            syncMusic();
+        }).catch(err => {
+            syncMusic();
+            notify('Chưa phát được nhạc. Bạn chạm nút nhạc để thử lại nhé.');
+        });
+    }
+
     openBtn.disabled = true;
     openBtn.setAttribute('aria-expanded','true');
     const wrapper = document.getElementById('envelopeWrapper');
     const cover = document.getElementById('coverScreen');
     const main = document.getElementById('invitation');
-    if (!reducedMotion.matches && bgMusic && bgMusic.paused) playMusic();
+    
     wrapper.classList.add('open');
-    if (!reducedMotion.matches) {
-        const petals = document.createElement('div'); petals.className = 'opening-petals'; petals.setAttribute('aria-hidden','true');
-        for(let i=0;i<8;i++) { const petal=document.createElement('i');petal.style.setProperty('--x',(12+i*11)+'%');petal.style.setProperty('--delay',(i*.07)+'s');petal.style.setProperty('--drift',(i%2 ? 55:-55)+'px');petals.appendChild(petal); }
-        document.body.appendChild(petals);setTimeout(()=>petals.remove(),3000);
-    }
+    startOpeningHearts();
+    
     const finish = () => {
         cover.style.display = 'none';
-        main.classList.remove('opacity-0');main.inert = false;main.setAttribute('aria-hidden','false');
-        document.body.classList.remove('cover-locked');invitationOpened = true;
+        main.classList.remove('opacity-0');
+        main.inert = false;
+        main.setAttribute('aria-hidden','false');
+        document.body.classList.remove('cover-locked');
+        invitationOpened = true;
         window.scrollTo({top:0,behavior:'instant'});
-        document.getElementById('invitationHeading').focus({preventScroll:true});
-        listenForWishes();syncAutoplay();
+        listenForWishes();
+        syncAutoplay();
     };
-    if (reducedMotion.matches) finish();
-    else {setTimeout(()=>{ cover.classList.add('fade-out');main.classList.remove('opacity-0'); },1300);setTimeout(finish,1850);}
+
+    setTimeout(finish, reducedMotion.matches ? 0 : 1950);
 }
-if(openBtn) openBtn.addEventListener('click',openInvitation);
+
+if(openBtn) openBtn.addEventListener('click', openInvitation);
+
 window.addEventListener('DOMContentLoaded', () => {
-    createDots(); updateCarousel(); syncMusic();
+    createDots(); 
+    updateCarousel(); 
+    syncMusic();
+    
     const album = document.querySelector('.album-carousel-container');
     if (album) {
-        album.addEventListener('mouseenter',()=>{albumHovered=true;syncAutoplay();});
-        album.addEventListener('mouseleave',()=>{albumHovered=false;syncAutoplay();});
-        album.addEventListener('focusin',()=>{albumHovered=true;syncAutoplay();});
-        album.addEventListener('focusout',e=>{if(!album.contains(e.relatedTarget)){albumHovered=false;syncAutoplay();}});
-        const visible = new IntersectionObserver(entries=>{albumVisible=entries[0].isIntersecting;syncAutoplay();},{threshold:.15});visible.observe(album);
+        album.addEventListener('mouseenter', () => { albumHovered = true; syncAutoplay(); });
+        album.addEventListener('mouseleave', () => { albumHovered = false; syncAutoplay(); });
+        
+        const visible = new IntersectionObserver(entries => {
+            albumVisible = entries[0].isIntersecting;
+            syncAutoplay();
+        }, { threshold: .15 });
+        visible.observe(album);
     }
-    document.addEventListener('visibilitychange',syncAutoplay);
-    reducedMotion.addEventListener('change',syncAutoplay);
-    const reveal = new IntersectionObserver((entries,observer)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('revealed');observer.unobserve(entry.target);}});},{threshold:.08});
-    document.querySelectorAll('#invitation>section:not(.hero)').forEach(el=>{el.classList.add('section-reveal');reveal.observe(el);});
-    document.querySelectorAll('.carousel-card,[onclick^="openLightbox"],#giftBoxTrigger').forEach(el=>{
-        el.setAttribute('role','button'); if(!el.classList.contains('carousel-card'))el.tabIndex=0;
-        if(!el.hasAttribute('aria-label'))el.setAttribute('aria-label',el.querySelector('img')?.alt || 'Mở mã QR mừng cưới');
-        el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();el.click();}});
-    });
-    ['giftModal','rsvpModal'].forEach(id=>{const dialog=document.getElementById(id);dialog.addEventListener('click',e=>{if(e.target===dialog)hideDialog(dialog);});dialog.querySelector('button').setAttribute('aria-label','Đóng cửa sổ');});
+    
+    document.addEventListener('visibilitychange', syncAutoplay);
 });

@@ -55,8 +55,8 @@
         }
     </script>
     <link rel="stylesheet" href="./style.css?v=20261011">
-    <link rel="stylesheet" href="./theme.css?v=20261011">
-    <script src="./script.js?v=20261011" defer></script>
+    <link rel="stylesheet" href="./theme.css?v=20261018">
+    <script src="./script.js?v=20261018" defer></script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,7 +74,7 @@
     <div class="floating-balloons" id="balloonsContainer"></div>
 
     <!-- NHẠC CƯỚI -->
-    <audio id="bgMusic" loop preload="none">
+    <audio id="bgMusic" loop preload="auto">
         <source src="music/Ngày Đầu Tiên.mp3" type="audio/mpeg">
     </audio>
     <button id="musicBtn" title="Bật nhạc" aria-label="Bật nhạc" aria-pressed="false"
@@ -82,21 +82,22 @@
         <i id="musicIcon" class="fa-solid fa-music"></i>
     </button>
 
-    <!-- Bìa hai cánh, giữ chữ trên giấy và ảnh ở lớp trong -->
+    <!-- Thiệp chữ nhật nằm trong phong bì kem -->
     <div id="coverScreen" aria-label="Thiệp mời lễ cưới">
         <div id="envelopeWrapper" class="envelope-wrapper">
-            <div id="coverCard" class="cover-card">
-                <img class="cover-portrait" src="image/DOJ_6644_1.webp" alt="Minh Thịnh và Huỳnh Hương" fetchpriority="high" decoding="async">
-                <p class="cover-reveal-name">Minh Thịnh &amp; Huỳnh Hương</p>
-                <p class="cover-date">12 . 12 . 2026</p>
-            </div>
-            <div class="gate gate-left" aria-hidden="true"></div>
-            <div class="gate gate-right" aria-hidden="true"></div>
-            <div class="gate-copy">
+            <div class="envelope-back" aria-hidden="true"></div>
+            <div id="coverCard" class="cover-card letter-card">
+                <img class="letter-photo" src="image/DOJ_6644_1.webp" alt="Ảnh cưới Minh Thịnh và Huỳnh Hương" fetchpriority="high" decoding="async">
+                <div class="letter-copy">
                 <p class="cover-eyebrow">Trân trọng kính mời</p>
                 <h1 class="cover-names">Minh Thịnh<span>&amp;</span>Huỳnh Hương</h1>
                 <p class="cover-date">12 . 12 . 2026</p>
                 <p class="cover-lunar-note">Ngày 04 tháng 11 năm Bính Ngọ</p>
+                </div>
+            </div>
+            <div class="envelope-pocket" aria-hidden="true"></div>
+            <div class="envelope-lid" aria-hidden="true"></div>
+            <div class="envelope-action">
                 <button id="openInvitation" class="seal-button" type="button" aria-label="Mở thiệp cưới" aria-controls="invitation" aria-expanded="false">
                     <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M20 32C3 21 5 8 12 8c4 0 6 2 8 5 2-3 4-5 8-5 7 0 9 13-8 24Z" stroke="currentColor" stroke-width="1.3"/><path d="M11 21h18" stroke="currentColor" stroke-width=".8" opacity=".5"/></svg>
                 </button>

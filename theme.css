@@ -5,6 +5,37 @@
 @keyframes coverArrive{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}@keyframes petalDrift{10%{opacity:.7}100%{opacity:0;transform:translate(var(--drift),55vh) rotate(220deg)}}
 @media(max-width:480px){#invitation{padding-left:14px;padding-right:14px}.hero{padding:44px 20px 28px!important}.cover-card{padding:16px}.gate-copy{padding-top:18%}.cover-eyebrow{margin-bottom:12px}.seal-button{width:65px;height:65px}.cover-date{margin-top:14px}.cover-lunar-note{font-size:9px}.cover-hint{font-size:10px}.couple>.text-center>div.grid{gap:10px}.couple p{font-size:12px}.couple .text-\[10px\]{font-size:11px}.lightbox-content{max-width:94%}.story h2{font-size:38px}#giftModal>div{padding:24px 18px}.location h2{font-size:24px}.cover-footer{font-size:20px}}
 @media(max-height:650px){.gate-copy{padding-top:15%;padding-bottom:8%}.cover-eyebrow{margin-bottom:8px}.cover-names{font-size:28px}.cover-date{margin-top:10px}.cover-lunar-note{font-size:8px}.seal-button{width:54px;height:54px}.cover-hint{font-size:9px;margin-top:6px}.cover-footer{margin-top:10px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.section-reveal{opacity:1;transform:none}.opening-petals{display:none}.cover-portrait{transform:none}}
-
+/* Một tấm thiệp ảnh liền, thân và nắp phong bì kem. */
+#envelopeWrapper{width:min(430px,100%,calc((100svh - 150px)*.72));isolation:isolate}
+.envelope-back{position:absolute;inset:55% -2% 0;background:#eadacc;border:1px solid var(--gold);border-radius:6px;box-shadow:0 22px 55px #51323c22;z-index:0}
+.cover-card.letter-card{inset:0 3% 8%;padding:0;border-radius:5px;z-index:2;display:block;box-shadow:0 12px 30px #51323c22;transition:transform .9s .45s cubic-bezier(.22,.65,.25,1),opacity .4s 1.5s;transform-origin:center bottom}
+.letter-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.letter-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,#fffaf552,#fffaf512 32%,#fffaf5d9 64%,#fffaf5f5);pointer-events:none}
+.letter-copy{position:absolute;inset:0;z-index:1;padding:6% 14px 0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.letter-copy .cover-eyebrow{margin:0;text-shadow:0 1px 6px var(--paper)}
+.letter-copy .cover-names{margin-top:52%;font-size:clamp(22px,5vw,31px);line-height:1.2}
+.letter-copy .cover-names span{display:block;margin:2px;font-size:.65em}
+.letter-copy .cover-date{margin-top:8px}
+.letter-copy .cover-lunar-note{margin-top:3px}
+.envelope-pocket{position:absolute;inset:75% -2% 0;z-index:3;border:1px solid var(--gold);border-radius:0 0 6px 6px;background:linear-gradient(145deg,#fffaf5,#eedfd0);clip-path:polygon(0 0,50% 32%,100% 0,100% 100%,0 100%);transition:transform .8s .7s,opacity .4s 1.4s}
+.envelope-lid{position:absolute;left:-2%;right:-2%;top:75%;height:13%;background:linear-gradient(#f8eee2,#e7d3be);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:center top;z-index:4;transition:transform .65s ease,opacity .4s 1.4s;backface-visibility:visible}
+.envelope-action{position:absolute;inset:82% 0 0;z-index:5;display:flex;flex-direction:column;align-items:center;gap:5px;transition:opacity .25s,transform .25s}
+.envelope-action .seal-button{margin:0;width:54px;height:54px;min-height:44px}
+.envelope-action .cover-hint{margin:0;font-size:10px}
+.envelope-wrapper.open .envelope-lid{transform:rotateX(175deg);opacity:0}
+.envelope-wrapper.open .letter-card{transform:translateY(-19%) scale(1.035);opacity:0}
+.envelope-wrapper.open .envelope-pocket{transform:translateY(28%);opacity:0}
+.envelope-wrapper.open .envelope-action{opacity:0;transform:scale(.8);pointer-events:none}
+@media(max-width:360px),(max-height:650px){.letter-copy .cover-names{font-size:22px;margin-top:46%}.letter-copy .cover-date{font-size:11px;margin-top:5px}.letter-copy .cover-lunar-note{font-size:8px}.envelope-action .seal-button{width:44px;height:44px}.envelope-action .cover-hint{font-size:9px}}
+.opening-hearts{position:fixed;inset:0;z-index:100;overflow:hidden;pointer-events:none;contain:strict}
+.opening-heart{position:absolute;left:var(--x);top:-40px;color:var(--heart-color);font:var(--size)/1 Georgia,serif;opacity:0;animation:heartFall var(--duration) linear infinite;animation-delay:var(--delay);will-change:transform,opacity}
+.opening-heart.rising{top:auto;bottom:-40px;animation-name:heartRise}
+@keyframes heartFall{0%{opacity:0;transform:translate3d(0,0,0) rotate(-15deg)}10%,80%{opacity:.65}100%{opacity:0;transform:translate3d(var(--drift),calc(100dvh + 80px),0) rotate(35deg)}}
+@keyframes heartRise{0%{opacity:0;transform:translate3d(0,0,0) rotate(15deg)}10%,80%{opacity:.55}100%{opacity:0;transform:translate3d(var(--drift),calc(-100dvh - 80px),0) rotate(-35deg)}}
+.opening-hearts.is-paused .opening-heart{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .opening-hearts{display:none}
+  .letter-card,.envelope-lid,.envelope-pocket,.envelope-action,#envelopeWrapper,#coverScreen{transition:none!important;animation:none!important}
+}
 .muse-badge{position:fixed;right:16px;bottom:16px;z-index:9999;display:inline-flex;align-items:center;gap:.25rem;padding:.45rem 1rem;border-radius:999px;border:1px solid var(--muse-badge-border,#e7cdd0);background:var(--muse-badge-bg,#fffaf5);color:var(--muse-badge-fg,#51323c);font:500 13px/1.2 system-ui;letter-spacing:.01em;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.3);transition:transform .2s ease,filter .2s ease,box-shadow .2s ease}.muse-badge img{width:1.35em;height:1.35em;object-fit:contain;flex-shrink:0}.muse-badge:hover{transform:translateY(-1px);filter:brightness(1.06);box-shadow:0 6px 18px rgba(0,0,0,.4)}#floatingGiftBtn{bottom:76px}body.cover-locked .muse-badge{visibility:hidden}body.modal-locked .muse-badge{visibility:hidden}
