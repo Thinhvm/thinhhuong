@@ -25,7 +25,6 @@ let albumFocused = false;
 let albumDragging = false;
 let suppressAlbumClickUntil = 0;
 let renderedAlbumIndex = 0;
-let albumExitTimer;
 let activeDialog = null;
 let dialogReturnFocus = null;
 let wishesStarted = false;
@@ -66,7 +65,7 @@ function resetAutoplay() {
 }
 
 // ==========================================
-// 3. KHỞI TẠO CAROUSEL 3D ALBUM
+// 3. KHỞI TẠO ALBUM TRƯỢT NGANG
 // ==========================================
 function updateCarousel() {
     const cards = document.querySelectorAll('.carousel-card');
@@ -75,13 +74,10 @@ function updateCarousel() {
     const outgoing = cards[renderedAlbumIndex];
     const transferFocus = document.activeElement === outgoing;
     const changed = renderedAlbumIndex !== currentimageIndex;
-    const forward = (currentimageIndex - renderedAlbumIndex + total) % total <= Math.floor(total / 2);
-    clearTimeout(albumExitTimer);
 
     cards.forEach((card, i) => {
         card.className = 'carousel-card';
         card.style.removeProperty('--drag-x');
-        card.style.removeProperty('--drag-angle');
         card.setAttribute('role', 'button');
         card.tabIndex = i === currentimageIndex ? 0 : -1;
         card.setAttribute('aria-hidden', String(i !== currentimageIndex));
@@ -90,12 +86,8 @@ function updateCarousel() {
 
         if (diff === 0) card.classList.add('active');
         else if (diff === 1) card.classList.add('next');
-        else if (diff === 2) card.classList.add('stack-back');
+        else if (diff === total - 1) card.classList.add('prev');
     });
-    if (changed && !reducedMotion.matches && outgoing) {
-        outgoing.classList.add(forward ? 'exit-left' : 'exit-right');
-        albumExitTimer = setTimeout(() => outgoing.classList.remove('exit-left', 'exit-right'), 360);
-    }
     renderedAlbumIndex = currentimageIndex;
     if (changed && transferFocus) cards[currentimageIndex].focus({preventScroll:true});
     const counter = document.getElementById('albumCounter');
@@ -382,7 +374,11 @@ function escapeHtml(text) {
 // XỬ LÝ MỞ THIỆP & KÍCH HOẠT TRỰC TIẾP NHẠC
 const openBtn = document.getElementById('openInvitation');
 function syncHeartViewport() {
-    document.querySelector('.opening-hearts')?.style.setProperty('--travel', `${window.innerHeight + 80}px`);
+    const layer = document.querySelector('.opening-hearts');
+    if (!layer) return;
+    const height = window.visualViewport?.height || window.innerHeight;
+    layer.style.height = `${height}px`;
+    layer.style.setProperty('--travel', `${height + 80}px`);
 }
 function startOpeningHearts() {
     if (reducedMotion.matches || document.querySelector('.opening-hearts')) return;
@@ -396,8 +392,9 @@ function startOpeningHearts() {
         heart.innerHTML = '<svg viewBox="0 0 32 32" focusable="false" aria-hidden="true"><path d="M16 28C2 18 1 9 6 5c4-3 8-1 10 3 2-4 6-6 10-3 5 4 4 13-10 23Z"/></svg>';
         heart.style.setProperty('--x', `${4 + Math.random() * 92}%`);
         heart.style.setProperty('--size', `${12 + Math.random() * 15}px`);
-        heart.style.setProperty('--duration', `${7 + Math.random() * 5}s`);
-        heart.style.setProperty('--delay', `${-Math.random() * 10}s`);
+        const duration = 7 + Math.random() * 5;
+        heart.style.setProperty('--duration', `${duration}s`);
+        heart.style.setProperty('--delay', `${-duration * (.12 + i / count * .68)}s`);
         heart.style.setProperty('--drift', `${Math.random() * 90 - 45}px`);
         heart.style.setProperty('--heart-color', i % 3 ? '#c8899d' : '#c6a576');
         layer.appendChild(heart);
@@ -407,6 +404,7 @@ function startOpeningHearts() {
     layer.classList.toggle('is-paused', document.hidden);
 }
 window.addEventListener('resize', syncHeartViewport);
+window.visualViewport?.addEventListener('resize', syncHeartViewport);
 document.addEventListener('visibilitychange', () => {
     document.querySelector('.opening-hearts')?.classList.toggle('is-paused', document.hidden);
 });
@@ -460,17 +458,29 @@ function initAlbumInteraction(album) {
     const section = album.closest('.album');
     const track = album.querySelector('.carousel-track');
     const pause = document.getElementById('albumPause');
+    let keyboardInteraction = false;
+    const syncAlbumFocus = () => {
+        albumFocused = keyboardInteraction && section.contains(document.activeElement);
+        syncAutoplay();
+    };
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Tab' || section.contains(e.target)) {
+            keyboardInteraction = true;
+            syncAlbumFocus();
+        }
+    });
+    document.addEventListener('pointerdown', () => {
+        keyboardInteraction = false;
+        syncAlbumFocus();
+    }, {passive:true});
     pause?.addEventListener('click', () => {
         albumPaused = !albumPaused;
         pause.setAttribute('aria-pressed', String(albumPaused));
         pause.textContent = albumPaused ? 'Tiếp tục' : 'Tạm dừng';
         syncAutoplay();
     });
-    section.addEventListener('focusin', () => { albumFocused = true; syncAutoplay(); });
-    section.addEventListener('focusout', () => setTimeout(() => {
-        albumFocused = section.contains(document.activeElement);
-        syncAutoplay();
-    }, 0));
+    section.addEventListener('focusin', syncAlbumFocus);
+    section.addEventListener('focusout', () => setTimeout(syncAlbumFocus, 0));
     section.addEventListener('keydown', e => {
         if (e.key === 'ArrowRight') { e.preventDefault(); nextSlide(e); }
         if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(e); }
@@ -495,7 +505,6 @@ function initAlbumInteraction(album) {
             section.classList.add('is-dragging');
             const card = track.querySelector('.active');
             card.style.setProperty('--drag-x', `${gesture.dx}px`);
-            card.style.setProperty('--drag-angle', `${-2 + gesture.dx / 18}deg`);
         }
     });
     function finishGesture(commit) {
@@ -504,7 +513,7 @@ function initAlbumInteraction(album) {
         if (Math.abs(g.dx) > 12 || Math.abs(g.dy) > 12) suppressAlbumClickUntil = Date.now() + 450;
         section.classList.remove('is-dragging');
         const card = track.querySelector('.active');
-        card?.style.removeProperty('--drag-x'); card?.style.removeProperty('--drag-angle');
+        card?.style.removeProperty('--drag-x');
         if (track.hasPointerCapture(g.id)) track.releasePointerCapture(g.id);
         albumDragging = false;
         if (commit && Math.abs(g.dx) > 45 && Math.abs(g.dx) > Math.abs(g.dy) * 1.25) {
