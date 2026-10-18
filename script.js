@@ -20,6 +20,12 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let invitationOpened = false;
 let albumVisible = false;
 let albumHovered = false;
+let albumPaused = false;
+let albumFocused = false;
+let albumDragging = false;
+let suppressAlbumClickUntil = 0;
+let renderedAlbumIndex = 0;
+let albumExitTimer;
 let activeDialog = null;
 let dialogReturnFocus = null;
 let wishesStarted = false;
@@ -35,7 +41,9 @@ function notify(message) {
 
 function syncAutoplay() {
     stopAutoplay();
-    if (invitationOpened && albumVisible && !albumHovered && !document.hidden && !activeDialog) {
+    const running = invitationOpened && albumVisible && !albumHovered && !albumPaused && !albumFocused && !albumDragging && !reducedMotion.matches && !document.hidden && !activeDialog;
+    document.querySelector('.album')?.classList.toggle('is-playing', Boolean(running));
+    if (running) {
         autoplayTimer = setInterval(nextSlide, AUTOPLAY_DELAY);
     }
 }
@@ -64,23 +72,34 @@ function updateCarousel() {
     const cards = document.querySelectorAll('.carousel-card');
     const total = cards.length;
     if (!total) return;
+    const outgoing = cards[renderedAlbumIndex];
+    const transferFocus = document.activeElement === outgoing;
+    const changed = renderedAlbumIndex !== currentimageIndex;
+    const forward = (currentimageIndex - renderedAlbumIndex + total) % total <= Math.floor(total / 2);
+    clearTimeout(albumExitTimer);
 
     cards.forEach((card, i) => {
         card.className = 'carousel-card';
+        card.style.removeProperty('--drag-x');
+        card.style.removeProperty('--drag-angle');
+        card.setAttribute('role', 'button');
         card.tabIndex = i === currentimageIndex ? 0 : -1;
+        card.setAttribute('aria-hidden', String(i !== currentimageIndex));
         card.setAttribute('aria-label', `Phóng lớn ảnh cưới ${i + 1}`);
-        let diff = i - currentimageIndex;
-
-        if (diff < -Math.floor(total / 2)) diff += total;
-        if (diff > Math.floor(total / 2)) diff -= total;
+        const diff = (i - currentimageIndex + total) % total;
 
         if (diff === 0) card.classList.add('active');
-        else if (diff === -1) card.classList.add('prev');
         else if (diff === 1) card.classList.add('next');
-        else if (diff <= -2) card.classList.add('far-prev');
-        else if (diff >= 2) card.classList.add('far-next');
+        else if (diff === 2) card.classList.add('stack-back');
     });
-
+    if (changed && !reducedMotion.matches && outgoing) {
+        outgoing.classList.add(forward ? 'exit-left' : 'exit-right');
+        albumExitTimer = setTimeout(() => outgoing.classList.remove('exit-left', 'exit-right'), 360);
+    }
+    renderedAlbumIndex = currentimageIndex;
+    if (changed && transferFocus) cards[currentimageIndex].focus({preventScroll:true});
+    const counter = document.getElementById('albumCounter');
+    if (counter) counter.textContent = `${String(currentimageIndex + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
     updateDots();
 }
 
@@ -126,6 +145,7 @@ function prevSlide(e) {
 }
 
 function onCardClick(index) {
+    if (Date.now() < suppressAlbumClickUntil) return;
     if (index === currentimageIndex) {
         openLightbox(index);
     } else {
@@ -361,6 +381,9 @@ function escapeHtml(text) {
 
 // XỬ LÝ MỞ THIỆP & KÍCH HOẠT TRỰC TIẾP NHẠC
 const openBtn = document.getElementById('openInvitation');
+function syncHeartViewport() {
+    document.querySelector('.opening-hearts')?.style.setProperty('--travel', `${window.innerHeight + 80}px`);
+}
 function startOpeningHearts() {
     if (reducedMotion.matches || document.querySelector('.opening-hearts')) return;
     const layer = document.createElement('div');
@@ -369,26 +392,31 @@ function startOpeningHearts() {
     const count = window.innerWidth < 480 ? 16 : 24;
     for (let i = 0; i < count; i++) {
         const heart = document.createElement('span');
-        heart.className = 'opening-heart' + (i % 2 ? ' rising' : '');
-        heart.textContent = '♥';
+        heart.className = 'opening-heart';
+        heart.innerHTML = '<svg viewBox="0 0 32 32" focusable="false" aria-hidden="true"><path d="M16 28C2 18 1 9 6 5c4-3 8-1 10 3 2-4 6-6 10-3 5 4 4 13-10 23Z"/></svg>';
         heart.style.setProperty('--x', `${4 + Math.random() * 92}%`);
         heart.style.setProperty('--size', `${12 + Math.random() * 15}px`);
         heart.style.setProperty('--duration', `${7 + Math.random() * 5}s`);
-        heart.style.setProperty('--delay', `${i < 2 ? 0 : Math.random() * 6}s`);
+        heart.style.setProperty('--delay', `${-Math.random() * 10}s`);
         heart.style.setProperty('--drift', `${Math.random() * 90 - 45}px`);
         heart.style.setProperty('--heart-color', i % 3 ? '#c8899d' : '#c6a576');
         layer.appendChild(heart);
     }
     document.body.appendChild(layer);
+    syncHeartViewport();
     layer.classList.toggle('is-paused', document.hidden);
 }
+window.addEventListener('resize', syncHeartViewport);
 document.addEventListener('visibilitychange', () => {
     document.querySelector('.opening-hearts')?.classList.toggle('is-paused', document.hidden);
 });
-reducedMotion.addEventListener('change', () => {
+function onMotionChange() {
     if (reducedMotion.matches) document.querySelector('.opening-hearts')?.remove();
     else if (invitationOpened) startOpeningHearts();
-});
+    syncAutoplay();
+}
+if (reducedMotion.addEventListener) reducedMotion.addEventListener('change', onMotionChange);
+else if (reducedMotion.addListener) reducedMotion.addListener(onMotionChange);
 function openInvitation() {
     if (invitationOpened || !openBtn || openBtn.disabled) return;
     
@@ -428,6 +456,67 @@ function openInvitation() {
 
 if(openBtn) openBtn.addEventListener('click', openInvitation);
 
+function initAlbumInteraction(album) {
+    const section = album.closest('.album');
+    const track = album.querySelector('.carousel-track');
+    const pause = document.getElementById('albumPause');
+    pause?.addEventListener('click', () => {
+        albumPaused = !albumPaused;
+        pause.setAttribute('aria-pressed', String(albumPaused));
+        pause.textContent = albumPaused ? 'Tiếp tục' : 'Tạm dừng';
+        syncAutoplay();
+    });
+    section.addEventListener('focusin', () => { albumFocused = true; syncAutoplay(); });
+    section.addEventListener('focusout', () => setTimeout(() => {
+        albumFocused = section.contains(document.activeElement);
+        syncAutoplay();
+    }, 0));
+    section.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight') { e.preventDefault(); nextSlide(e); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(e); }
+        if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('.carousel-card.active')) {
+            e.preventDefault(); onCardClick(currentimageIndex);
+        }
+    });
+    let gesture = null;
+    track.addEventListener('pointerdown', e => {
+        if (!e.isPrimary || (e.pointerType === 'mouse' && e.button !== 0)) return;
+        gesture = {id:e.pointerId, x:e.clientX, y:e.clientY, dx:0, dy:0};
+        albumDragging = true; syncAutoplay();
+    });
+    track.addEventListener('pointermove', e => {
+        if (!gesture || e.pointerId !== gesture.id) return;
+        gesture.dx = e.clientX - gesture.x; gesture.dy = e.clientY - gesture.y;
+        if (Math.abs(gesture.dy) > Math.abs(gesture.dx) && Math.abs(gesture.dy) > 12) {
+            finishGesture(false); return;
+        }
+        if (Math.abs(gesture.dx) > 12) {
+            try { track.setPointerCapture(e.pointerId); } catch (_) { /* Pointer may already be cancelled by native scrolling. */ }
+            section.classList.add('is-dragging');
+            const card = track.querySelector('.active');
+            card.style.setProperty('--drag-x', `${gesture.dx}px`);
+            card.style.setProperty('--drag-angle', `${-2 + gesture.dx / 18}deg`);
+        }
+    });
+    function finishGesture(commit) {
+        if (!gesture) return;
+        const g = gesture; gesture = null;
+        if (Math.abs(g.dx) > 12 || Math.abs(g.dy) > 12) suppressAlbumClickUntil = Date.now() + 450;
+        section.classList.remove('is-dragging');
+        const card = track.querySelector('.active');
+        card?.style.removeProperty('--drag-x'); card?.style.removeProperty('--drag-angle');
+        if (track.hasPointerCapture(g.id)) track.releasePointerCapture(g.id);
+        albumDragging = false;
+        if (commit && Math.abs(g.dx) > 45 && Math.abs(g.dx) > Math.abs(g.dy) * 1.25) {
+            if (g.dx < 0) nextSlide(); else prevSlide();
+        }
+        syncAutoplay();
+    }
+    track.addEventListener('pointerup', () => finishGesture(true));
+    track.addEventListener('pointercancel', () => finishGesture(false));
+    track.addEventListener('lostpointercapture', e => { if (e.target === track) finishGesture(false); });
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     createDots(); 
     updateCarousel(); 
@@ -435,8 +524,9 @@ window.addEventListener('DOMContentLoaded', () => {
     
     const album = document.querySelector('.album-carousel-container');
     if (album) {
-        album.addEventListener('mouseenter', () => { albumHovered = true; syncAutoplay(); });
-        album.addEventListener('mouseleave', () => { albumHovered = false; syncAutoplay(); });
+        initAlbumInteraction(album);
+        album.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { albumHovered = true; syncAutoplay(); } });
+        album.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') { albumHovered = false; syncAutoplay(); } });
         
         const visible = new IntersectionObserver(entries => {
             albumVisible = entries[0].isIntersecting;

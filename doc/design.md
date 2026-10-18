@@ -26,3 +26,8 @@ Tạo assets/images/blush-botanical.png 2:3: hoa hồng phấn/ivory góc trên 
 
 ## 9. Kỹ thuật
 Giữ index.html/style.css/script.js; thêm theme.css/assets/images. Gom font requests, version local CSS/JS. Một DOMContentLoaded/wish submit. Firebase guard và trạng thái lỗi, escape mọi trường, giới hạn query. Test mock không ghi dữ liệu thật. Preview loopback; không commit/push/publish nội dung riêng trong lần này.
+
+## 10. Album Polaroid — lựa chọn ngày 18/10/2026
+Giữ toàn bộ 9 ảnh cưới thật và tông kem–hồng/champagne; không tạo ảnh thay thế vì ảnh thật là nội dung chính. Album gồm ảnh chính và hai tấm lệch góc phía sau, khung giấy kem góc nhỏ, viền champagne, chú thích trên phần giấy riêng. Ảnh rút sang trái/phải trong 360ms khi chuyển, lớp sau tiến lên. Khung rộng tối đa 280px, co theo màn hình 320px; sân khấu có khoảng trống cho các góc ảnh, không tràn ngang. Tiêu đề “Những khoảnh khắc của chúng mình”, bộ đếm 01 / 09, gợi ý vuốt và chạm phóng lớn.
+
+Nút trước/sau, chọn ảnh, tạm dừng đều tối thiểu 44px. Vuốt ngang theo ngón tay, ngưỡng 45px và lớn hơn dịch dọc; không chặn cuộn dọc, không bật lightbox sau vuốt. Enter/Space phóng lớn, mũi tên chuyển ảnh. Autoplay 4.5s chỉ khi album hiện, không hover chuột/focus/đang vuốt/modal/tab khuất/tạm dừng; giảm chuyển động tắt autoplay và animation. Tim rơi dùng hình CSS, khoảng rơi theo chiều cao pixel, delay âm để có tim ngay, fallback MediaQueryList.addListener cho trình duyệt cũ; không ép animation khi máy bật giảm chuyển động.
