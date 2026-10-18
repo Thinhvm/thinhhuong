@@ -17,6 +17,8 @@ let currentimageIndex = 0;
 let autoplayTimer = null;
 const AUTOPLAY_DELAY = 4500;
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let motionOverride = false;
+function motionAllowed() { return !reducedMotion.matches || motionOverride; }
 let invitationOpened = false;
 let albumVisible = false;
 let albumHovered = false;
@@ -40,7 +42,7 @@ function notify(message) {
 
 function syncAutoplay() {
     stopAutoplay();
-    const running = invitationOpened && albumVisible && !albumHovered && !albumPaused && !albumFocused && !albumDragging && !reducedMotion.matches && !document.hidden && !activeDialog;
+    const running = invitationOpened && albumVisible && !albumHovered && !albumPaused && !albumFocused && !albumDragging && motionAllowed() && !document.hidden && !activeDialog;
     document.querySelector('.album')?.classList.toggle('is-playing', Boolean(running));
     if (running) {
         autoplayTimer = setInterval(nextSlide, AUTOPLAY_DELAY);
@@ -381,7 +383,7 @@ function syncHeartViewport() {
     layer.style.setProperty('--travel', `${height + 80}px`);
 }
 function startOpeningHearts() {
-    if (reducedMotion.matches || document.querySelector('.opening-hearts')) return;
+    if (!motionAllowed() || document.querySelector('.opening-hearts')) return;
     const layer = document.createElement('div');
     layer.className = 'opening-hearts';
     layer.setAttribute('aria-hidden', 'true');
@@ -409,7 +411,14 @@ document.addEventListener('visibilitychange', () => {
     document.querySelector('.opening-hearts')?.classList.toggle('is-paused', document.hidden);
 });
 function onMotionChange() {
-    if (reducedMotion.matches) document.querySelector('.opening-hearts')?.remove();
+    document.body.classList.toggle('motion-enabled', motionOverride);
+    const button = document.getElementById('motionToggle');
+    if (button) {
+        button.hidden = !invitationOpened || !reducedMotion.matches;
+        button.textContent = motionOverride ? 'Tắt hiệu ứng' : 'Bật hiệu ứng';
+        button.setAttribute('aria-pressed', String(motionOverride));
+    }
+    if (!motionAllowed()) document.querySelector('.opening-hearts')?.remove();
     else if (invitationOpened) startOpeningHearts();
     syncAutoplay();
 }
@@ -430,26 +439,22 @@ function openInvitation() {
 
     openBtn.disabled = true;
     openBtn.setAttribute('aria-expanded','true');
-    const wrapper = document.getElementById('envelopeWrapper');
     const cover = document.getElementById('coverScreen');
     const main = document.getElementById('invitation');
-    
-    wrapper.classList.add('open');
-    startOpeningHearts();
-    
-    const finish = () => {
-        cover.style.display = 'none';
-        main.classList.remove('opacity-0');
-        main.inert = false;
-        main.setAttribute('aria-hidden','false');
-        document.body.classList.remove('cover-locked');
-        invitationOpened = true;
-        window.scrollTo({top:0,behavior:'instant'});
-        listenForWishes();
-        syncAutoplay();
-    };
 
-    setTimeout(finish, reducedMotion.matches ? 0 : 1950);
+    cover.style.display = 'none';
+    cover.setAttribute('aria-hidden', 'true');
+    main.style.transition = 'none';
+    main.classList.remove('opacity-0');
+    main.inert = false;
+    main.setAttribute('aria-hidden','false');
+    document.body.classList.remove('cover-locked');
+    invitationOpened = true;
+    window.scrollTo(0, 0);
+    document.getElementById('invitationHeading')?.focus({preventScroll:true});
+    onMotionChange();
+    listenForWishes();
+    syncAutoplay();
 }
 
 if(openBtn) openBtn.addEventListener('click', openInvitation);
@@ -530,6 +535,18 @@ window.addEventListener('DOMContentLoaded', () => {
     createDots(); 
     updateCarousel(); 
     syncMusic();
+    const motionButton = document.createElement('button');
+    motionButton.id = 'motionToggle';
+    motionButton.type = 'button';
+    motionButton.hidden = true;
+    motionButton.title = 'Thiết bị đang bật giảm chuyển động. Bạn có thể chọn bật tim rơi và album tự chạy.';
+    motionButton.setAttribute('aria-label', 'Bật hoặc tắt tim rơi và album tự chạy khi thiết bị giảm chuyển động');
+    motionButton.addEventListener('click', () => {
+        motionOverride = !motionOverride;
+        onMotionChange();
+        notify(motionOverride ? 'Đã bật tim rơi và album tự chạy.' : 'Đã tắt hiệu ứng theo cài đặt giảm chuyển động của thiết bị.');
+    });
+    document.body.appendChild(motionButton);
     
     const album = document.querySelector('.album-carousel-container');
     if (album) {
@@ -537,11 +554,32 @@ window.addEventListener('DOMContentLoaded', () => {
         album.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { albumHovered = true; syncAutoplay(); } });
         album.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') { albumHovered = false; syncAutoplay(); } });
         
-        const visible = new IntersectionObserver(entries => {
-            albumVisible = entries[0].isIntersecting;
+        const refreshVisible = () => {
+            const rect = album.getBoundingClientRect();
+            albumVisible = rect.bottom > 0 && rect.top < window.innerHeight;
             syncAutoplay();
-        }, { threshold: .15 });
-        visible.observe(album);
+        };
+        if ('IntersectionObserver' in window) {
+            const visible = new IntersectionObserver(entries => {
+                albumVisible = entries[0].isIntersecting;
+                syncAutoplay();
+            }, { threshold: .15 });
+            visible.observe(album);
+        } else {
+            window.addEventListener('scroll', refreshVisible, {passive:true});
+            window.addEventListener('resize', refreshVisible);
+        }
+        const restoreEffects = () => {
+            if (document.hidden) return;
+            albumHovered = false;
+            syncHeartViewport();
+            onMotionChange();
+            document.querySelector('.opening-hearts')?.classList.remove('is-paused');
+            refreshVisible();
+        };
+        window.addEventListener('pageshow', restoreEffects);
+        document.addEventListener('visibilitychange', restoreEffects);
+        refreshVisible();
     }
     
     document.addEventListener('visibilitychange', syncAutoplay);
