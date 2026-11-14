@@ -396,7 +396,7 @@ document.addEventListener('keydown', e => {
 });
 
 /* =========================================================
-   FIREBASE: LƯU BÚT & XÁC NHẬN THAM DỰ
+   FIREBASE: LƯU BÚT
    ========================================================= */
 let db = null;
 try {
@@ -471,23 +471,6 @@ wishForm?.addEventListener('submit', e => {
     });
 });
 
-const rsvpForm = $('#rsvpForm');
-rsvpForm?.addEventListener('submit', e => {
-    e.preventDefault();
-    withSending(rsvpForm, async () => {
-        const name = rsvpForm.elements.name.value.trim();
-        if (!name) { notify('Bạn nhập tên giúp chúng mình nhé.'); return; }
-        const attending = rsvpForm.elements.attend.value === 'yes';
-        await db.collection('rsvps').add({
-            name,
-            guestType: rsvpForm.elements.guestType.value,
-            attendance: attending ? 'Tham dự' : 'Không tham dự',
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        rsvpForm.reset();
-        notify(attending ? 'Cảm ơn bạn! Hẹn gặp bạn tại tiệc cưới nhé.' : 'Cảm ơn bạn đã phản hồi!');
-    });
-});
 
 /* =========================================================
    KHỞI TẠO

@@ -37,7 +37,7 @@
     <link rel="preload" as="image" href="image/DOJ_6644_1.webp">
     <link rel="stylesheet" href="./style.css?v=20261114">
 
-    <!-- Firebase (lưu bút & xác nhận tham dự) -->
+    <!-- Firebase (lưu bút) -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js" defer></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js" defer></script>
     <script src="./script.js?v=20261114" defer></script>
@@ -77,6 +77,11 @@
             <symbol id="heart" viewBox="0 0 32 32">
                 <path d="M16 28C2 18 1 9 6 5c4-3 8-1 10 3 2-4 6-6 10-3 5 4 4 13-10 23Z" />
             </symbol>
+            <radialGradient id="sealGrad" cx="35%" cy="25%" r="80%">
+                <stop offset="0%" stop-color="#86a48b" />
+                <stop offset="55%" stop-color="#4d6b57" />
+                <stop offset="100%" stop-color="#2a4033" />
+            </radialGradient>
         </defs>
     </svg>
 
@@ -95,27 +100,23 @@
 
         <div class="cover-head">
             <p class="eyebrow">Thiệp mời cưới</p>
-            <h1 class="cover-names">
-                <span>Minh Thịnh</span>
-                <em>&amp;</em>
-                <span>Huỳnh Hương</span>
-            </h1>
+            <h1 class="cover-names">Minh Thịnh <em>&amp;</em> Huỳnh Hương</h1>
             <p class="cover-date">12 &middot; 12 &middot; 2026</p>
         </div>
 
         <div class="envelope" id="envelope">
             <div class="env-back"></div>
+            <div class="env-flap"></div>
             <div class="env-letter">
-                <img src="image/DOJ_6644_1.webp" alt="" decoding="async" fetchpriority="high">
-                <div class="env-letter-copy">
-                    <span>Save the date</span>
-                    <strong>Minh Thịnh <svg class="seal-heart" aria-hidden="true"><use href="#heart" /></svg> Huỳnh Hương</strong>
-                </div>
+                <img src="image/DOJ_6644_1.webp" alt="Ảnh cưới Minh Thịnh và Huỳnh Hương" decoding="async" fetchpriority="high">
+                <span class="env-letter-tag">Save the date</span>
             </div>
             <div class="env-pocket"></div>
-            <div class="env-flap"></div>
             <button id="openBtn" class="seal" type="button" aria-label="Mở thiệp cưới">
-                <span class="seal-ring"></span>
+                <svg class="seal-shape" viewBox="0 0 32 32" aria-hidden="true">
+                    <path class="seal-fill" d="M16 29C1 19 0 9 5 5c4-3 8-1 11 3 3-4 7-6 11-3 5 4 4 14-11 24Z" />
+                    <path class="seal-line" d="M16 26.4C3.6 18 2.8 9.8 6.6 6.8c3.2-2.4 6.6-.8 9.4 2.6 2.8-3.4 6.2-5 9.4-2.6 3.8 3 3 11.2-9.4 19.6Z" />
+                </svg>
                 <span class="seal-text">
                     <span>Minh Thịnh</span>
                     <svg class="seal-heart" aria-hidden="true"><use href="#heart" /></svg>
@@ -124,7 +125,7 @@
             </button>
         </div>
 
-        <p class="cover-hint"><i class="fa-regular fa-hand-pointer"></i> Chạm vào con dấu để mở thiệp</p>
+        <p class="cover-hint"><i class="fa-regular fa-hand-pointer"></i> Chạm vào trái tim để mở thiệp</p>
     </div>
 
     <!-- ============ NỘI DUNG THIỆP ============ -->
@@ -292,36 +293,6 @@
             </div>
             <div class="carousel-dots" id="carouselDots"></div>
             <p class="hint">Vuốt để xem thêm · Chạm vào ảnh để xem lớn</p>
-        </section>
-
-        <!-- XÁC NHẬN THAM DỰ -->
-        <section class="sheet rsvp">
-            <div class="sec-head">
-                <p class="eyebrow" data-reveal="up">RSVP</p>
-                <h2 class="sec-title" data-reveal="up">Xác nhận tham dự</h2>
-                <svg class="divider" data-reveal="zoom" aria-hidden="true"><use href="#branch" /></svg>
-            </div>
-            <p class="lead small" data-reveal="up">Sự hiện diện của bạn là niềm vui của chúng mình. Bạn vui lòng phản hồi để chúng mình đón tiếp chu đáo nhất nhé!</p>
-            <form id="rsvpForm" class="form" data-reveal="up" novalidate>
-                <label class="field">
-                    <span>Họ và tên</span>
-                    <input name="name" type="text" maxlength="100" autocomplete="name" placeholder="Nhập tên của bạn" required>
-                </label>
-                <label class="field">
-                    <span>Bạn là khách của</span>
-                    <select name="guestType">
-                        <option>Chú rể (Minh Thịnh)</option>
-                        <option>Cô dâu (Huỳnh Hương)</option>
-                        <option>Cả hai dâu rể</option>
-                    </select>
-                </label>
-                <fieldset class="field choice">
-                    <legend>Bạn sẽ tham dự chứ?</legend>
-                    <label><input type="radio" name="attend" value="yes" checked> <span>Chắc chắn sẽ đến</span></label>
-                    <label><input type="radio" name="attend" value="no"> <span>Rất tiếc, mình không đến được</span></label>
-                </fieldset>
-                <button type="submit" class="btn btn-block">Gửi xác nhận</button>
-            </form>
         </section>
 
         <!-- SỔ LƯU BÚT -->
