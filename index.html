@@ -9,7 +9,8 @@
         href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%229%22 fill=%22%23fbf8f1%22/%3E%3Cpath d=%22M16 26C2 17 3 6 10 6c3 0 5 2 6 4 1-2 3-4 6-4 7 0 8 11-6 20Z%22 fill=%22none%22 stroke=%22%234d6b57%22 stroke-width=%221.8%22/%3E%3C/svg%3E">
 
     <title>Minh Thịnh & Huỳnh Hương</title>
-    <meta name="description" content="Chúng mình sắp về chung một nhà! Sự hiện diện của quý khách là niềm vinh dự cho gia đình!" />
+    <meta name="description"
+        content="Chúng mình sắp về chung một nhà! Sự hiện diện của quý khách là niềm vinh dự cho gia đình!" />
 
     <!-- Open Graph / Facebook / Zalo -->
     <meta property="og:type" content="website" />
@@ -49,7 +50,8 @@
     <svg width="0" height="0" style="position:absolute" aria-hidden="true">
         <defs>
             <symbol id="branch" viewBox="0 0 120 40">
-                <path d="M4 20 C34 20 60 19 116 20" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" />
+                <path d="M4 20 C34 20 60 19 116 20" fill="none" stroke="currentColor" stroke-width="1"
+                    stroke-linecap="round" />
                 <g fill="currentColor">
                     <path d="M22 20c2-7 8-10 13-9-2 6-7 9-13 9z" opacity=".85" />
                     <path d="M22 20c2 7 8 10 13 9-2-6-7-9-13-9z" opacity=".6" />
@@ -63,7 +65,8 @@
                 </g>
             </symbol>
             <symbol id="sprig" viewBox="0 0 80 120">
-                <path d="M40 118 C38 80 30 50 12 6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+                <path d="M40 118 C38 80 30 50 12 6" fill="none" stroke="currentColor" stroke-width="1.2"
+                    stroke-linecap="round" />
                 <g fill="currentColor">
                     <path d="M36 96c-10-2-16-10-15-18 9 2 14 9 15 18z" opacity=".7" />
                     <path d="M37 92c9-5 18-3 22 3-8 5-16 4-22-3z" opacity=".5" />
@@ -87,7 +90,7 @@
 
     <!-- ============ NHẠC ============ -->
     <audio id="bgMusic" loop preload="none">
-        <source src="music/Ngày Đầu Tiên.mp3" type="audio/mpeg">
+        <source src="music/Váy Cưới.flac" type="audio/mpeg">
     </audio>
     <button id="musicBtn" class="fab fab-music" type="button" aria-label="Bật nhạc" aria-pressed="false" hidden>
         <span class="music-disc" aria-hidden="true"><i class="fa-solid fa-music"></i></span>
@@ -95,8 +98,12 @@
 
     <!-- ============ BÌA THIỆP ============ -->
     <div id="cover" class="cover" role="dialog" aria-modal="true" aria-label="Bìa thiệp cưới">
-        <svg class="cover-sprig cover-sprig--tl" aria-hidden="true"><use href="#sprig" /></svg>
-        <svg class="cover-sprig cover-sprig--br" aria-hidden="true"><use href="#sprig" /></svg>
+        <svg class="cover-sprig cover-sprig--tl" aria-hidden="true">
+            <use href="#sprig" />
+        </svg>
+        <svg class="cover-sprig cover-sprig--br" aria-hidden="true">
+            <use href="#sprig" />
+        </svg>
 
         <div class="cover-head">
             <p class="eyebrow">Thiệp mời cưới</p>
@@ -108,18 +115,22 @@
             <div class="env-back"></div>
             <div class="env-flap"></div>
             <div class="env-letter">
-                <img src="image/DOJ_6644_1.webp" alt="Ảnh cưới Minh Thịnh và Huỳnh Hương" decoding="async" fetchpriority="high">
+                <img src="image/DOJ_6644_1.webp" alt="Ảnh cưới Minh Thịnh và Huỳnh Hương" decoding="async"
+                    fetchpriority="high">
                 <span class="env-letter-tag">Save the date</span>
             </div>
             <div class="env-pocket"></div>
             <button id="openBtn" class="seal" type="button" aria-label="Mở thiệp cưới">
                 <svg class="seal-shape" viewBox="0 0 32 32" aria-hidden="true">
                     <path class="seal-fill" d="M16 29C1 19 0 9 5 5c4-3 8-1 11 3 3-4 7-6 11-3 5 4 4 14-11 24Z" />
-                    <path class="seal-line" d="M16 26.4C3.6 18 2.8 9.8 6.6 6.8c3.2-2.4 6.6-.8 9.4 2.6 2.8-3.4 6.2-5 9.4-2.6 3.8 3 3 11.2-9.4 19.6Z" />
+                    <path class="seal-line"
+                        d="M16 26.4C3.6 18 2.8 9.8 6.6 6.8c3.2-2.4 6.6-.8 9.4 2.6 2.8-3.4 6.2-5 9.4-2.6 3.8 3 3 11.2-9.4 19.6Z" />
                 </svg>
                 <span class="seal-text">
                     <span>Minh Thịnh</span>
-                    <svg class="seal-heart" aria-hidden="true"><use href="#heart" /></svg>
+                    <svg class="seal-heart" aria-hidden="true">
+                        <use href="#heart" />
+                    </svg>
                     <span>Huỳnh Hương</span>
                 </span>
             </button>
@@ -133,13 +144,19 @@
 
         <!-- HERO -->
         <section class="sheet hero" id="top" tabindex="-1">
-            <svg class="corner corner--tl" aria-hidden="true"><use href="#sprig" /></svg>
-            <svg class="corner corner--tr" aria-hidden="true"><use href="#sprig" /></svg>
+            <svg class="corner corner--tl" aria-hidden="true">
+                <use href="#sprig" />
+            </svg>
+            <svg class="corner corner--tr" aria-hidden="true">
+                <use href="#sprig" />
+            </svg>
 
             <p class="eyebrow" data-reveal="down">The Wedding Of</p>
             <h2 class="hero-names">
                 <span class="script" data-reveal="left">Minh Thịnh</span>
-                <span class="hero-amp" data-reveal="zoom" data-delay="150">&amp;</span>
+                <span class="people-heart" data-reveal="zoom" data-delay="200" aria-hidden="true"><svg>
+                        <use href="#heart" />
+                    </svg></span>
                 <span class="script" data-reveal="right" data-delay="250">Huỳnh Hương</span>
             </h2>
 
@@ -158,7 +175,7 @@
                 </div>
                 <span class="db-year">Năm 2026</span>
             </div>
-            <p class="lunar" data-reveal="up">(Nhằm ngày 04 tháng 11 năm Bính Ngọ)</p>
+            <p class="lunar" data-reveal="up">(Ngày 04 tháng 11 năm Bính Ngọ)</p>
         </section>
 
         <!-- LỜI MỞ ĐẦU -->
@@ -166,12 +183,16 @@
             <div class="sec-head">
                 <p class="eyebrow" data-reveal="up">Our Story</p>
                 <h2 class="sec-title" data-reveal="up">Một hành trình mới<br>đang bắt đầu</h2>
-                <svg class="divider" data-reveal="zoom" aria-hidden="true"><use href="#branch" /></svg>
+                <svg class="divider" data-reveal="zoom" aria-hidden="true">
+                    <use href="#branch" />
+                </svg>
             </div>
             <p class="lead" data-reveal="up">“Hôn nhân là chuyện cả đời, yêu người vừa ý, cưới người mình thương...”</p>
             <div class="story-photos">
-                <figure class="polaroid polaroid--l" data-reveal="left"><img src="image/DOJ_6641_1.webp" alt="Khoảnh khắc của dâu rể" loading="lazy"></figure>
-                <figure class="polaroid polaroid--r" data-reveal="right" data-delay="150"><img src="image/DOJ_6479_1.webp" alt="Khoảnh khắc của dâu rể" loading="lazy"></figure>
+                <figure class="polaroid polaroid--l" data-reveal="left"><img src="image/DOJ_6641_1.webp"
+                        alt="Khoảnh khắc của dâu rể" loading="lazy"></figure>
+                <figure class="polaroid polaroid--r" data-reveal="right" data-delay="150"><img
+                        src="image/DOJ_6479_1.webp" alt="Khoảnh khắc của dâu rể" loading="lazy"></figure>
             </div>
         </section>
 
@@ -180,7 +201,9 @@
             <div class="sec-head">
                 <p class="eyebrow" data-reveal="up">Thông tin lễ cưới</p>
                 <h2 class="sec-title" data-reveal="up">Trân trọng báo tin</h2>
-                <svg class="divider" data-reveal="zoom" aria-hidden="true"><use href="#branch" /></svg>
+                <svg class="divider" data-reveal="zoom" aria-hidden="true">
+                    <use href="#branch" />
+                </svg>
             </div>
 
             <div class="families">
@@ -203,13 +226,17 @@
 
             <div class="people">
                 <button type="button" class="person" data-lightbox="image/DOJ_5786_1.webp" data-reveal="left">
-                    <span class="arch-frame person-photo"><img src="image/DOJ_5786_1.webp" alt="Chú rể Minh Thịnh" loading="lazy"></span>
+                    <span class="arch-frame person-photo"><img src="image/DOJ_5786_1.webp" alt="Chú rể Minh Thịnh"
+                            loading="lazy"></span>
                     <span class="person-role">Chú rể</span>
                     <span class="person-name script">Minh Thịnh</span>
                 </button>
-                <span class="people-heart" data-reveal="zoom" data-delay="200" aria-hidden="true"><svg><use href="#heart" /></svg></span>
+                <span class="people-heart" data-reveal="zoom" data-delay="200" aria-hidden="true"><svg>
+                        <use href="#heart" />
+                    </svg></span>
                 <button type="button" class="person" data-lightbox="image/DOJ_5795_1.webp" data-reveal="right">
-                    <span class="arch-frame person-photo"><img src="image/DOJ_5795_1.webp" alt="Cô dâu Huỳnh Hương" loading="lazy"></span>
+                    <span class="arch-frame person-photo"><img src="image/DOJ_5795_1.webp" alt="Cô dâu Huỳnh Hương"
+                            loading="lazy"></span>
                     <span class="person-role">Cô dâu</span>
                     <span class="person-name script">Huỳnh Hương</span>
                 </button>
@@ -233,7 +260,9 @@
             <div class="sec-head">
                 <p class="eyebrow" data-reveal="up">Thông tin tiệc cưới</p>
                 <h2 class="sec-title" data-reveal="up">Tiệc cưới diễn ra vào lúc</h2>
-                <svg class="divider" data-reveal="zoom" aria-hidden="true"><use href="#branch" /></svg>
+                <svg class="divider" data-reveal="zoom" aria-hidden="true">
+                    <use href="#branch" />
+                </svg>
             </div>
 
             <div class="times" data-reveal="up">
@@ -265,9 +294,12 @@
             <div class="sec-head">
                 <p class="eyebrow" data-reveal="up">Địa điểm tổ chức</p>
                 <h2 class="sec-title" data-reveal="up">Nhà hàng tiệc cưới<br>Phương Loan</h2>
-                <svg class="divider" data-reveal="zoom" aria-hidden="true"><use href="#branch" /></svg>
+                <svg class="divider" data-reveal="zoom" aria-hidden="true">
+                    <use href="#branch" />
+                </svg>
             </div>
-            <p class="address" data-reveal="up"><i class="fa-solid fa-location-dot"></i> Thôn Thắng Kiên, xã Đề Gi, tỉnh Gia Lai</p>
+            <p class="address" data-reveal="up"><i class="fa-solid fa-location-dot"></i> Thôn Thắng Kiên, xã Đề Gi, tỉnh
+                Gia Lai</p>
             <div class="map" data-reveal="zoom">
                 <iframe title="Bản đồ nhà hàng tiệc cưới Phương Loan"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.726888463991!2d109.1857867!3d14.1017949!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x316f491e66387e9d%3A0xc69c0ad102718b64!2zTmjDoCBow6BuZyB0aeG7h2MgY8aw4bubaSBQaMawxqFuZyBMb2FuIDIsIDQ1MlErVjhILCDEkFQ2NDAs An Nhơn, Hoài Nhơn, Gia Lai, Việt Nam!5e0!3m2!1svi!2svn!4v1710000000000!5m2!1svi!2svn"
@@ -284,12 +316,16 @@
             <div class="sec-head">
                 <p class="eyebrow" data-reveal="up">Album ảnh cưới</p>
                 <h2 class="sec-title" data-reveal="up">Những khoảnh khắc<br>của chúng mình</h2>
-                <svg class="divider" data-reveal="zoom" aria-hidden="true"><use href="#branch" /></svg>
+                <svg class="divider" data-reveal="zoom" aria-hidden="true">
+                    <use href="#branch" />
+                </svg>
             </div>
             <div class="carousel" id="carousel" data-reveal="zoom">
-                <button type="button" class="carousel-btn carousel-prev" aria-label="Ảnh trước"><i class="fa-solid fa-chevron-left"></i></button>
+                <button type="button" class="carousel-btn carousel-prev" aria-label="Ảnh trước"><i
+                        class="fa-solid fa-chevron-left"></i></button>
                 <div class="carousel-track" id="carouselTrack"></div>
-                <button type="button" class="carousel-btn carousel-next" aria-label="Ảnh tiếp theo"><i class="fa-solid fa-chevron-right"></i></button>
+                <button type="button" class="carousel-btn carousel-next" aria-label="Ảnh tiếp theo"><i
+                        class="fa-solid fa-chevron-right"></i></button>
             </div>
             <div class="carousel-dots" id="carouselDots"></div>
             <p class="hint">Vuốt để xem thêm · Chạm vào ảnh để xem lớn</p>
@@ -300,18 +336,23 @@
             <div class="sec-head">
                 <p class="eyebrow" data-reveal="up">Sổ lưu bút</p>
                 <h2 class="sec-title" data-reveal="up">Gửi lời chúc</h2>
-                <svg class="divider" data-reveal="zoom" aria-hidden="true"><use href="#branch" /></svg>
+                <svg class="divider" data-reveal="zoom" aria-hidden="true">
+                    <use href="#branch" />
+                </svg>
             </div>
             <form id="wishForm" class="form" data-reveal="up" novalidate>
                 <label class="field">
                     <span class="sr-only">Họ và tên</span>
-                    <input id="guestName" type="text" maxlength="100" autocomplete="name" placeholder="Tên của bạn *" required>
+                    <input id="guestName" type="text" maxlength="100" autocomplete="name" placeholder="Tên của bạn *"
+                        required>
                 </label>
                 <label class="field">
                     <span class="sr-only">Lời chúc</span>
-                    <textarea id="guestWish" maxlength="2000" rows="3" placeholder="Lời chúc dành cho dâu rể *" required></textarea>
+                    <textarea id="guestWish" maxlength="2000" rows="3" placeholder="Lời chúc dành cho dâu rể *"
+                        required></textarea>
                 </label>
-                <button type="submit" class="btn btn-block"><i class="fa-regular fa-paper-plane"></i> Gửi lời chúc</button>
+                <button type="submit" class="btn btn-block"><i class="fa-regular fa-paper-plane"></i> Gửi lời
+                    chúc</button>
             </form>
             <div class="wishes" id="messagesList" aria-live="polite">
                 <p class="wishes-empty">Đang tải lời chúc...</p>
@@ -323,9 +364,12 @@
             <div class="sec-head">
                 <p class="eyebrow" data-reveal="up">Mừng cưới</p>
                 <h2 class="sec-title" data-reveal="up">Hộp mừng cưới</h2>
-                <svg class="divider" data-reveal="zoom" aria-hidden="true"><use href="#branch" /></svg>
+                <svg class="divider" data-reveal="zoom" aria-hidden="true">
+                    <use href="#branch" />
+                </svg>
             </div>
-            <p class="lead small" data-reveal="up">Cảm ơn tình cảm của bạn dành cho chúng mình. Nếu không thể đến chung vui, bạn có thể gửi lời chúc qua hộp mừng cưới.</p>
+            <p class="lead small" data-reveal="up">Cảm ơn tình cảm của bạn dành cho chúng mình. Nếu không thể đến chung
+                vui, bạn có thể gửi lời chúc qua hộp mừng cưới.</p>
             <button type="button" class="gift-box" data-open-gift data-reveal="zoom" aria-label="Mở hộp mừng cưới">
                 <span class="gift-icon"><i class="fa-solid fa-gift"></i></span>
                 <span>Mở hộp mừng cưới</span>
@@ -355,34 +399,44 @@
     <!-- ============ HỘP MỪNG CƯỚI ============ -->
     <div id="giftModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="giftTitle" aria-hidden="true">
         <div class="modal-card">
-            <button type="button" class="modal-close" data-close aria-label="Đóng"><i class="fa-solid fa-xmark"></i></button>
-            <svg class="divider" aria-hidden="true"><use href="#branch" /></svg>
+            <button type="button" class="modal-close" data-close aria-label="Đóng"><i
+                    class="fa-solid fa-xmark"></i></button>
+            <svg class="divider" aria-hidden="true">
+                <use href="#branch" />
+            </svg>
             <h3 id="giftTitle" class="sec-title">Mừng cưới dâu rể</h3>
             <div class="qr-grid">
-                <div class="qr-card">
-                    <p class="qr-label">Mừng cưới chú rể</p>
-                    <img src="img/qr_chure.jpg" alt="Mã QR mừng cưới chú rể" loading="lazy">
-                    <p class="qr-bank">Vietcombank</p>
-                    <button type="button" class="qr-number" data-copy="1029009282">1029009282 <i class="fa-regular fa-copy"></i></button>
-                    <p class="qr-name">VÕ MINH THỊNH</p>
-                </div>
                 <div class="qr-card">
                     <p class="qr-label">Mừng cưới cô dâu</p>
                     <img src="img/qr_codau.jpg" alt="Mã QR mừng cưới cô dâu" loading="lazy">
                     <p class="qr-bank">Vietcombank</p>
-                    <button type="button" class="qr-number" data-copy="9393129489">9393129489 <i class="fa-regular fa-copy"></i></button>
+                    <button type="button" class="qr-number" data-copy="9393129489">9393129489 <i
+                            class="fa-regular fa-copy"></i></button>
                     <p class="qr-name">NGUYỄN THỊ HUỲNH HƯƠNG</p>
                 </div>
+                <div class="qr-card">
+                    <p class="qr-label">Mừng cưới chú rể</p>
+                    <img src="img/qr_chure.jpg" alt="Mã QR mừng cưới chú rể" loading="lazy">
+                    <p class="qr-bank">Vietcombank</p>
+                    <button type="button" class="qr-number" data-copy="1029009282">1029009282 <i
+                            class="fa-regular fa-copy"></i></button>
+                    <p class="qr-name">VÕ MINH THỊNH</p>
+                </div>
+
             </div>
         </div>
     </div>
 
     <!-- ============ LIGHTBOX ============ -->
-    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Ảnh cưới phóng lớn" aria-hidden="true">
-        <button type="button" class="lb-btn lb-close" data-close aria-label="Đóng ảnh"><i class="fa-solid fa-xmark"></i></button>
-        <button type="button" class="lb-btn lb-prev" aria-label="Ảnh trước"><i class="fa-solid fa-chevron-left"></i></button>
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Ảnh cưới phóng lớn"
+        aria-hidden="true">
+        <button type="button" class="lb-btn lb-close" data-close aria-label="Đóng ảnh"><i
+                class="fa-solid fa-xmark"></i></button>
+        <button type="button" class="lb-btn lb-prev" aria-label="Ảnh trước"><i
+                class="fa-solid fa-chevron-left"></i></button>
         <img id="lightboxImg" src="" alt="Ảnh cưới phóng lớn">
-        <button type="button" class="lb-btn lb-next" aria-label="Ảnh tiếp theo"><i class="fa-solid fa-chevron-right"></i></button>
+        <button type="button" class="lb-btn lb-next" aria-label="Ảnh tiếp theo"><i
+                class="fa-solid fa-chevron-right"></i></button>
         <p class="lb-count" id="lightboxCount"></p>
     </div>
 
