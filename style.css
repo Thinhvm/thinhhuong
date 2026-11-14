@@ -296,9 +296,18 @@ body.is-open .invitation { display: block; animation: fadeIn .8s ease both; }
 .date-block { display: flex; flex-direction: column; align-items: center; font-family: var(--serif); color: var(--green-dark); margin-bottom: 8px; }
 .db-month, .db-year { font-size: 22px; font-weight: 500; letter-spacing: .06em; }
 .db-row { display: flex; align-items: center; gap: 14px; margin: 4px 0; }
-.db-side { width: 92px; font-size: 20px; font-weight: 500; }
+/* Số kiểu "lining" – Cormorant mặc định dùng số kiểu cũ (lên xuống lệch), nhìn nhỏ và khó đọc */
+.date-block, .times strong, .ceremony-time, .countdown strong { font-variant-numeric: lining-nums tabular-nums; }
+.db-month, .db-year { color: var(--green); }
+.db-side { width: 92px; font-size: 21px; font-weight: 600; line-height: 1.15; display: flex; flex-direction: column; align-items: center; }
+.db-side small {
+  font-family: var(--sans); font-size: 10px; font-weight: 500;
+  letter-spacing: .28em; text-indent: .28em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 4px;
+}
+.db-time time { font-size: 30px; font-weight: 700; letter-spacing: .03em; color: var(--green); }
 .db-day {
-  font-size: 64px; font-weight: 600; line-height: 1;
+  font-size: 68px; font-weight: 700; line-height: 1;
   padding: 4px 18px;
   border-left: 1.5px solid var(--gold);
   border-right: 1.5px solid var(--gold);
@@ -662,6 +671,7 @@ body.is-open .invitation { display: block; animation: fadeIn .8s ease both; }
 @media (max-width: 360px) {
   .sheet { padding: 40px 16px 34px; }
   .db-side { width: 70px; font-size: 17px; }
+  .db-time time { font-size: 25px; }
   .db-day { font-size: 52px; padding: 2px 12px; }
   .families { font-size: 12px; gap: 8px; }
   .family-label { font-size: 15px; }

@@ -48,14 +48,32 @@ function syncMusic() {
     musicBtn.setAttribute('aria-label', playing ? 'Tắt nhạc' : 'Bật nhạc');
     musicBtn.innerHTML = `<span class="music-disc" aria-hidden="true"><i class="fa-solid ${playing ? 'fa-compact-disc' : 'fa-volume-xmark'}"></i></span>`;
 }
+let musicWanted = false; // false khi khách chủ động tắt nhạc
+const unlockEvents = ['pointerdown', 'touchend', 'keydown', 'scroll'];
+function retryOnInteraction() {
+    // Trình duyệt chặn autoplay → thử phát lại ở lần chạm / cuộn kế tiếp
+    const retry = () => {
+        unlockEvents.forEach((ev) => window.removeEventListener(ev, retry, true));
+        if (musicWanted && bgMusic.paused) playMusic();
+    };
+    unlockEvents.forEach((ev) => window.addEventListener(ev, retry, { capture: true, passive: true }));
+}
 function playMusic() {
     if (!bgMusic) return;
+    musicWanted = true;
     const p = bgMusic.play();
-    if (p) p.catch(() => syncMusic());
+    if (p) p.catch((err) => {
+        syncMusic();
+        if (err?.name === 'NotAllowedError') retryOnInteraction();
+        else console.warn('Không phát được nhạc nền:', err);
+    });
 }
 bgMusic?.addEventListener('play', syncMusic);
 bgMusic?.addEventListener('pause', syncMusic);
-musicBtn?.addEventListener('click', () => (bgMusic.paused ? playMusic() : bgMusic.pause()));
+musicBtn?.addEventListener('click', () => {
+    if (bgMusic.paused) playMusic();
+    else { musicWanted = false; bgMusic.pause(); }
+});
 
 /* =========================================================
    MỞ THIỆP

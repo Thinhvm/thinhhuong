@@ -89,8 +89,10 @@
     </svg>
 
     <!-- ============ NHẠC ============ -->
-    <audio id="bgMusic" loop preload="none">
-        <source src="music/Váy Cưới.mp3" type="audio/mpeg">
+    <!-- vay-cuoi.mp3: bản MP3 thật, tên không dấu. Nếu chưa có file, trình duyệt tự chuyển sang bài dự phòng. -->
+    <audio id="bgMusic" loop preload="metadata" playsinline>
+        <source src="music/vay-cuoi.mp3" type="audio/mpeg">
+        <source src="music/Ng%C3%A0y%20%C4%90%E1%BA%A7u%20Ti%C3%AAn.mp3" type="audio/mpeg">
     </audio>
     <button id="musicBtn" class="fab fab-music" type="button" aria-label="Bật nhạc" aria-pressed="false" hidden>
         <span class="music-disc" aria-hidden="true"><i class="fa-solid fa-music"></i></span>
@@ -169,9 +171,9 @@
             <div class="date-block" data-reveal="up">
                 <span class="db-month">Tháng 12</span>
                 <div class="db-row">
-                    <span class="db-side">Thứ Bảy</span>
+                    <span class="db-side"><small>Ngày</small>Thứ Bảy</span>
                     <span class="db-day">12</span>
-                    <span class="db-side">10:30</span>
+                    <span class="db-side db-time"><small>Lúc</small><time datetime="10:30">10:30</time></span>
                 </div>
                 <span class="db-year">Năm 2026</span>
             </div>
